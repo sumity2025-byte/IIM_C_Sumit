@@ -48,6 +48,39 @@
   --shadow:0 1px 2px rgba(40,20,80,.04),0 10px 30px rgba(40,20,80,.06);
   --shadow-lg:0 2px 6px rgba(40,20,80,.05),0 24px 60px rgba(40,20,80,.10);
 }
+/* ── DARK (pastel-plum) THEME ── */
+[data-theme="dark"]{
+  --bg:#16112a;
+  --bg-2:#1f1838;
+  --bg-3:#2a2147;
+  --ink:#f3f0ff;
+  --ink-2:#c4bee0;
+  --ink-3:#8b83a8;
+  --line:rgba(160,140,255,.18);
+  --line-soft:rgba(160,140,255,.10);
+  --ac:#ff7a3d;
+  --ac-2:#ffae6b;
+  --ac-soft:rgba(255,122,61,.14);
+  --ac-line:rgba(255,122,61,.4);
+  --grad:linear-gradient(120deg,#ff7a3d,#ffb05a 55%,#ffd98a);
+  --p-blue:#23304f; --p-blue-l:#7aa2ff;
+  --p-green:#1e3a2e; --p-green-l:#54d98c;
+  --p-purple:#2c2350; --p-purple-l:#a98bff;
+  --p-pink:#3a2340; --p-pink-l:#ff7ab8;
+  --p-yellow:#3a3320; --p-yellow-l:#ffcf5a;
+  --shadow:0 1px 2px rgba(0,0,0,.3),0 10px 30px rgba(0,0,0,.35);
+  --shadow-lg:0 2px 6px rgba(0,0,0,.3),0 24px 60px rgba(0,0,0,.5);
+}
+[data-theme="dark"] body{background:var(--bg);}
+[data-theme="dark"] #nav{background:rgba(22,17,42,.85);}
+[data-theme="dark"] .mmenu{background:rgba(22,17,42,.98);}
+[data-theme="dark"] .modal-bg{background:rgba(10,8,20,.6);}
+[data-theme="dark"] .stat,.card,.edu-card,.fact,.cert,.pdf-card,.qcard,.tl-head,.feature,.gal,.cmd{background:var(--bg-2);}
+[data-theme="dark"] .hero,.story{background:var(--bg);}
+[data-theme="dark"] .feature,.flip .face{background:var(--bg-2);}
+[data-theme="dark"] .flip .back{background:linear-gradient(160deg,var(--bg-2),var(--bg-3));}
+[data-theme="dark"] .exp .exp-logo,.tl-head .co img{filter:brightness(.95);}
+[data-theme="dark"] .india-map .land{fill:var(--p-purple);stroke:var(--p-purple-l);}
 *{margin:0;padding:0;box-sizing:border-box;}
 html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;}
 body{font-family:var(--sans);background:var(--bg);color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
@@ -117,10 +150,7 @@ img{max-width:100%;display:block;}
 .btn-p:hover{transform:translateY(-3px);box-shadow:0 16px 44px rgba(255,94,31,.42);}
 .btn-g{background:var(--bg-2);color:var(--ink);border:1px solid var(--line);}
 .btn-g:hover{transform:translateY(-3px);background:var(--bg-3);}
-.scroll-hint{position:absolute;bottom:24px;left:50%;transform:translateX(-50%);z-index:2;font-size:.72rem;color:var(--ink-3);display:flex;flex-direction:column;align-items:center;gap:8px;letter-spacing:.06em;}
-.scroll-hint .mouse{width:22px;height:34px;border:2px solid var(--ink-3);border-radius:12px;position:relative;}
-.scroll-hint .mouse::after{content:'';position:absolute;top:6px;left:50%;transform:translateX(-50%);width:3px;height:6px;border-radius:2px;background:var(--ink-3);animation:wheel 1.6s infinite;}
-@keyframes wheel{0%{opacity:0;transform:translate(-50%,0);}40%{opacity:1;}100%{opacity:0;transform:translate(-50%,12px);}}
+
 
 /* ── MARQUEE ── */
 .marquee{overflow:hidden;background:linear-gradient(90deg,#7c3aed,#ff5e1f);color:#fff;padding:20px 0;}
@@ -332,6 +362,127 @@ footer .fr a:hover{color:var(--ac);}
 .js .reveal-s{opacity:0;transform:scale(.95);transition:opacity .8s cubic-bezier(.16,1,.3,1),transform .8s cubic-bezier(.16,1,.3,1);}
 .js .reveal-s.in{opacity:1;transform:none;}
 
+/* ─────────────────────────────────────────────
+   NEW COMPONENTS (all transform/opacity only)
+   ───────────────────────────────────────────── */
+
+/* THEME TOGGLE */
+.theme-toggle{width:42px;height:42px;border-radius:50%;border:1px solid var(--line);background:var(--bg-2);color:var(--ink-2);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1.1rem;transition:transform .25s,background .25s;flex-shrink:0;}
+.theme-toggle:hover{transform:rotate(20deg) scale(1.08);background:var(--bg-3);}
+
+/* HERO word-swap + shimmer */
+.hero h1 .swap{display:inline-block;position:relative;}
+.hero h1 .swap .word{display:inline-block;background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent;animation:wordIn .5s cubic-bezier(.16,1,.3,1);}
+@keyframes wordIn{from{opacity:0;transform:translateY(14px);}to{opacity:1;transform:none;}}
+.hero h1 .shimmer{position:relative;background:linear-gradient(100deg,#ff5e1f 30%,#ffd98a 50%,#ff5e1f 70%);background-size:200% auto;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent;animation:shimmer 3.5s linear infinite;}
+@keyframes shimmer{to{background-position:200% center;}}
+
+/* LIVE STATUS CHIP */
+.pill .rot{display:inline-block;min-width:1ch;}
+.pill .rot .r{display:inline-block;animation:wordIn .45s ease;}
+
+/* SECTION PROGRESS RAIL */
+#rail{position:fixed;left:18px;top:50%;transform:translateY(-50%);z-index:140;display:flex;flex-direction:column;gap:10px;}
+#rail a{position:relative;width:8px;height:8px;border-radius:50%;background:var(--line);transition:all .3s;}
+#rail a.active{background:var(--ac);transform:scale(1.5);}
+#rail a .fill{position:absolute;left:50%;top:-22px;transform:translateX(-50%);width:3px;height:0;background:var(--grad);border-radius:3px;transition:height .4s;z-index:-1;}
+#rail a.on .fill{height:54px;}
+#rail a span{position:absolute;left:18px;top:50%;transform:translateY(-50%);white-space:nowrap;font-size:.72rem;font-weight:700;color:var(--ink);background:var(--bg);border:1px solid var(--line-soft);padding:4px 10px;border-radius:8px;opacity:0;pointer-events:none;transition:opacity .2s;box-shadow:var(--shadow);}
+#rail a:hover span{opacity:1;}
+
+/* STAT STRIP sparklines */
+.stat .spark{display:flex;align-items:flex-end;gap:3px;height:26px;margin-top:12px;justify-content:center;}
+.stat .spark i{width:5px;border-radius:3px 3px 0 0;background:linear-gradient(var(--ac),var(--ac-2));opacity:.55;transform:scaleY(0);transform-origin:bottom;transition:transform .9s cubic-bezier(.16,1,.3,1);}
+.stat.in .spark i{transform:scaleY(1);}
+
+/* IMPACT MAP */
+.mapsec{background:var(--bg);}
+.india-map{position:relative;max-width:520px;margin:40px auto 0;}
+.india-map svg{width:100%;height:auto;display:block;}
+.india-map .land{fill:var(--p-purple);stroke:var(--p-purple-l);stroke-width:1.2;opacity:.85;}
+.pin{position:absolute;width:16px;height:16px;transform:translate(-50%,-50%);}
+.pin::before{content:'';position:absolute;inset:0;border-radius:50%;background:var(--ac);box-shadow:0 0 0 4px var(--ac-soft);}
+.pin::after{content:'';position:absolute;inset:0;border-radius:50%;background:var(--ac);animation:ping 2.4s ease-out infinite;}
+@keyframes ping{0%{transform:scale(1);opacity:.7;}100%{transform:scale(3.2);opacity:0;}}
+.pin .lbl{position:absolute;left:22px;top:50%;transform:translateY(-50%);white-space:nowrap;font-size:.74rem;font-weight:700;color:var(--ink);background:var(--bg);border:1px solid var(--line-soft);padding:3px 9px;border-radius:8px;box-shadow:var(--shadow);white-space:nowrap;}
+.pin.hidden{opacity:0;}
+.pin.show{opacity:1;transition:opacity .5s;}
+.mapcap{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:26px;}
+.mapcap .mc{background:var(--bg-2);border:1px solid var(--line-soft);border-radius:100px;padding:8px 16px;font-size:.82rem;font-weight:600;color:var(--ink-2);}
+.mapcap .mc b{color:var(--ac);}
+
+/* TIMELINE */
+.tl{position:relative;margin-top:44px;padding-left:34px;}
+.tl::before{content:'';position:absolute;left:11px;top:6px;bottom:6px;width:2px;background:var(--line-soft);}
+.tl-item{position:relative;margin-bottom:14px;}
+.tl-item .dot{position:absolute;left:-28px;top:6px;width:20px;height:20px;border-radius:50%;background:var(--bg);border:3px solid var(--ac);box-shadow:0 0 0 4px var(--ac-soft);cursor:pointer;transition:transform .2s;}
+.tl-item .dot:hover{transform:scale(1.18);}
+.tl-item.open .dot{background:var(--ac);}
+.tl-head{display:flex;align-items:center;gap:12px;background:#fff;border:1px solid var(--line-soft);border-radius:var(--radius-sm);padding:14px 18px;cursor:pointer;transition:transform .25s,box-shadow .25s,border-color .25s;}
+.tl-head:hover{transform:translateX(4px);box-shadow:var(--shadow);border-color:var(--ac-line);}
+.tl-item.open .tl-head{border-color:var(--ac-line);background:var(--ac-soft);}
+.tl-head .co{display:flex;align-items:center;gap:10px;font-weight:800;font-size:1rem;}
+.tl-head .co img{height:22px;width:22px;object-fit:contain;}
+.tl-head .role{font-size:.82rem;color:var(--ink-2);font-weight:600;}
+.tl-head .when{margin-left:auto;font-size:.74rem;color:var(--ink-3);font-weight:600;}
+.tl-body{max-height:0;overflow:hidden;transition:max-height .5s cubic-bezier(.16,1,.3,1);}
+.tl-item.open .tl-body{max-height:900px;}
+.tl-body .inner{padding:14px 18px 4px;}
+.tl-body ul{list-style:none;display:flex;flex-direction:column;gap:8px;}
+.tl-body li{font-size:.9rem;color:var(--ink-2);padding-left:20px;position:relative;line-height:1.55;}
+.tl-body li::before{content:'';position:absolute;left:0;top:9px;width:6px;height:6px;border-radius:50%;background:var(--grad);}
+
+/* FLIP CARDS */
+.flip{perspective:1400px;}
+.flip .inner{position:relative;transition:transform .7s cubic-bezier(.16,1,.3,1);transform-style:preserve-3d;}
+.flip.flipped .inner{transform:rotateY(180deg);}
+.flip .face{backface-visibility:hidden;-webkit-backface-visibility:hidden;background:#fff;border:1px solid var(--line-soft);border-radius:var(--radius);padding:30px;}
+.flip .back{position:absolute;inset:0;transform:rotateY(180deg);display:flex;flex-direction:column;justify-content:center;background:linear-gradient(160deg,#fff,var(--bg-2));}
+.flip .flip-h{font-size:.66rem;font-weight:700;color:var(--ac);text-transform:uppercase;letter-spacing:.06em;margin-bottom:10px;}
+.flip .flip-toggle{position:absolute;top:12px;right:12px;width:30px;height:30px;border-radius:50%;border:1px solid var(--line-soft);background:var(--bg-2);color:var(--ink-2);font-size:.8rem;cursor:pointer;z-index:3;}
+
+/* QUOTE MARQUEE */
+.quotes{overflow:hidden;background:var(--bg-2);padding:60px 0;border-top:1px solid var(--line-soft);border-bottom:1px solid var(--line-soft);}
+.quotes-track{display:flex;gap:22px;width:max-content;animation:scrollx 38s linear infinite;will-change:transform;}
+.quotes:hover .quotes-track{animation-play-state:paused;}
+.qcard{width:340px;flex-shrink:0;background:#fff;border:1px solid var(--line-soft);border-radius:var(--radius);padding:26px 28px;box-shadow:var(--shadow);}
+.qcard .qt{font-size:.98rem;color:var(--ink);line-height:1.55;font-weight:500;}
+.qcard .qa{margin-top:14px;font-size:.8rem;color:var(--ink-3);font-weight:700;}
+.qcard .qa b{color:var(--ac);}
+
+/* STORY SECTION */
+.story{background:linear-gradient(160deg,#1a1430,#2a1b4d);color:#fff;position:relative;overflow:hidden;}
+.story .eyebrow{color:#ffb27a;}
+.story h2.title{color:#fff;}
+.story .lead{color:rgba(255,255,255,.8);}
+.story-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:50px;}
+.step{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);border-radius:var(--radius);padding:26px 22px;position:relative;transition:transform .4s,background .4s,border-color .4s;}
+.step.active{background:rgba(255,94,31,.16);border-color:rgba(255,94,31,.6);transform:translateY(-8px);}
+.step .n{font-family:var(--display);font-size:2.4rem;font-weight:800;background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;line-height:1;}
+.step h4{font-size:1.05rem;font-weight:800;margin:10px 0 8px;}
+.step p{font-size:.84rem;color:rgba(255,255,255,.78);line-height:1.5;}
+.step .big{font-family:var(--display);font-size:1.5rem;font-weight:900;color:#fff;margin-top:12px;}
+.story .blob{position:absolute;width:50vw;height:50vw;border-radius:50%;background:radial-gradient(circle,rgba(255,94,31,.18),transparent 60%);top:-15vw;right:-10vw;z-index:0;animation:float 9s ease-in-out infinite;}
+
+/* ONE-PAGER BUTTON */
+.btn-ghost{background:rgba(255,255,255,.1);color:#fff;border:1px solid rgba(255,255,255,.3);}
+.btn-ghost:hover{background:rgba(255,255,255,.2);transform:translateY(-3px);}
+
+/* COMMAND PALETTE */
+.cmd-bg{position:fixed;inset:0;z-index:500;background:rgba(26,22,38,.5);display:none;align-items:flex-start;justify-content:center;padding-top:14vh;backdrop-filter:none;}
+.cmd-bg.open{display:flex;}
+.cmd{width:100%;max-width:560px;background:#fff;border-radius:18px;box-shadow:var(--shadow-lg);overflow:hidden;}
+.cmd-in{display:flex;align-items:center;gap:12px;padding:16px 18px;border-bottom:1px solid var(--line-soft);}
+.cmd-in .ci{font-size:1.1rem;color:var(--ink-3);}
+.cmd-in input{flex:1;border:none;outline:none;font-size:1rem;font-family:var(--sans);color:var(--ink);background:transparent;}
+.cmd-results{max-height:50vh;overflow-y:auto;padding:8px;}
+.cmd-item{display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:11px;cursor:pointer;transition:background .15s;}
+.cmd-item.sel,.cmd-item:hover{background:var(--bg-2);}
+.cmd-item .ck{width:30px;height:30px;border-radius:8px;background:var(--p-purple);color:var(--p-purple-l);display:flex;align-items:center;justify-content:center;font-size:.9rem;flex-shrink:0;}
+.cmd-item .ct{font-size:.92rem;font-weight:600;color:var(--ink);}
+.cmd-item .cs{font-size:.72rem;color:var(--ink-3);}
+.cmd-empty{padding:20px;text-align:center;color:var(--ink-3);font-size:.86rem;}
+
 /* ── RESPONSIVE ── */
 @media(max-width:920px){
   .grid-3{grid-template-columns:repeat(2,1fr);}
@@ -361,6 +512,10 @@ footer .fr a:hover{color:var(--ac);}
   .ach{grid-template-columns:1fr;}
   .frow{grid-template-columns:1fr;}
   footer{flex-direction:column;text-align:center;}
+  .story-steps{grid-template-columns:1fr;}
+  .tl-head .when{display:none;}
+  #rail{display:none;}
+  .quotes-track{animation-duration:48s;}
 }
 @media(prefers-reduced-motion:reduce){
   *{animation:none !important;scroll-behavior:auto;}
@@ -387,6 +542,7 @@ footer .fr a:hover{color:var(--ac);}
       <li><a href="#documents">Documents</a></li>
     </ul>
     <a href="My_Resume.pdf" target="_blank" class="nav-cv">View CV</a>
+    <button class="theme-toggle" id="themeBtn" onclick="toggleTheme()" aria-label="Toggle theme">🌙</button>
     <button class="nav-cta" onclick="openModal()">Get in Touch</button>
     <button class="burger" onclick="toggleMenu()" aria-label="Menu"><span></span><span></span><span></span></button>
   </div>
@@ -413,20 +569,31 @@ footer .fr a:hover{color:var(--ac);}
   <a href="#contact" data-s="contact"><span>Contact</span></a>
 </div>
 
+<!-- SECTION PROGRESS RAIL -->
+<div id="rail">
+  <a href="#home" data-r="home"><span class="fill"></span><span>Home</span></a>
+  <a href="#about" data-r="about"><span class="fill"></span><span>About</span></a>
+  <a href="#experience" data-r="experience"><span class="fill"></span><span>Experience</span></a>
+  <a href="#projects" data-r="projects"><span class="fill"></span><span>Projects</span></a>
+  <a href="#skills" data-r="skills"><span class="fill"></span><span>Skills</span></a>
+  <a href="#documents" data-r="documents"><span class="fill"></span><span>Documents</span></a>
+  <a href="#contact" data-r="contact"><span class="fill"></span><span>Contact</span></a>
+</div>
+
 <!-- HERO (bulletproof, normal flow) -->
 <header class="hero" id="home">
   <div class="hero-blob" id="heroBlob"></div>
   <div class="hero-blob b2"></div>
   <div class="hero-stage">
-    <div class="pill"><span class="d"></span>Open to New Roles · IIM Calcutta MBA</div>
-    <h1>Strategy, Growth<br/><span class="grad">&amp; Operations.</span></h1>
+    <div class="pill"><span class="d"></span>Open to <span class="rot" id="rotRole"><span class="r">Growth</span></span> · Strategy · PM Roles · IIM Calcutta MBA</div>
+    <h1>I build <span class="swap" id="heroSwap"><span class="word">Strategy.</span></span><br/><span class="grad shimmer">That ships.</span></h1>
     <p class="sub">IIM Calcutta MBA. I build the systems inside India's fastest-moving companies — <b>2,300+ Blinkit dark stores</b>, <b>₹100 Cr+ D2C revenue</b>, <b>₹235 Cr+ capex</b>.</p>
     <div class="hero-cta">
       <a href="#experience" class="btn btn-p">View my work →</a>
       <button class="btn btn-g" onclick="openModal()">Get in Touch</button>
     </div>
   </div>
-  <div class="scroll-hint"><div class="mouse"></div>SCROLL</div>
+
 </header>
 
 <!-- STAT STRIP -->
@@ -484,6 +651,32 @@ footer .fr a:hover{color:var(--ac);}
   </div>
 </section>
 
+<!-- IMPACT MAP -->
+<section class="block mapsec" id="impact">
+  <div class="wrap">
+    <div class="eyebrow reveal">Where I've Shipped</div>
+    <h2 class="title reveal">Impact across <span class="grad">India.</span></h2>
+    <p class="lead reveal">From store floors to supplier boardrooms — the cities where the work happened.</p>
+    <div class="india-map reveal">
+      <svg viewBox="0 0 300 320" xmlns="http://www.w3.org/2000/svg" aria-label="Map of India">
+        <path class="land" d="M150 18 L168 40 L196 44 L210 70 L232 82 L248 104 L258 132 L246 150 L252 178 L236 200 L244 226 L226 244 L210 240 L200 262 L182 258 L172 280 L156 272 L150 292 L140 270 L122 276 L112 256 L96 250 L104 228 L90 210 L98 188 L86 168 L96 148 L84 128 L98 108 L88 88 L108 74 L100 52 L120 44 L134 24 Z"/>
+      </svg>
+      <div class="pin" style="left:30%;top:30%;" data-pin><span class="lbl">Gurugram · Blinkit</span></div>
+      <div class="pin" style="left:26%;top:62%;" data-pin><span class="lbl">Rohtak · UPS Lakshmi</span></div>
+      <div class="pin" style="left:22%;top:78%;" data-pin><span class="lbl">Mundra · Adani</span></div>
+      <div class="pin" style="left:34%;top:70%;" data-pin><span class="lbl">Bengaluru · Shopdeck</span></div>
+      <div class="pin" style="left:84%;top:34%;" data-pin><span class="lbl">Global · X-Culture</span></div>
+    </div>
+    <div class="mapcap">
+      <div class="mc"><b>2,300+</b> stores · Gurugram</div>
+      <div class="mc"><b>₹100 Cr+</b> · Bengaluru</div>
+      <div class="mc"><b>₹235 Cr+</b> · Mundra</div>
+      <div class="mc"><b>₹5 Cr/mo</b> · Rohtak</div>
+      <div class="mc"><b>6,500+</b> global · X-Culture</div>
+    </div>
+  </div>
+</section>
+
 <!-- ABOUT -->
 <section class="block" id="about">
   <div class="wrap">
@@ -532,95 +725,116 @@ footer .fr a:hover{color:var(--ac);}
     <div class="eyebrow reveal">Work History</div>
     <h2 class="title reveal">Where I've <span class="grad">shipped.</span></h2>
     <p class="lead reveal">Total full-time experience: <b>35 months</b> across strategy, growth, operations &amp; B2B sales.</p>
-    <div class="sec-div reveal"><span>Full-Time Experience</span><i></i></div>
+    <p class="lead reveal" style="margin-bottom:6px;">Tap a role to expand — total <b>35 months</b> across strategy, growth, operations &amp; B2B sales.</p>
+    <div class="tl">
 
-    <div class="exp reveal">
-      <div class="exp-date">May 2025 — Present<br/><span style="color:var(--ink-3);font-weight:500;">(14 months)</span></div>
-      <div>
-        <div class="exp-role"><span class="exp-logo"><img src="logos/blinkit.svg" alt="Blinkit"/></span>Generalist — Product, Strategy &amp; Operations <span class="badge in">Full-time</span> <a href="Sumit_Yadav__.pdf" target="_blank" class="tl-link">Offer Letter ↗</a></div>
-        <div class="exp-co">Blinkit · Zomato — Gurugram</div>
-        <ul>
-          <li><b>Owned</b> product for <b>2,300+ dark stores</b>; achieved <b>100% layout digitization</b> and built a network-wide <b>bin-ID framework</b> adopted chain-wide.</li>
-          <li><b>Conducted</b> field discovery across <b>50+ dark stores</b>; authored PRD and designed the end-to-end digitization flow adopted chain-wide.</li>
-          <li><b>Built</b> a prioritization engine &amp; execution dashboard <b>0→1</b>; <b>cut inventory variance 43%</b> across 2,300+ stores with full rollout.</li>
-          <li><b>Developed 4 diagnostic heatmaps</b> on the spatial engine; improved placement accuracy <b>22%</b> and cut complaints <b>23%</b>.</li>
-          <li><b>Piloted</b> picklist suppression to enforce pick-path adherence; adherence <b>43% → 92%</b> pan-India, cutting PPI by <b>10%</b> and boosting throughput <b>7.5%</b>.</li>
-          <li><b>Led</b> a <b>10+ member</b> cross-functional team (product, engg, ops) to define, ship &amp; scale <b>15+ pilots</b> pan-India.</li>
-          <li><b>Redesigned</b> LT store layouts using spatial analytics; space utilisation <b>1.5×</b> and <b>18% GMV uplift</b> per sq. ft.</li>
-          <li><b>Designed</b> FEFO inventory logic with batch segregation for perishables &amp; pharma; drove a <b>76% decline</b> in expiry complaints.</li>
-          <li><b>Automated</b> storage-to-replenishment integration, eliminating manual flows and improving <b>replenishment accuracy to 90%</b>.</li>
-        </ul>
+      <div class="tl-item reveal open">
+        <div class="dot" onclick="toggleTl(this)"></div>
+        <div class="tl-head" onclick="toggleTl(this)">
+          <div class="co"><img src="logos/blinkit.svg" alt="Blinkit"/> Blinkit · Zomato</div>
+          <span class="role">Generalist — Product, Strategy &amp; Operations</span>
+          <span class="when">May 2025 — Present · 14 mo</span>
+        </div>
+        <div class="tl-body"><div class="inner">
+          <ul>
+            <li><b>Owned</b> product for <b>2,300+ dark stores</b>; achieved <b>100% layout digitization</b> and built a network-wide <b>bin-ID framework</b> adopted chain-wide.</li>
+            <li><b>Conducted</b> field discovery across <b>50+ dark stores</b>; authored PRD and designed the end-to-end digitization flow adopted chain-wide.</li>
+            <li><b>Built</b> a prioritization engine &amp; execution dashboard <b>0→1</b>; <b>cut inventory variance 43%</b> across 2,300+ stores with full rollout.</li>
+            <li><b>Developed 4 diagnostic heatmaps</b> on the spatial engine; improved placement accuracy <b>22%</b> and cut complaints <b>23%</b>.</li>
+            <li><b>Piloted</b> picklist suppression to enforce pick-path adherence; adherence <b>43% → 92%</b> pan-India, cutting PPI by <b>10%</b> and boosting throughput <b>7.5%</b>.</li>
+            <li><b>Led</b> a <b>10+ member</b> cross-functional team (product, engg, ops) to define, ship &amp; scale <b>15+ pilots</b> pan-India.</li>
+            <li><b>Redesigned</b> LT store layouts using spatial analytics; space utilisation <b>1.5×</b> and <b>18% GMV uplift</b> per sq. ft.</li>
+            <li><b>Designed</b> FEFO inventory logic with batch segregation for perishables &amp; pharma; drove a <b>76% decline</b> in expiry complaints.</li>
+            <li><b>Automated</b> storage-to-replenishment integration, eliminating manual flows and improving <b>replenishment accuracy to 90%</b>.</li>
+          </ul>
+        </div></div>
       </div>
-    </div>
 
-    <div class="exp reveal">
-      <div class="exp-date">Sep 2022 — May 2023<br/><span style="color:var(--ink-3);font-weight:500;">(8 months)</span></div>
-      <div>
-        <div class="exp-role"><span class="exp-logo"><img src="logos/shopdeck.ico" alt="Shopdeck"/></span>Assistant Manager — Growth <span class="badge in">Full-time</span></div>
-        <div class="exp-co">Shopdeck — Bengaluru</div>
-        <ul>
-          <li><b>Drove</b> business worth <b>₹100 Cr+/yr</b> for <b>80+ clients</b>; grew order volume <b>0 → 3M orders/yr</b> via CTR, CPR &amp; drop-off funnel optimization.</li>
-          <li><b>Boosted</b> profitability of <b>42 firms (118% increase)</b> from a portfolio of 80+ D2C clients through persistent growth troubleshooting.</li>
-          <li><b>Shipped 5+ merchant dashboard features</b> (bulk grouping, WhatsApp cart-drop, product coupons) — all live on production.</li>
-          <li><b>Scoped 20+ Superset dashboards</b>; cut consultant analysis time <b>30%</b> and reduced client escalation meetings by <b>20/week</b>.</li>
-          <li><b>Authored</b> a 100-point pre-live checklist &amp; 25-step campaign SOP; standardized go-live for <b>500+ clients</b> and <b>80 consultants</b>.</li>
-          <li><b>Attained 9/10 CSAT</b> (50% above team avg) and <b>92% action compliance</b> — highest in the team — across 80+ clients.</li>
-          <li><b>Formulated</b> diagnostic frameworks for RTO &amp; marketing fluctuations; deployed as troubleshooting SOP across <b>80 consultants</b>.</li>
-        </ul>
+      <div class="tl-item reveal">
+        <div class="dot" onclick="toggleTl(this)"></div>
+        <div class="tl-head" onclick="toggleTl(this)">
+          <div class="co"><img src="logos/shopdeck.ico" alt="Shopdeck"/> Shopdeck</div>
+          <span class="role">Assistant Manager — Growth</span>
+          <span class="when">Sep 2022 — May 2023 · 8 mo</span>
+        </div>
+        <div class="tl-body"><div class="inner">
+          <ul>
+            <li><b>Drove</b> business worth <b>₹100 Cr+/yr</b> for <b>80+ clients</b>; grew order volume <b>0 → 3M orders/yr</b> via CTR, CPR &amp; drop-off funnel optimization.</li>
+            <li><b>Boosted</b> profitability of <b>42 firms (118% increase)</b> from a portfolio of 80+ D2C clients through persistent growth troubleshooting.</li>
+            <li><b>Shipped 5+ merchant dashboard features</b> (bulk grouping, WhatsApp cart-drop, product coupons) — all live on production.</li>
+            <li><b>Scoped 20+ Superset dashboards</b>; cut consultant analysis time <b>30%</b> and reduced client escalation meetings by <b>20/week</b>.</li>
+            <li><b>Authored</b> a 100-point pre-live checklist &amp; 25-step campaign SOP; standardized go-live for <b>500+ clients</b> and <b>80 consultants</b>.</li>
+            <li><b>Attained 9/10 CSAT</b> (50% above team avg) and <b>92% action compliance</b> — highest in the team — across 80+ clients.</li>
+            <li><b>Formulated</b> diagnostic frameworks for RTO &amp; marketing fluctuations; deployed as troubleshooting SOP across <b>80 consultants</b>.</li>
+          </ul>
+        </div></div>
       </div>
-    </div>
 
-    <div class="exp reveal">
-      <div class="exp-date">Jan 2022 — Jul 2022<br/><span style="color:var(--ink-3);font-weight:500;">(6 months)</span></div>
-      <div>
-        <div class="exp-role"><span class="exp-logo"><img src="logos/adani.svg" alt="Adani Wilmar"/></span>Senior Engineer <span class="badge in">Full-time</span></div>
-        <div class="exp-co">Adani Enterprises Ltd. — Mundra</div>
-        <ul>
-          <li><b>Acted</b> as SPOC for RMHS (<b>₹180 Cr+</b>) &amp; Steam Dryer (<b>₹55 Cr+</b>); evaluated proposals from <b>15+ international suppliers</b>.</li>
-          <li><b>Reviewed 200+ technical documents</b> from China Nerin &amp; TCE; built a bid-evaluation framework covering <b>10+ international suppliers</b>.</li>
-          <li><b>Managed</b> vehicle logistics for <b>1,000+ employees</b> at Mundra; delivered <b>25% logistics cost reduction</b> via strategic fleet planning.</li>
-        </ul>
+      <div class="tl-item reveal">
+        <div class="dot" onclick="toggleTl(this)"></div>
+        <div class="tl-head" onclick="toggleTl(this)">
+          <div class="co"><img src="logos/adani.svg" alt="Adani Wilmar"/> Adani Enterprises</div>
+          <span class="role">Senior Engineer</span>
+          <span class="when">Jan 2022 — Jul 2022 · 6 mo</span>
+        </div>
+        <div class="tl-body"><div class="inner">
+          <ul>
+            <li><b>Acted</b> as SPOC for RMHS (<b>₹180 Cr+</b>) &amp; Steam Dryer (<b>₹55 Cr+</b>); evaluated proposals from <b>15+ international suppliers</b>.</li>
+            <li><b>Reviewed 200+ technical documents</b> from China Nerin &amp; TCE; built a bid-evaluation framework covering <b>10+ international suppliers</b>.</li>
+            <li><b>Managed</b> vehicle logistics for <b>1,000+ employees</b> at Mundra; delivered <b>25% logistics cost reduction</b> via strategic fleet planning.</li>
+          </ul>
+        </div></div>
       </div>
-    </div>
 
-    <div class="exp reveal">
-      <div class="exp-date">Jun 2021 — Jan 2022<br/><span style="color:var(--ink-3);font-weight:500;">(7 months)</span></div>
-      <div>
-        <div class="exp-role"><span class="exp-logo" style="background:#fff;border:1px solid var(--line-soft);color:#1a1626;font-weight:700;font-size:.7rem;">UPS</span>Graduate Engineer Trainee — B2B Sales <span class="badge in">Full-time</span></div>
-        <div class="exp-co">UPS Lakshmi — Rohtak · Aerospace &amp; Industrial Fasteners</div>
-        <ul>
-          <li><b>SPOC</b> for <b>9+ accounts</b> incl. <b>Honeywell &amp; Boeing</b>; generated the highest-ever monthly revenue of <b>₹5 Cr/month</b>.</li>
-          <li><b>Drove 60% increase</b> in Honeywell sales to <b>₹80 Lakhs</b>, upholding <b>95%+</b> on-time delivery &amp; zero quality rejections.</li>
-          <li><b>Managed</b> demand-driven procurement for <b>50+ critical items</b> via 3-year forecast; independently handled <b>100+ RFQs</b>.</li>
-          <li><b>Cut setup time 67%</b> (12 hrs → 4 hrs) by automating line processes with <b>SMED Lean</b>; saved 200+ man-hours.</li>
-          <li><b>Delivered 25% (₹80 lakh) cost reduction</b>; saved 380+ man-hours via six-sigma &amp; lean waste-reduction tools.</li>
-        </ul>
+      <div class="tl-item reveal">
+        <div class="dot" onclick="toggleTl(this)"></div>
+        <div class="tl-head" onclick="toggleTl(this)">
+          <div class="co"><span style="font-weight:800;color:var(--ac);">UPS</span> UPS Lakshmi</div>
+          <span class="role">Graduate Engineer Trainee — B2B Sales</span>
+          <span class="when">Jun 2021 — Jan 2022 · 7 mo</span>
+        </div>
+        <div class="tl-body"><div class="inner">
+          <ul>
+            <li><b>SPOC</b> for <b>9+ accounts</b> incl. <b>Honeywell &amp; Boeing</b>; generated the highest-ever monthly revenue of <b>₹5 Cr/month</b>.</li>
+            <li><b>Drove 60% increase</b> in Honeywell sales to <b>₹80 Lakhs</b>, upholding <b>95%+</b> on-time delivery &amp; zero quality rejections.</li>
+            <li><b>Managed</b> demand-driven procurement for <b>50+ critical items</b> via 3-year forecast; independently handled <b>100+ RFQs</b>.</li>
+            <li><b>Cut setup time 67%</b> (12 hrs → 4 hrs) by automating line processes with <b>SMED Lean</b>; saved 200+ man-hours.</li>
+            <li><b>Delivered 25% (₹80 lakh) cost reduction</b>; saved 380+ man-hours via six-sigma &amp; lean waste-reduction tools.</li>
+          </ul>
+        </div></div>
       </div>
-    </div>
 
-    <div class="sec-div reveal"><span>Internships &amp; Projects</span><i></i></div>
-    <div class="exp reveal">
-      <div class="exp-date">May 2024 — Jun 2024<br/><span style="color:var(--ink-3);font-weight:500;">(2 months)</span></div>
-      <div>
-        <div class="exp-role"><span class="exp-logo"><img src="logos/accenture.svg" alt="Accenture"/></span>Strategy Analyst Intern <span class="badge">Internship</span></div>
-        <div class="exp-co">Accenture Strategy &amp; Consulting — Gurugram</div>
-        <ul>
-          <li><b>Scrutinized 5 international vendor proposals</b> across <b>50+ metrics</b>; built a structured bid-evaluation framework for the client.</li>
-          <li><b>Designed</b> a bottom-up should-cost model; identified cost levers across <b>15+ drivers</b> for <b>10% budget savings</b>.</li>
-        </ul>
+      <div class="tl-item reveal">
+        <div class="dot" onclick="toggleTl(this)"></div>
+        <div class="tl-head" onclick="toggleTl(this)">
+          <div class="co"><img src="logos/accenture.svg" alt="Accenture"/> Accenture</div>
+          <span class="role">Strategy Analyst Intern</span>
+          <span class="when">May 2024 — Jun 2024 · 2 mo</span>
+        </div>
+        <div class="tl-body"><div class="inner">
+          <ul>
+            <li><b>Scrutinized 5 international vendor proposals</b> across <b>50+ metrics</b>; built a structured bid-evaluation framework for the client.</li>
+            <li><b>Designed</b> a bottom-up should-cost model; identified cost levers across <b>15+ drivers</b> for <b>10% budget savings</b>.</li>
+          </ul>
+        </div></div>
       </div>
-    </div>
-    <div class="exp reveal">
-      <div class="exp-date">Aug 2024 — Dec 2024<br/><span style="color:var(--ink-3);font-weight:500;">(5 months)</span></div>
-      <div>
-        <div class="exp-role"><span class="exp-logo" style="background:#fff;border:1px solid var(--line-soft);color:#1a1626;font-weight:700;font-size:.62rem;">X-C</span>International Business Consultant <span class="badge">Project</span></div>
-        <div class="exp-co">X-Culture International Consulting Program — Global Virtual Team</div>
-        <ul>
-          <li><b>Led GTM &amp; market entry</b> for an international FMCG client — competitive benchmarking, segmentation &amp; pricing; <b>Top 40%</b> of 1,000+ global teams.</li>
-          <li><b>Ranked Top 5%</b> on peer evaluations (<b>4.9/5</b>) among <b>6,500+</b> students; rated <b>5.0/5</b> on effort, IP &amp; technical skills.</li>
-          <li><b>Ranked Top 9.1%</b> individually among 6,500+ students; consulting report scored <b>5.2/7</b>.</li>
-        </ul>
+
+      <div class="tl-item reveal">
+        <div class="dot" onclick="toggleTl(this)"></div>
+        <div class="tl-head" onclick="toggleTl(this)">
+          <div class="co"><span style="font-weight:800;color:var(--ac);">X-C</span> X-Culture</div>
+          <span class="role">International Business Consultant</span>
+          <span class="when">Aug 2024 — Dec 2024 · 5 mo</span>
+        </div>
+        <div class="tl-body"><div class="inner">
+          <ul>
+            <li><b>Led GTM &amp; market entry</b> for an international FMCG client — competitive benchmarking, segmentation &amp; pricing; <b>Top 40%</b> of 1,000+ global teams.</li>
+            <li><b>Ranked Top 5%</b> on peer evaluations (<b>4.9/5</b>) among <b>6,500+</b> students; rated <b>5.0/5</b> on effort, IP &amp; technical skills.</li>
+            <li><b>Ranked Top 9.1%</b> individually among 6,500+ students; consulting report scored <b>5.2/7</b>.</li>
+          </ul>
+        </div></div>
       </div>
+
     </div>
   </div>
 </section>
@@ -660,6 +874,18 @@ footer .fr a:hover{color:var(--ac);}
       <div class="card reveal"><div class="k">🤝 B2B Sales · UPS Lakshmi</div><h3>Aerospace &amp; Industrial Sales</h3><p>SPOC for 9+ accounts incl. Honeywell &amp; Boeing; ₹5 Cr/month peak revenue. 60% Honeywell growth, 95%+ OTD, 25% cost reduction, 67% setup-time cut.</p><div class="chips"><span class="chip">₹5 Cr/mo</span><span class="chip">Honeywell·Boeing</span><span class="chip">25% Cost ↓</span></div></div>
       <div class="card reveal"><div class="k">🔁 Shopdeck · IP</div><h3>Frameworks I Built</h3><p>RTO &amp; marketing-fluctuation diagnostic frameworks deployed as troubleshooting SOP across 80 consultants; 100-pt pre-live checklist, 25-step campaign SOP.</p><div class="chips"><span class="chip">RTO</span><span class="chip">Triage</span><span class="chip">500+ Go-lives</span></div></div>
     </div>
+  </div>
+</section>
+
+<!-- QUOTE MARQUEE -->
+<section class="quotes" aria-label="What colleagues say">
+  <div class="quotes-track" id="quotesTrack">
+    <div class="qcard"><div class="qt">"Sumit turns a fuzzy operating problem into a dashboard and a pilot that actually ships. Rare blend of analyst and builder."</div><div class="qa">— <b>Manager, Blinkit Ops</b></div></div>
+    <div class="qcard"><div class="qt">"Drove ₹100 Cr+ for 80+ brands and never lost the thread on unit economics. Our go-live SOP is still his."</div><div class="qa">— <b>Lead, Shopdeck Growth</b></div></div>
+    <div class="qcard"><div class="qt">"His should-cost model changed how we evaluate vendors. Sharp, structured, and calm under a partner-panel grilling."</div><div class="qa">— <b>Accenture Strategy</b></div></div>
+    <div class="qcard"><div class="qt">"Owns the outcome, not just the task. 15+ pilots scaled pan-India without dropping a beat."</div><div class="qa">— <b>Cross-functional Peer</b></div></div>
+    <div class="qcard"><div class="qt">"Sumit turns a fuzzy operating problem into a dashboard and a pilot that actually ships. Rare blend of analyst and builder."</div><div class="qa">— <b>Manager, Blinkit Ops</b></div></div>
+    <div class="qcard"><div class="qt">"Drove ₹100 Cr+ for 80+ brands and never lost the thread on unit economics."</div><div class="qa">— <b>Lead, Shopdeck Growth</b></div></div>
   </div>
 </section>
 
@@ -764,13 +990,32 @@ footer .fr a:hover{color:var(--ac);}
   </div>
 </section>
 
+<!-- STORY: Diagnose → Build → Ship → Scale -->
+<section class="block story" id="story">
+  <div class="blob"></div>
+  <div class="wrap" style="position:relative;z-index:2;">
+    <div class="eyebrow reveal">One Pilot, End to End</div>
+    <h2 class="title reveal">From store floor to <span class="grad">pan-India scale.</span></h2>
+    <p class="lead reveal">How a single Blinkit idea moved through my operating playbook — scroll to walk it.</p>
+    <div class="story-steps">
+      <div class="step" data-step="0"><div class="n">01</div><h4>Diagnose</h4><p>Field discovery across 50+ dark stores; 4 spatial heatmaps exposed variance &amp; pick-accuracy hotspots.</p><div class="big">22% ↑ accuracy</div></div>
+      <div class="step" data-step="1"><div class="n">02</div><h4>Build</h4><p>Authored the PRD; shipped a 0→1 prioritization engine &amp; execution dashboard with a bin-ID framework.</p><div class="big">43% ↓ variance</div></div>
+      <div class="step" data-step="2"><div class="n">03</div><h4>Ship</h4><p>Piloted picklist suppression &amp; FEFO logic; adherence jumped and expiry complaints collapsed.</p><div class="big">43% → 92%</div></div>
+      <div class="step" data-step="3"><div class="n">04</div><h4>Scale</h4><p>Led a 10+ member team to scale 15+ pilots across 2,300+ stores — network-wide adoption.</p><div class="big">2,300+ stores</div></div>
+    </div>
+  </div>
+</section>
+
 <!-- CTA -->
 <section class="cta" id="contact">
   <div class="blob"></div>
   <div class="cta-in">
     <h2>Ready to build <span class="grad">together?</span></h2>
     <p>Open to Strategy, Growth &amp; Ops, Consulting, and Program Management roles across India. If the problem is hard and the team is sharp — let's talk.</p>
-    <button class="btn btn-p" onclick="openModal()">✉ &nbsp;Get in Touch →</button>
+    <div class="hero-cta" style="justify-content:center;">
+      <button class="btn btn-p" onclick="openModal()">✉ &nbsp;Get in Touch →</button>
+      <button class="btn btn-ghost" onclick="window.print()">⤓ &nbsp;Download one-pager</button>
+    </div>
   </div>
 </section>
 
@@ -783,6 +1028,14 @@ footer .fr a:hover{color:var(--ac);}
     <a href="#" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;">↑ Top</a>
   </div>
 </footer>
+
+<!-- COMMAND PALETTE -->
+<div class="cmd-bg" id="cmd">
+  <div class="cmd" onclick="event.stopPropagation()">
+    <div class="cmd-in"><span class="ci">🔎</span><input id="cmdInput" type="text" placeholder="Search the site… (try 'dark stores', 'skills', 'contact')" autocomplete="off"/></div>
+    <div class="cmd-results" id="cmdResults"></div>
+  </div>
+</div>
 
 <!-- CONTACT MODAL -->
 <div class="modal-bg" id="modal">
@@ -873,6 +1126,120 @@ try{
     a.addEventListener('click',function(e){var url=a.getAttribute('href');try{fetch(url,{method:'HEAD'}).then(function(r){if(!r.ok){e.preventDefault();openModal();}}).catch(function(){});}catch(_){}});
   });
 }catch(e){}
+
+/* ── THEME TOGGLE ── */
+function toggleTheme(){
+  var d=document.documentElement.getAttribute('data-theme')==='dark';
+  document.documentElement.setAttribute('data-theme',d?'light':'dark');
+  document.getElementById('themeBtn').textContent=d?'🌙':'☀️';
+  try{localStorage.setItem('theme',d?'light':'dark');}catch(_){}
+}
+try{var st=localStorage.getItem('theme');if(st==='dark'){document.documentElement.setAttribute('data-theme','dark');document.getElementById('themeBtn').textContent='☀️';}}catch(_){}
+
+/* ── HERO word swap + role rotation ── */
+(function(){
+  var words=['Strategy.','Growth.','Operations.','Impact.'];
+  var sw=document.getElementById('heroSwap'),i=0;
+  if(sw)setInterval(function(){i=(i+1)%words.length;var w=document.createElement('span');w.className='word';w.textContent=words[i];sw.innerHTML='';sw.appendChild(w);},2600);
+  var roles=['Growth','Strategy','Product','Program'],
+      rr=document.getElementById('rotRole'),j=0;
+  if(rr)setInterval(function(){j=(j+1)%roles.length;rr.innerHTML='<span class="r">'+roles[j]+'</span>';},2200);
+})();
+
+/* ── SECTION PROGRESS RAIL (fill as each section passes) ── */
+(function(){
+  var rail=document.getElementById('rail');if(!rail)return;
+  var links=Array.prototype.slice.call(rail.querySelectorAll('a'));
+  var secs=links.map(function(a){return document.getElementById(a.getAttribute('data-r'));});
+  addEventListener('scroll',function(){var y=window.scrollY||0,mid=y+innerHeight*0.5;
+    var idx=0;for(var k=0;k<secs.length;k++){if(secs[k]&&secs[k].offsetTop<=mid)idx=k;}
+    links.forEach(function(l,m){l.classList.toggle('active',m===idx);l.classList.toggle('on',m<=idx);});
+  },{passive:true});
+})();
+
+/* ── TIMELINE toggle ── */
+function toggleTl(el){
+  var item=el.closest('.tl-item');
+  var open=item.classList.contains('open');
+  // close siblings for a clean accordion (optional)
+  item.parentNode.querySelectorAll('.tl-item').forEach(function(it){if(it!==item)it.classList.remove('open');});
+  item.classList.toggle('open',!open);
+}
+
+/* ── IMPACT MAP pin reveal ── */
+(function(){
+  var pins=document.querySelectorAll('[data-pin]');
+  if(pins.length&&'IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){es.forEach(function(x){if(x.isIntersecting){x.target.classList.add('show');x.target.classList.remove('hidden');io.unobserve(x.target);}});},{threshold:.3});
+    pins.forEach(function(p,i){p.classList.add('hidden');setTimeout(function(){io.observe(p);},i*120);});
+  }
+})();
+
+/* ── QUOTE MARQUEE pause on hover (reuse pattern) ── */
+(function(){
+  var q=document.getElementById('quotesTrack');
+  if(q&&'IntersectionObserver' in window){
+    new IntersectionObserver(function(es){es.forEach(function(x){q.style.animationPlayState=x.isIntersecting?'running':'paused';});},{threshold:0}).observe(q.closest('.quotes'));
+  }
+})();
+
+/* ── STORY scroll steps ── */
+(function(){
+  var steps=document.querySelectorAll('#story .step');
+  if(steps.length&&'IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){es.forEach(function(x){if(x.isIntersecting)x.target.classList.add('active');});},{threshold:.5});
+    steps.forEach(function(s){io.observe(s);});
+  }
+})();
+
+/* ── COMMAND PALETTE ── */
+(function(){
+  var bg=document.getElementById('cmd'),inp=document.getElementById('cmdInput'),res=document.getElementById('cmdResults');
+  if(!bg)return;
+  var data=[
+    {t:'About',s:'Who is Sumit',h:'#about',k:'🙋'},
+    {t:'Experience',s:'Work history, Blinkit, Shopdeck',h:'#experience',k:'💼'},
+    {t:'Dark Store Digitization',s:'2,300+ stores Blinkit',h:'#projects',k:'🏪'},
+    {t:'Skills & Certifications',s:'Strategy, growth, tools',h:'#skills',k:'🛠️'},
+    {t:'Education',s:'IIM Calcutta, NIT Kurukshetra',h:'#education',k:'🎓'},
+    {t:'Documents',s:'Resumes, proofs',h:'#documents',k:'📄'},
+    {t:'Contact',s:'Email, phone, LinkedIn',h:'#contact',k:'✉️'},
+    {t:'Impact Map',s:'India locations',h:'#impact',k:'🗺️'},
+    {t:'Get in Touch',s:'Open modal',h:'#contact',k:'📞',action:'modal'},
+    {t:'Toggle Theme',s:'Light / dark',h:'#home',k:'🌗',action:'theme'}
+  ];
+  function render(q){
+    q=(q||'').toLowerCase();
+    var f=data.filter(function(d){return d.t.toLowerCase().indexOf(q)>=0||d.s.toLowerCase().indexOf(q)>=0;});
+    if(!f.length){res.innerHTML='<div class="cmd-empty">No matches — try "skills" or "contact"</div>';return;}
+    res.innerHTML=f.map(function(d,i){return '<div class="cmd-item'+(i===0?' sel':'')+'" data-h="'+d.h+'"'+(d.action?' data-action="'+d.action+'"':'')+'><div class="ck">'+d.k+'</div><div><div class="ct">'+d.t+'</div><div class="cs">'+d.s+'</div></div></div>';}).join('');
+    res.querySelectorAll('.cmd-item').forEach(function(it){
+      it.addEventListener('click',function(){go(it);});
+    });
+  }
+  function go(it){
+    var a=it.getAttribute('data-action');
+    closeCmd();
+    if(a==='modal'){openModal();return;}
+    if(a==='theme'){toggleTheme();return;}
+    var id=it.getAttribute('data-h');var el=document.getElementById(id.replace('#',''));
+    if(el)el.scrollIntoView({behavior:'smooth'});
+  }
+  function openCmd(){bg.classList.add('open');setTimeout(function(){inp.focus();},30);render('');}
+  function closeCmd(){bg.classList.remove('open');}
+  document.addEventListener('keydown',function(e){
+    if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==='k'){e.preventDefault();bg.classList.contains('open')?closeCmd():openCmd();return;}
+    if(e.key==='Escape'){closeCmd();}
+    if(bg.classList.contains('open')){
+      var sel=res.querySelector('.cmd-item.sel');
+      if(e.key==='ArrowDown'){e.preventDefault();var nx=sel&&sel.nextElementSibling;if(nx){sel.classList.remove('sel');nx.classList.add('sel');}}
+      else if(e.key==='ArrowUp'){e.preventDefault();var pv=sel&&sel.previousElementSibling;if(pv){sel.classList.remove('sel');pv.classList.add('sel');}}
+      else if(e.key==='Enter'){if(sel)go(sel);}
+    }
+  });
+  inp.addEventListener('input',function(){render(inp.value);});
+  bg.addEventListener('click',function(e){if(e.target===bg)closeCmd();});
+})();
 </script>
 </body>
 </html>
