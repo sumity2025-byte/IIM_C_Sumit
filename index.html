@@ -428,6 +428,11 @@ footer{background:#030408;border-top:1px solid var(--bdr);padding:22px 5%;displa
   .modal{width:calc(100% - 32px);} .cv-bar{flex-direction:column;align-items:flex-start;}
   .pstr{width:158px;}
   .logos-in{justify-content:center;}
+  /* ── Mobile stability: kill GPU-heavy effects that crash Safari/Chrome ── */
+  #webgl{display:none;}
+  .aurora{display:none;}
+  *{backdrop-filter:none !important;-webkit-backdrop-filter:none !important;box-shadow:none !important;}
+  .hcard::after,.fwcard-img,.rcard,.pcard,.ic,.acd,.fwcard,.citem,.ach-i,.pstr,.edu-c,.skills-g .skb{transition:none !important;}
 }
 @media(max-width:480px){
   .hero-name{font-size:3.2rem;} .btn-p,.btn-s{padding:13px 22px;font-size:.78rem;width:100%;justify-content:center;}
@@ -1046,7 +1051,7 @@ const isMobile=matchMedia('(max-width:768px)').matches;
 /* ── Three.js hero scene (deferred, graceful fallback) ── */
 (function(){
  try{
-  if(reduceMotion)return;
+  if(reduceMotion||isTouch)return; /* WebGL crashes mobile Safari/Chrome — skip on touch devices */
   const canvas=document.getElementById('webgl');
   if(!canvas)return;
   const s=document.createElement('script');
