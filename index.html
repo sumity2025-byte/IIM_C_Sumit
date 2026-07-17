@@ -433,13 +433,17 @@ footer .fr a:hover{color:var(--ac);}
 .tl-body li::before{content:'';position:absolute;left:0;top:9px;width:6px;height:6px;border-radius:50%;background:var(--grad);}
 
 /* FLIP CARDS */
-.flip{perspective:1400px;}
-.flip .inner{position:relative;transition:transform .7s cubic-bezier(.16,1,.3,1);transform-style:preserve-3d;}
+.flip{perspective:1400px;cursor:pointer;outline:none;}
+.flip .inner{position:relative;transition:transform .7s cubic-bezier(.16,1,.3,1);transform-style:preserve-3d;min-height:230px;}
 .flip.flipped .inner{transform:rotateY(180deg);}
-.flip .face{backface-visibility:hidden;-webkit-backface-visibility:hidden;background:#fff;border:1px solid var(--line-soft);border-radius:var(--radius);padding:30px;}
+.flip .face{backface-visibility:hidden;-webkit-backface-visibility:hidden;background:#fff;border:1px solid var(--line-soft);border-radius:var(--radius);padding:30px;min-height:230px;}
+.flip .front{position:relative;}
 .flip .back{position:absolute;inset:0;transform:rotateY(180deg);display:flex;flex-direction:column;justify-content:center;background:linear-gradient(160deg,#fff,var(--bg-2));}
 .flip .flip-h{font-size:.66rem;font-weight:700;color:var(--ac);text-transform:uppercase;letter-spacing:.06em;margin-bottom:10px;}
 .flip .flip-toggle{position:absolute;top:12px;right:12px;width:30px;height:30px;border-radius:50%;border:1px solid var(--line-soft);background:var(--bg-2);color:var(--ink-2);font-size:.8rem;cursor:pointer;z-index:3;}
+.flip:focus-visible .front{border-color:var(--ac);box-shadow:var(--shadow);}
+[data-theme="dark"] .flip .face,[data-theme="dark"] .flip .back{background:var(--bg-2);}
+[data-theme="dark"] .flip .back{background:linear-gradient(160deg,var(--bg-2),var(--bg-3));}
 
 /* QUOTE MARQUEE */
 .quotes{overflow:hidden;background:var(--bg-2);padding:60px 0;border-top:1px solid var(--line-soft);border-bottom:1px solid var(--line-soft);}
@@ -521,6 +525,49 @@ footer .fr a:hover{color:var(--ac);}
   *{animation:none !important;scroll-behavior:auto;}
   .js .reveal,.js .reveal-l,.js .reveal-s{opacity:1;transform:none;}
   .hero-blob,.cta .blob{display:none;}
+}
+
+/* ── PRINT ONE-PAGER ── */
+@media print{
+  :root{--bg:#fff;--bg-2:#fff;--bg-3:#fff;--ink:#000;--ink-2:#222;--ink-3:#444;}
+  @page{margin:12mm;}
+  html,body{overflow:visible !important;background:#fff !important;color:#000 !important;}
+  /* hide chrome & decorative bits */
+  #nav,.dotnav,#rail,.marquee,.logostrip,.quotes,.story,.cta .blob,.scroll-hint,
+  #cmd,.modal-bg,.mmenu,#prog,.hero-blob,.theme-toggle,.burger,.flip-toggle,
+  .tl::before,.tl-item .dot,.pin::after,.pill .d,.hero-cta,footer{display:none !important;}
+  section.block{padding:0 !important;margin:0 0 14px !important;}
+  .hero{background:#fff !important;padding:0 0 8px !important;}
+  .hero h1{font-size:26px !important;color:#000 !important;}
+  .hero h1 .grad,.grad{background:none !important;-webkit-text-fill-color:#000 !important;color:#000 !important;}
+  .hero h1 .shimmer{animation:none !important;}
+  .wrap{max-width:100% !important;padding:0 !important;}
+  .title{font-size:18px !important;margin:0 0 4px !important;}
+  .lead,.sub{font-size:11px !important;margin:0 0 6px !important;}
+  h2.title{font-size:15px !important;border-bottom:1px solid #000;padding-bottom:3px;margin-top:10px;}
+  /* expand everything */
+  .js .reveal,.js .reveal-l,.js .reveal-s{opacity:1 !important;transform:none !important;}
+  .tl-item .tl-body,.flip .inner{height:auto !important;max-height:none !important;}
+  .tl-item .tl-body{max-height:9999px !important;}
+  .tl::before{display:none;}
+  .tl-head{box-shadow:none !important;border:1px solid #999 !important;padding:6px 10px !important;page-break-inside:avoid;}
+  .tl-body .inner{background:#fff !important;}
+  .tl-body li,.exp ul li{font-size:10.5px !important;color:#000 !important;}
+  .tl-body li::before,.exp ul li::before{background:#000 !important;}
+  /* flip: show front only, flat */
+  .flip{perspective:none !important;cursor:default !important;page-break-inside:avoid;margin-bottom:8px;}
+  .flip .inner{transform:none !important;min-height:0 !important;}
+  .flip .back{display:none !important;}
+  .flip .face{background:#fff !important;border:1px solid #bbb !important;padding:12px !important;min-height:0 !important;}
+  .card,.pdf-card,.edu-card,.fact,.cert,.value,.tcard,.ach-i{background:#fff !important;border:1px solid #ccc !important;page-break-inside:avoid;}
+  .stats{display:flex !important;gap:8px !important;}
+  .stat{background:#fff !important;padding:8px !important;flex:1;border:1px solid #ccc;}
+  .pdf-card .viewer{height:0 !important;display:none !important;}
+  .pdf-card .overlay{display:none !important;}
+  .pdf-grid{grid-template-columns:1fr 1fr !important;gap:8px !important;}
+  .grid-2,.grid-3{grid-template-columns:1fr 1fr !important;gap:8px !important;}
+  a{color:#000 !important;text-decoration:none !important;}
+  .eyebrow{font-size:10px !important;margin-bottom:2px !important;}
 }
 </style>
 </head>
@@ -867,12 +914,78 @@ footer .fr a:hover{color:var(--ac);}
     </div>
 
     <div class="grid grid-3">
-      <div class="card reveal"><div class="k">📈 Growth · Shopdeck</div><h3>D2C Growth Engine — 80+ Brands</h3><p>Drove ₹100 Cr+/yr, scaled orders 0→3M/yr. 20+ Superset dashboards (30% analysis-time cut), 5+ live merchant features, 118% profitability uplift, 9/10 CSAT.</p><div class="chips"><span class="chip">₹100 Cr+ Rev</span><span class="chip">118% Uplift</span><span class="chip">20+ Dashboards</span></div></div>
-      <div class="card reveal"><div class="k">🧭 Consulting · Accenture</div><h3>Strategic Procurement — Should-Cost</h3><p>Should-cost model across 15+ cost drivers, 5 vendors / 50+ metrics. 10% budget savings. Built structured bid-evaluation framework.</p><div class="chips"><span class="chip">10% Saved</span><span class="chip">5 Vendors</span><span class="chip">50+ Metrics</span></div></div>
-      <div class="card reveal"><div class="k">🏗️ Capex · Adani</div><h3>₹235 Cr+ Capex Evaluation</h3><p>SPOC for RMHS (₹180 Cr+) &amp; Steam Dryer (₹55 Cr+). 15+ suppliers, 200+ technical docs (Nerin/TCE), 25% logistics cost cut for 1,000+ employees.</p><div class="chips"><span class="chip">₹235 Cr+</span><span class="chip">15+ Suppliers</span><span class="chip">25% Cost ↓</span></div></div>
-      <div class="card reveal"><div class="k">🌍 International · X-Culture</div><h3>Global Market Entry Strategy</h3><p>Led GTM &amp; market entry for an intl. FMCG client — benchmarking, segmentation, pricing. Top 9.1% individually; Top 5% peer-rated (4.9/5).</p><div class="chips"><span class="chip">GTM</span><span class="chip">Top 9.1%</span><span class="chip">Top 5% Peer</span></div></div>
-      <div class="card reveal"><div class="k">🤝 B2B Sales · UPS Lakshmi</div><h3>Aerospace &amp; Industrial Sales</h3><p>SPOC for 9+ accounts incl. Honeywell &amp; Boeing; ₹5 Cr/month peak revenue. 60% Honeywell growth, 95%+ OTD, 25% cost reduction, 67% setup-time cut.</p><div class="chips"><span class="chip">₹5 Cr/mo</span><span class="chip">Honeywell·Boeing</span><span class="chip">25% Cost ↓</span></div></div>
-      <div class="card reveal"><div class="k">🔁 Shopdeck · IP</div><h3>Frameworks I Built</h3><p>RTO &amp; marketing-fluctuation diagnostic frameworks deployed as troubleshooting SOP across 80 consultants; 100-pt pre-live checklist, 25-step campaign SOP.</p><div class="chips"><span class="chip">RTO</span><span class="chip">Triage</span><span class="chip">500+ Go-lives</span></div></div>
+      <div class="flip reveal" tabindex="0"><div class="inner">
+        <div class="face front">
+          <button class="flip-toggle" aria-label="Flip">↻</button>
+          <div class="k">📈 Growth · Shopdeck</div><h3>D2C Growth Engine — 80+ Brands</h3><p>Drove ₹100 Cr+/yr, scaled orders 0→3M/yr. 20+ Superset dashboards, 5+ live merchant features, 118% profitability uplift, 9/10 CSAT.</p><div class="chips"><span class="chip">₹100 Cr+ Rev</span><span class="chip">118% Uplift</span><span class="chip">20+ Dashboards</span></div>
+        </div>
+        <div class="face back">
+          <div class="flip-h">The story</div>
+          <h3>From 0 → 3M orders</h3>
+          <p>I inherited 80+ chaotic D2C accounts and built the growth system: funnel diagnosis, live dashboards, and a standardized go-live SOP. Result — ₹100 Cr+/yr and the playbook 80 consultants still use.</p>
+          <div class="chips"><span class="chip">Tap to flip back ↻</span></div>
+        </div>
+      </div></div>
+      <div class="flip reveal" tabindex="0"><div class="inner">
+        <div class="face front">
+          <button class="flip-toggle" aria-label="Flip">↻</button>
+          <div class="k">🧭 Consulting · Accenture</div><h3>Strategic Procurement — Should-Cost</h3><p>Should-cost model across 15+ cost drivers, 5 vendors / 50+ metrics. 10% budget savings. Built structured bid-evaluation framework.</p><div class="chips"><span class="chip">10% Saved</span><span class="chip">5 Vendors</span><span class="chip">50+ Metrics</span></div>
+        </div>
+        <div class="face back">
+          <div class="flip-h">The story</div>
+          <h3>10% off a vendor bid</h3>
+          <p>Faced with 5 vendor proposals, I built a bottom-up should-cost model across 15+ drivers and 50+ metrics — turning a gut-feel negotiation into a defensible 10% saving.</p>
+          <div class="chips"><span class="chip">Tap to flip back ↻</span></div>
+        </div>
+      </div></div>
+      <div class="flip reveal" tabindex="0"><div class="inner">
+        <div class="face front">
+          <button class="flip-toggle" aria-label="Flip">↻</button>
+          <div class="k">🏗️ Capex · Adani</div><h3>₹235 Cr+ Capex Evaluation</h3><p>SPOC for RMHS (₹180 Cr+) &amp; Steam Dryer (₹55 Cr+). 15+ suppliers, 200+ technical docs (Nerin/TCE), 25% logistics cost cut for 1,000+ employees.</p><div class="chips"><span class="chip">₹235 Cr+</span><span class="chip">15+ Suppliers</span><span class="chip">25% Cost ↓</span></div>
+        </div>
+        <div class="face back">
+          <div class="flip-h">The story</div>
+          <h3>₹235 Cr, one owner</h3>
+          <p>I became the single point of coordination across 15+ global suppliers and 200+ technical docs — turning a fragmented capex decision into a clear, defensible recommendation.</p>
+          <div class="chips"><span class="chip">Tap to flip back ↻</span></div>
+        </div>
+      </div></div>
+      <div class="flip reveal" tabindex="0"><div class="inner">
+        <div class="face front">
+          <button class="flip-toggle" aria-label="Flip">↻</button>
+          <div class="k">🌍 International · X-Culture</div><h3>Global Market Entry Strategy</h3><p>Led GTM &amp; market entry for an intl. FMCG client — benchmarking, segmentation, pricing. Top 9.1% individually; Top 5% peer-rated (4.9/5).</p><div class="chips"><span class="chip">GTM</span><span class="chip">Top 9.1%</span><span class="chip">Top 5% Peer</span></div>
+        </div>
+        <div class="face back">
+          <div class="flip-h">The story</div>
+          <h3>Top 9.1% of 6,500+</h3>
+          <p>Led a virtual global team through GTM and market entry for an FMCG client — ranked top 5% on peer reviews and top 9.1% individually among 6,500+ students.</p>
+          <div class="chips"><span class="chip">Tap to flip back ↻</span></div>
+        </div>
+      </div></div>
+      <div class="flip reveal" tabindex="0"><div class="inner">
+        <div class="face front">
+          <button class="flip-toggle" aria-label="Flip">↻</button>
+          <div class="k">🤝 B2B Sales · UPS Lakshmi</div><h3>Aerospace &amp; Industrial Sales</h3><p>SPOC for 9+ accounts incl. Honeywell &amp; Boeing; ₹5 Cr/month peak revenue. 60% Honeywell growth, 95%+ OTD, 25% cost reduction, 67% setup-time cut.</p><div class="chips"><span class="chip">₹5 Cr/mo</span><span class="chip">Honeywell·Boeing</span><span class="chip">25% Cost ↓</span></div>
+        </div>
+        <div class="face back">
+          <div class="flip-h">The story</div>
+          <h3>₹5 Cr/month, Boeing & Honeywell</h3>
+          <p>Owned 9+ key accounts including Honeywell and Boeing, hitting the highest-ever monthly revenue while cutting costs 25% and setup time 67% with lean methods.</p>
+          <div class="chips"><span class="chip">Tap to flip back ↻</span></div>
+        </div>
+      </div></div>
+      <div class="flip reveal" tabindex="0"><div class="inner">
+        <div class="face front">
+          <button class="flip-toggle" aria-label="Flip">↻</button>
+          <div class="k">🔁 Shopdeck · IP</div><h3>Frameworks I Built</h3><p>RTO &amp; marketing-fluctuation diagnostic frameworks deployed as troubleshooting SOP across 80 consultants; 100-pt pre-live checklist, 25-step campaign SOP.</p><div class="chips"><span class="chip">RTO</span><span class="chip">Triage</span><span class="chip">500+ Go-lives</span></div>
+        </div>
+        <div class="face back">
+          <div class="flip-h">The story</div>
+          <h3>IP used daily at scale</h3>
+          <p>I turned recurring fires into reusable diagnostics — RTO triage and fluctuation audits now run as SOPs across 80 consultants and 500+ client go-lives.</p>
+          <div class="chips"><span class="chip">Tap to flip back ↻</span></div>
+        </div>
+      </div></div>
     </div>
   </div>
 </section>
@@ -1239,6 +1352,17 @@ function toggleTl(el){
   });
   inp.addEventListener('input',function(){render(inp.value);});
   bg.addEventListener('click',function(e){if(e.target===bg)closeCmd();});
+})();
+
+/* ── FLIP CARDS ── */
+(function(){
+  document.querySelectorAll('.flip').forEach(function(card){
+    function flip(e){if(e)e.stopPropagation();card.classList.toggle('flipped');}
+    card.addEventListener('click',flip);
+    card.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();card.classList.toggle('flipped');}});
+    var btn=card.querySelector('.flip-toggle');
+    if(btn)btn.addEventListener('click',function(e){e.stopPropagation();card.classList.toggle('flipped');});
+  });
 })();
 </script>
 </body>
