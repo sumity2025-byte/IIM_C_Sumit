@@ -321,7 +321,7 @@ h2.title{font-size:clamp(2.1rem,5.5vw,3.6rem);font-weight:800;letter-spacing:-.0
 .cta-in{position:relative;z-index:2;max-width:720px;margin:0 auto;padding:0 24px;}
 .cta h2{font-size:clamp(2.2rem,5.5vw,3.6rem);font-weight:800;letter-spacing:-.03em;line-height:1.05;margin-bottom:18px;}
 .cta p{color:rgba(255,255,255,.85);font-size:1.1rem;max-width:52ch;margin:0 auto 34px;}
-.cta .btn-p{background:#fff;color:var(--ink);box-shadow:0 10px 30px rgba(0,0,0,.25);}
+.cta .btn-p{background:#fff;color:#1a1626;box-shadow:0 10px 30px rgba(0,0,0,.25);}
 
 /* ── FOOTER ── */
 footer{border-top:1px solid var(--line-soft);padding:34px 24px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;}
@@ -414,7 +414,13 @@ footer .fr a:hover{color:var(--ac);}
 @keyframes pingg{0%{transform:scale(1);opacity:.55;}100%{transform:scale(3.4);opacity:0;}}
 .india-map .ov .lab{font-family:var(--display);font-size:13px;font-weight:800;fill:var(--ink);paint-order:stroke;stroke:var(--bg);stroke-width:3px;}
 .india-map .ov .sub{font-family:var(--sans);font-size:9.5px;font-weight:600;fill:var(--ink-3);paint-order:stroke;stroke:var(--bg);stroke-width:3px;}
-.india-map .ov .glink{fill:none;stroke:var(--p-purple-l);stroke-width:1.6;stroke-dasharray:4 5;opacity:.7;}
+/* GLOBAL node — sits outside the globe, connected by a curved arc */
+.india-map .global-node{position:absolute;top:-6px;right:-6px;max-width:170px;display:flex;align-items:flex-start;gap:10px;text-decoration:none;color:var(--ink);opacity:0;transform:translateY(8px);transition:opacity .6s .5s,transform .6s .5s;}
+.india-map .ov.go ~ .global-node{opacity:1;transform:none;}
+.india-map .global-node .gn-dot{width:34px;height:34px;flex-shrink:0;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1rem;background:linear-gradient(135deg,#7c3aed,#ff5e1f);color:#fff;box-shadow:0 6px 18px rgba(124,58,237,.4);animation:pingg 2.8s ease-out infinite;position:relative;}
+.india-map .global-node .gn-txt{font-size:.74rem;line-height:1.35;}
+.india-map .global-node .gn-txt b{font-family:var(--display);font-size:.9rem;color:var(--ac);}
+.india-map .global-node .gn-arc{position:absolute;right:26px;bottom:-34px;width:90px;height:70px;border-right:2px dashed var(--p-purple-l);border-bottom:2px dashed var(--p-purple-l);border-bottom-right-radius:40px;opacity:.8;}
 .mapcap{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:26px;}
 .mapcap .mc{background:var(--card);border:1px solid var(--line-soft);border-radius:100px;padding:8px 16px;font-size:.82rem;font-weight:600;color:var(--ink-2);}
 .mapcap .mc b{color:var(--ac);}
@@ -480,6 +486,28 @@ footer .fr a:hover{color:var(--ac);}
 .btn-ghost{background:rgba(255,255,255,.1);color:#fff;border:1px solid rgba(255,255,255,.3);}
 .btn-ghost:hover{background:rgba(255,255,255,.2);transform:translateY(-3px);}
 
+/* BEFORE / AFTER SCRUBBER */
+.ba{position:relative;max-width:620px;margin:40px auto 0;border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow-lg);border:1px solid var(--line-soft);aspect-ratio:16/9;background:var(--bg-2);touch-action:none;}
+.ba-pane{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;padding:24px;}
+.ba-after{background:linear-gradient(135deg,#fff5ef,#ffe6d6);}
+.ba-before{background:linear-gradient(135deg,#eef0f6,#e3e7f1);clip-path:inset(0 50% 0 0);}
+[data-theme="dark"] .ba-after{background:linear-gradient(135deg,#2a2147,#3a2a2a);}
+[data-theme="dark"] .ba-before{background:linear-gradient(135deg,#221b3d,#26223a);}
+.ba-gauge{width:70%;text-align:center;}
+.ba-num{font-family:var(--display);font-size:clamp(3rem,11vw,5.5rem);font-weight:900;line-height:1;letter-spacing:-.03em;}
+.ba-bar{height:14px;border-radius:10px;background:rgba(110,90,200,.18);margin-top:16px;overflow:hidden;}
+.ba-bar i{display:block;height:100%;border-radius:10px;background:var(--grad);}
+.ba-tag{font-size:.82rem;font-weight:700;color:var(--ink-2);background:var(--card);border:1px solid var(--line-soft);padding:6px 14px;border-radius:100px;}
+.ba-handle{position:absolute;top:0;bottom:0;left:50%;width:46px;transform:translateX(-50%);cursor:ew-resize;display:flex;align-items:center;justify-content:center;z-index:5;}
+.ba-handle::before{content:'';position:absolute;top:0;bottom:0;width:3px;background:var(--ac);box-shadow:0 0 12px rgba(255,94,31,.6);}
+.ba-handle span{position:relative;width:42px;height:42px;border-radius:50%;background:#fff;box-shadow:0 6px 18px rgba(40,20,80,.25);display:flex;align-items:center;justify-content:center;font-size:1rem;color:var(--ac);border:2px solid var(--ac);}
+.ba-cap{text-align:center;margin-top:20px;color:var(--ink-2);font-size:.95rem;}
+.ba-cap b{color:var(--ac);}
+
+/* CONFETTI */
+.confetti{position:fixed;top:-10vh;width:9px;height:14px;z-index:600;pointer-events:none;border-radius:2px;will-change:transform;animation:fall linear forwards;}
+@keyframes fall{to{transform:translateY(115vh) rotate(540deg);opacity:.9;}}
+
 /* COMMAND PALETTE */
 .cmd-bg{position:fixed;inset:0;z-index:500;background:rgba(26,22,38,.5);display:none;align-items:flex-start;justify-content:center;padding-top:14vh;backdrop-filter:none;}
 .cmd-bg.open{display:flex;}
@@ -508,7 +536,8 @@ footer .fr a:hover{color:var(--ac);}
   section.block{padding:84px 0;}
   .nav-links{display:none;}
   .burger{display:flex;}
-  .nav-cv,.nav-cta{padding:7px 13px;font-size:.74rem;}
+  .nav-cv{padding:7px 13px;font-size:.74rem;}
+  .nav-cta{display:none;}
   .nav-in{gap:8px;}
   .grid-2,.grid-3{grid-template-columns:1fr;}
   .gallery{grid-template-columns:1fr;}
@@ -519,15 +548,24 @@ footer .fr a:hover{color:var(--ac);}
   .feature .kpis{grid-template-columns:repeat(3,1fr);gap:8px;}
   .feature .kpi{padding:13px 6px;}
   .feature .kpi .kn{font-size:1.2rem;}
-  .exp{grid-template-columns:1fr;gap:6px;}
-  .exp-date{color:var(--ac);}
   .ach{grid-template-columns:1fr;}
-  .frow{grid-template-columns:1fr;}
+  .frow{flex-direction:column;}
   footer{flex-direction:column;text-align:center;}
   .story-steps{grid-template-columns:1fr;}
   .tl-head .when{display:none;}
   #rail{display:none;}
   .quotes-track{animation-duration:48s;}
+  .hero-cta,.cta .hero-cta{flex-wrap:wrap;}
+  .cta .hero-cta .btn{width:100%;justify-content:center;}
+  .india-map{max-width:320px;}
+  .india-map .global-node{position:static;max-width:none;margin:18px auto 0;justify-content:center;opacity:1;transform:none;}
+  .india-map .global-node .gn-arc{display:none;}
+  .india-map .ov .lab{font-size:15px;}
+  .india-map .ov .sub{font-size:11px;}
+  .marquee span{font-size:.74rem;}
+  .tl-head{flex-wrap:wrap;gap:6px;}
+  .tl-head .role{width:100%;order:3;}
+  .pdf-card .viewer{height:300px;}
 }
 @media(prefers-reduced-motion:reduce){
   *{animation:none !important;scroll-behavior:auto;}
@@ -711,7 +749,7 @@ footer .fr a:hover{color:var(--ac);}
   <div class="wrap">
     <div class="eyebrow reveal">Where I've Shipped</div>
     <h2 class="title reveal">Impact across <span class="grad">India &amp; beyond.</span></h2>
-    <p class="lead reveal">From store floors to supplier boardrooms — the cities where the work happened.</p>
+    <p class="lead reveal">Built on the ground in four Indian cities — and extended globally through X-Culture.</p>
     <div class="india-map reveal">
       <img class="globe" src="logos/india.svg" alt="Map of India"/>
       <svg class="ov" viewBox="0 0 541 541" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -720,7 +758,6 @@ footer .fr a:hover{color:var(--ac);}
             <stop offset="0" stop-color="#ff5e1f"/><stop offset="1" stop-color="#7c3aed"/>
           </linearGradient>
         </defs>
-        <path class="glink" d="M259 152 C 360 90, 430 70, 470 80"/>
         <path class="route" d="M259 152 L244 142 L230 174 L261 215 Z"/>
         <g class="pins">
           <circle class="pulse" cx="259" cy="152" r="6"/>
@@ -731,7 +768,6 @@ footer .fr a:hover{color:var(--ac);}
           <circle class="dot" cx="230" cy="174" r="5"/>
           <circle class="pulse" cx="261" cy="215" r="6" style="animation-delay:1.2s"/>
           <circle class="dot" cx="261" cy="215" r="5"/>
-          <circle class="dot" cx="470" cy="80" r="5" fill="var(--p-purple-l)"/>
         </g>
         <g class="labels" style="pointer-events:none;">
           <text class="lab" x="272" y="150" text-anchor="start">Gurugram</text>
@@ -742,10 +778,13 @@ footer .fr a:hover{color:var(--ac);}
           <text class="sub" x="216" y="201" text-anchor="end">Adani · ₹235 Cr+</text>
           <text class="lab" x="261" y="232" text-anchor="middle">Bengaluru</text>
           <text class="sub" x="261" y="243" text-anchor="middle">Shopdeck · ₹100 Cr+</text>
-          <text class="lab" x="470" y="66" text-anchor="middle">Global</text>
-          <text class="sub" x="470" y="56" text-anchor="middle">X-Culture · 6,500+</text>
         </g>
       </svg>
+      <a class="global-node" href="#experience">
+        <span class="gn-arc"></span>
+        <span class="gn-dot">🌐</span>
+        <span class="gn-txt"><b>Global</b><br/>X-Culture · 6,500+ students</span>
+      </a>
     </div>
     <div class="mapcap">
       <div class="mc"><b>2,300+</b> stores · Gurugram</div>
@@ -1152,6 +1191,27 @@ footer .fr a:hover{color:var(--ac);}
   </div>
 </section>
 
+<!-- PROOF: before / after scrubber -->
+<section class="block" id="proof">
+  <div class="wrap">
+    <div class="eyebrow reveal">Proof, Not Promises</div>
+    <h2 class="title reveal">One pilot. <span class="grad">Doubled adherence.</span></h2>
+    <p class="lead reveal">Drag the handle to reveal what my picklist-suppression pilot did to pick-path adherence across 2,300+ dark stores.</p>
+    <div class="ba reveal" id="ba">
+      <div class="ba-pane ba-after">
+        <div class="ba-gauge"><div class="ba-num grad">92%</div><div class="ba-bar"><i style="width:92%"></i></div></div>
+        <div class="ba-tag">After · pick-path adherence</div>
+      </div>
+      <div class="ba-pane ba-before" id="baBefore">
+        <div class="ba-gauge"><div class="ba-num">43%</div><div class="ba-bar"><i style="width:43%"></i></div></div>
+        <div class="ba-tag">Before · pick-path adherence</div>
+      </div>
+      <div class="ba-handle" id="baHandle" role="slider" aria-label="Reveal" tabindex="0"><span></span></div>
+    </div>
+    <p class="ba-cap">Compliance jumped <b>43% → 92%</b> pan-India — cutting PPI by 10% and lifting throughput 7.5%.</p>
+  </div>
+</section>
+
 <!-- CTA -->
 <section class="cta" id="contact">
   <div class="blob"></div>
@@ -1217,7 +1277,7 @@ setTimeout(recover,3000);
 function toggleMenu(){document.getElementById('mmenu').classList.toggle('open');}
 document.getElementById('mmenu').addEventListener('click',function(e){if(e.target===this)toggleMenu();});
 
-function openModal(){document.getElementById('modal').classList.add('open');document.body.style.overflow='hidden';}
+function openModal(){document.getElementById('modal').classList.add('open');document.body.style.overflow='hidden';try{celebrate();}catch(_){}}
 function closeModal(){document.getElementById('modal').classList.remove('open');document.body.style.overflow='';}
 document.getElementById('modal').addEventListener('click',function(e){if(e.target===this)closeModal();});
 document.addEventListener('keydown',function(e){if(e.key==='Escape'){closeModal();document.getElementById('mmenu').classList.remove('open');}});
@@ -1337,6 +1397,38 @@ function toggleTl(el){
     steps.forEach(function(s){io.observe(s);});
   }
 })();
+
+/* ── BEFORE / AFTER SCRUBBER ── */
+(function(){
+  var ba=document.getElementById('ba'),before=document.getElementById('baBefore'),handle=document.getElementById('baHandle');
+  if(!ba)return;
+  var pct=50;
+  function set(p){pct=Math.max(2,Math.min(98,p));before.style.clipPath='inset(0 '+(100-pct)+'% 0 0)';handle.style.left=pct+'%';}
+  function fromX(clientX){var r=ba.getBoundingClientRect();set((clientX-r.left)/r.width*100);}
+  var drag=false;
+  ba.addEventListener('pointerdown',function(e){drag=true;fromX(e.clientX);ba.setPointerCapture&&ba.setPointerCapture(e.pointerId);});
+  ba.addEventListener('pointermove',function(e){if(drag)fromX(e.clientX);});
+  ba.addEventListener('pointerup',function(){drag=false;});
+  ba.addEventListener('pointercancel',function(){drag=false;});
+  handle.addEventListener('keydown',function(e){if(e.key==='ArrowLeft'){set(pct-4);e.preventDefault();}if(e.key==='ArrowRight'){set(pct+4);e.preventDefault();}});
+  set(50);
+})();
+
+/* ── CONFETTI on Get in Touch ── */
+function celebrate(){
+  if(window.matchMedia&&window.matchMedia('(prefers-reduced-motion:reduce)').matches)return;
+  var colors=['#ff5e1f','#ff9d4d','#7c3aed','#3b6bff','#1a9e4b','#e6368f'];
+  for(var i=0;i<46;i++){
+    var c=document.createElement('div');c.className='confetti';
+    c.style.left=Math.random()*100+'vw';
+    c.style.background=colors[i%colors.length];
+    c.style.animationDuration=(1.6+Math.random()*1.4)+'s';
+    c.style.animationDelay=(Math.random()*0.25)+'s';
+    c.style.transform='rotate('+(Math.random()*360)+'deg)';
+    document.body.appendChild(c);
+    (function(el){setTimeout(function(){el.remove();},3200);})(c);
+  }
+}
 
 /* ── COMMAND PALETTE ── */
 (function(){
