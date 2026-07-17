@@ -4,6 +4,7 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
 <meta name="theme-color" content="#fbfaff"/>
+<link rel="icon" type="image/svg+xml" href="logos/blinkit.svg"/>
 <title>Sumit Yadav — Strategy, Growth & Operations</title>
 <meta name="description" content="Sumit Yadav — IIM Calcutta MBA. 2,300+ Blinkit dark stores digitized, ₹100 Cr+ D2C revenue, ₹235 Cr+ capex. Strategy, Growth & Ops leader open to new roles."/>
 <meta property="og:title" content="Sumit Yadav — Strategy, Growth & Operations"/>
@@ -127,7 +128,16 @@ img{max-width:100%;display:block;}
 .marquee:hover .marquee-track{animation-play-state:paused;}
 .marquee span{font-size:.85rem;font-weight:700;white-space:nowrap;display:inline-flex;align-items:center;gap:12px;}
 .marquee .sep{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.7);}
-@keyframes scrollx{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+ @keyframes scrollx{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+
+ /* ── LOGO STRIP ── */
+ .logostrip{background:var(--bg);padding:54px 0;border-bottom:1px solid var(--line-soft);overflow:hidden;}
+ .logostrip .lh{text-align:center;font-size:.74rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);margin-bottom:30px;}
+ .logostrip-track{display:flex;gap:30px;width:max-content;align-items:center;animation:scrollx 30s linear infinite;will-change:transform;}
+ .logostrip:hover .logostrip-track{animation-play-state:paused;}
+ .logostrip a{display:flex;align-items:center;justify-content:center;height:54px;width:120px;background:#fff;border:1px solid var(--line-soft);border-radius:14px;padding:10px 14px;box-shadow:var(--shadow);transition:transform .3s,box-shadow .3s;border-color:transparent;}
+ .logostrip a:hover{transform:translateY(-6px) scale(1.04);box-shadow:var(--shadow-lg);border-color:var(--ac-line);}
+ .logostrip img{height:30px;width:auto;max-width:92px;object-fit:contain;}
 
 /* ── SECTION SHELL ── */
 section.block{padding:120px 0;position:relative;}
@@ -187,7 +197,9 @@ h2.title{font-size:clamp(2.1rem,5.5vw,3.6rem);font-weight:800;letter-spacing:-.0
 .exp{display:grid;grid-template-columns:180px 1fr;gap:0;margin-bottom:10px;}
 .exp-date{font-size:.82rem;color:var(--ink-3);font-weight:600;padding-top:4px;}
 .exp-role{font-size:1.22rem;font-weight:800;letter-spacing:-.01em;margin-bottom:4px;display:flex;align-items:center;flex-wrap:wrap;gap:10px;}
-.exp-logo{width:30px;height:30px;border-radius:9px;display:inline-flex;align-items:center;justify-content:center;font-size:1rem;font-weight:800;font-family:var(--display);flex-shrink:0;box-shadow:var(--shadow);}
+ .exp-logo{width:34px;height:34px;border-radius:9px;display:inline-flex;align-items:center;justify-content:center;font-size:1rem;font-weight:800;font-family:var(--display);flex-shrink:0;box-shadow:var(--shadow);background:#fff;overflow:hidden;border:1px solid var(--line-soft);}
+ .exp-logo img{width:100%;height:100%;object-fit:contain;padding:4px;transition:transform .3s;}
+ .exp-logo:hover img{transform:scale(1.12);}
 .tl-link{font-size:.66rem;font-weight:700;color:var(--ac);background:var(--ac-soft);border:1px solid var(--ac-line);padding:3px 9px;border-radius:6px;text-decoration:none;transition:background .2s;}
 .tl-link:hover{background:#ffe2d2;}
 .exp-co{font-size:.84rem;font-weight:700;color:var(--p-purple-l);margin-bottom:14px;}
@@ -451,6 +463,27 @@ footer .fr a:hover{color:var(--ac);}
   </div>
 </div>
 
+<!-- LOGO STRIP -->
+<section class="logostrip" aria-label="Companies and institutes">
+  <div class="wrap"><div class="lh reveal">Trusted by · Built with</div></div>
+  <div class="logostrip-track" id="logoTrack">
+    <a href="#experience" aria-label="Blinkit"><img src="logos/blinkit.svg" alt="Blinkit"/></a>
+    <a href="#experience" aria-label="Shopdeck"><img src="logos/shopdeck.ico" alt="Shopdeck"/></a>
+    <a href="#experience" aria-label="Adani Wilmar"><img src="logos/adani.svg" alt="Adani Wilmar"/></a>
+    <a href="#experience" aria-label="Accenture"><img src="logos/accenture.svg" alt="Accenture"/></a>
+    <a href="#experience" aria-label="Honda"><img src="logos/honda.svg" alt="Honda"/></a>
+    <a href="#education" aria-label="IIM Calcutta"><img src="logos/iimc.svg" alt="IIM Calcutta"/></a>
+    <a href="#education" aria-label="NIT Kurukshetra"><img src="logos/nitk.png" alt="NIT Kurukshetra"/></a>
+    <a href="#experience" aria-label="Blinkit"><img src="logos/blinkit.svg" alt="Blinkit"/></a>
+    <a href="#experience" aria-label="Shopdeck"><img src="logos/shopdeck.ico" alt="Shopdeck"/></a>
+    <a href="#experience" aria-label="Adani Wilmar"><img src="logos/adani.svg" alt="Adani Wilmar"/></a>
+    <a href="#experience" aria-label="Accenture"><img src="logos/accenture.svg" alt="Accenture"/></a>
+    <a href="#experience" aria-label="Honda"><img src="logos/honda.svg" alt="Honda"/></a>
+    <a href="#education" aria-label="IIM Calcutta"><img src="logos/iimc.svg" alt="IIM Calcutta"/></a>
+    <a href="#education" aria-label="NIT Kurukshetra"><img src="logos/nitk.png" alt="NIT Kurukshetra"/></a>
+  </div>
+</section>
+
 <!-- ABOUT -->
 <section class="block" id="about">
   <div class="wrap">
@@ -470,8 +503,8 @@ footer .fr a:hover{color:var(--ac);}
         </div>
       </div>
       <div class="facts reveal">
-        <div class="fact"><div class="ic">🎓</div><div><h4>IIM Calcutta</h4><p>MBA · CAT 99.64%ile · Converted 12/15 IIM calls.</p></div></div>
-        <div class="fact"><div class="ic">⚙️</div><div><h4>NIT Kurukshetra</h4><p>B.Tech Mechanical · CGPA 8.36/10 · GATE AIR 2070.</p></div></div>
+        <div class="fact"><div class="ic" style="padding:6px;"><img src="logos/iimc.svg" alt="IIM Calcutta" style="width:100%;height:100%;object-fit:contain;"/></div><div><h4>IIM Calcutta</h4><p>MBA · CAT 99.64%ile · Converted 12/15 IIM calls.</p></div></div>
+        <div class="fact"><div class="ic" style="padding:6px;"><img src="logos/nitk.png" alt="NIT Kurukshetra" style="width:100%;height:100%;object-fit:contain;"/></div><div><h4>NIT Kurukshetra</h4><p>B.Tech Mechanical · CGPA 8.36/10 · GATE AIR 2070.</p></div></div>
         <div class="fact"><div class="ic">🚀</div><div><h4>Builder</h4><p>10+ certifications, 93%+ avg. Frameworks used daily.</p></div></div>
       </div>
     </div>
@@ -502,7 +535,7 @@ footer .fr a:hover{color:var(--ac);}
     <div class="exp reveal">
       <div class="exp-date">May 2025 — Present</div>
       <div>
-        <div class="exp-role"><span class="exp-logo" style="background:#f97316;color:#fff;">B</span>Generalist — Product, Strategy &amp; Operations <span class="badge in">Full-time</span> <a href="Sumit_Yadav__.pdf" target="_blank" class="tl-link">Offer Letter ↗</a></div>
+        <div class="exp-role"><span class="exp-logo"><img src="logos/blinkit.svg" alt="Blinkit"/></span>Generalist — Product, Strategy &amp; Operations <span class="badge in">Full-time</span> <a href="Sumit_Yadav__.pdf" target="_blank" class="tl-link">Offer Letter ↗</a></div>
         <div class="exp-co">Blinkit · Zomato</div>
         <ul>
           <li><b>Owned</b> product vision &amp; location strategy for <b>2,300+ dark stores</b>; achieved <b>100% layout digitization</b> and standardized a bin-ID framework adopted network-wide.</li>
@@ -517,7 +550,7 @@ footer .fr a:hover{color:var(--ac);}
     <div class="exp reveal">
       <div class="exp-date">Sep 2022 — May 2023</div>
       <div>
-        <div class="exp-role"><span class="exp-logo" style="background:#38bdf8;color:#04293a;">S</span>Growth Consultant — D2C Brand Management <span class="badge in">Full-time</span></div>
+        <div class="exp-role"><span class="exp-logo"><img src="logos/shopdeck.ico" alt="Shopdeck"/></span>Growth Consultant — D2C Brand Management <span class="badge in">Full-time</span></div>
         <div class="exp-co">Shopdeck</div>
         <ul>
           <li><b>Generated</b> business worth <b>₹100 Cr+/yr</b> for <b>80+ clients</b>; scaled order volume <b>0 → 3M orders/yr</b>.</li>
@@ -530,7 +563,7 @@ footer .fr a:hover{color:var(--ac);}
     <div class="exp reveal">
       <div class="exp-date">Jan 2022 — Jul 2022</div>
       <div>
-        <div class="exp-role"><span class="exp-logo" style="background:#60a5fa;color:#04243f;">A</span>Management Trainee — Operations &amp; Strategy <span class="badge in">Full-time</span></div>
+        <div class="exp-role"><span class="exp-logo"><img src="logos/adani.svg" alt="Adani Wilmar"/></span>Management Trainee — Operations &amp; Strategy <span class="badge in">Full-time</span></div>
         <div class="exp-co">Adani Wilmar</div>
         <ul>
           <li><b>SPOC</b> for RMHS (<b>₹180 Cr+</b>) &amp; Steam Dryer (<b>₹55 Cr+</b>); evaluated <b>15+ international suppliers</b>.</li>
@@ -543,7 +576,7 @@ footer .fr a:hover{color:var(--ac);}
     <div class="exp reveal">
       <div class="exp-date">Oct 2024 — Nov 2024</div>
       <div>
-        <div class="exp-role"><span class="exp-logo" style="background:#a78bfa;color:#2a1052;">A</span>Strategy Consultant (Competition Winner) <span class="badge">Project</span></div>
+        <div class="exp-role"><span class="exp-logo"><img src="logos/accenture.svg" alt="Accenture"/></span>Strategy Consultant (Competition Winner) <span class="badge">Project</span></div>
         <div class="exp-co">Accenture</div>
         <ul>
           <li><b>Built</b> a should-cost model across <b>15+ cost drivers</b>; evaluated <b>5 vendors</b> across <b>50+ metrics</b> — <b>10% budget optimization</b>.</li>
@@ -781,6 +814,10 @@ addEventListener('scroll',function(){if(!tick){tick=true;requestAnimationFrame(p
 var mq=document.getElementById('marquee');
 if(mq&&'IntersectionObserver' in window){
   new IntersectionObserver(function(es){es.forEach(function(x){var t=mq.querySelector('.marquee-track');if(t)t.style.animationPlayState=x.isIntersecting?'running':'paused';});},{threshold:0}).observe(mq);
+}
+var lstrip=document.getElementById('logoTrack');
+if(lstrip&&'IntersectionObserver' in window){
+  new IntersectionObserver(function(es){es.forEach(function(x){lstrip.style.animationPlayState=x.isIntersecting?'running':'paused';});},{threshold:0}).observe(lstrip.closest('.logostrip'));
 }
 
 if('IntersectionObserver' in window){
