@@ -687,14 +687,14 @@ var io=new IntersectionObserver(function(es){es.forEach(function(x){if(x.isInter
 document.querySelectorAll('.reveal,.reveal-l').forEach(function(el){io.observe(el);});
 
 /* Parallax: hero blob + hero title (transform only, throttled via rAF) */
-var blob=document.getElementById('heroBlob'),heroTitle=document.querySelector('.hero h1'),tick=false;
+var blob=document.getElementById('heroBlob'),heroIn=document.querySelector('.hero-in'),tick=false;
 function parallax(){
   tick=false;
   var y=window.scrollY||0;
   if(y<innerHeight){
     if(blob)blob.style.transform='translateY('+(y*0.25)+'px)';
-    if(heroTitle)heroTitle.style.transform='translateY('+(y*0.35)+'px)';
-  }
+    if(heroIn)heroIn.style.transform='translateY('+(y*0.18)+'px)';
+  } else if(heroIn){ heroIn.style.transform=''; }
 }
 addEventListener('scroll',function(){if(!tick){tick=true;requestAnimationFrame(parallax);}},{passive:true});
 
