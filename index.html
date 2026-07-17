@@ -11,7 +11,7 @@
 <meta property="og:image" content="WhatsApp_Image_2026-04-14_at_5_21_03_AM.jpeg"/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"/>
 <style>
 /* ─────────────────────────────────────────────
    LIGHT THEME · APPLE / LINEAR STYLE
@@ -38,7 +38,7 @@
   --radius-sm:14px;
   --maxw:1100px;
   --sans:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
-  --display:'Space Grotesk','Inter',-apple-system,BlinkMacSystemFont,sans-serif;
+  --display:'Plus Jakarta Sans','Inter',-apple-system,BlinkMacSystemFont,sans-serif;
   --serif:'Fraunces',Georgia,'Times New Roman',serif;
   --shadow:0 1px 2px rgba(0,0,0,.04),0 8px 30px rgba(0,0,0,.06);
   --shadow-lg:0 2px 6px rgba(0,0,0,.05),0 20px 60px rgba(0,0,0,.10);
@@ -87,24 +87,23 @@ img{max-width:100%;display:block;}
 .mmenu a{font-size:1.8rem;font-weight:700;color:var(--ink-2);}
 .mmenu a:hover{color:var(--ac);}
 
-/* ── HERO (sticky scroll-narrative, Apple-style, mobile-safe) ── */
+/* ── HERO (clean, centered, mobile-safe) ── */
 .hero{position:relative;overflow:hidden;background:
   radial-gradient(110% 80% at 50% 0%,rgba(255,94,31,.10),transparent 55%),
   radial-gradient(90% 60% at 85% 30%,rgba(120,90,255,.07),transparent 55%),
   var(--bg);}
 .hero-blob{position:absolute;width:50vw;height:50vw;border-radius:50%;background:radial-gradient(circle,rgba(255,94,31,.18),transparent 60%);top:-10vw;right:-10vw;z-index:0;will-change:transform;animation:float 9s ease-in-out infinite;}
 @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(26px)}}
-/* sticky pinned stage: tall scroll area, inner content stays put */
-.hero-pin{position:relative;height:300vh;z-index:2;}
-.hero-stage{position:sticky;top:0;height:100svh;max-width:var(--maxw);margin:0 auto;padding:120px 24px 90px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;}
+.hero-stage{max-width:var(--maxw);margin:0 auto;padding:150px 24px 110px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;position:relative;z-index:2;min-height:88svh;}
 .pill{display:inline-flex;align-items:center;gap:8px;padding:7px 16px;border-radius:100px;border:1px solid var(--ac-line);background:var(--ac-soft);font-size:.74rem;color:var(--ac);font-weight:600;margin-bottom:30px;}
 .pill .d{width:7px;height:7px;border-radius:50%;background:var(--grn);animation:pulse 2s infinite;}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
-.hero-panels{position:relative;width:100%;max-width:16ch;margin:0 auto;min-height:clamp(7rem,18vw,11rem);}
-.hpanel{position:absolute;left:0;right:0;top:0;font-size:clamp(2.4rem,6.4vw,5rem);font-weight:900;letter-spacing:-.035em;line-height:1.02;opacity:0;transform:translateY(28px) scale(.98);transition:opacity .6s cubic-bezier(.16,1,.3,1),transform .6s cubic-bezier(.16,1,.3,1);will-change:transform,opacity;}
+.hero-panels{position:relative;width:100%;max-width:18ch;margin:0 auto;min-height:clamp(6.5rem,16vw,10rem);}
+.hpanel{position:absolute;left:0;right:0;top:0;font-size:clamp(2.2rem,5.6vw,4.4rem);font-weight:800;letter-spacing:-.03em;line-height:1.05;opacity:0;transform:translateY(24px) scale(.98);transition:opacity .6s cubic-bezier(.16,1,.3,1),transform .6s cubic-bezier(.16,1,.3,1);will-change:transform,opacity;}
 .hpanel.active{opacity:1;transform:none;}
+.hpanel:first-child{opacity:1;transform:none;}
 .hpanel .grad{display:inline-block;}
-.hero p.sub{font-size:clamp(1.02rem,2.2vw,1.28rem);color:var(--ink-2);max-width:54ch;margin:34px auto 32px;}
+.hero p.sub{font-size:clamp(1.02rem,2.2vw,1.28rem);color:var(--ink-2);max-width:54ch;margin:36px auto 32px;}
 .hero-cta{display:flex;gap:14px;flex-wrap:wrap;justify-content:center;}
 .hero-progress{display:flex;gap:8px;justify-content:center;margin-top:38px;}
 .hero-progress i{width:26px;height:4px;border-radius:4px;background:var(--line-soft);transition:background .4s;}
@@ -114,13 +113,7 @@ img{max-width:100%;display:block;}
 .btn-p:hover{transform:translateY(-3px);box-shadow:0 16px 44px rgba(255,94,31,.42);}
 .btn-g{background:var(--bg-2);color:var(--ink);border:1px solid var(--line);}
 .btn-g:hover{transform:translateY(-3px);background:var(--bg-3);}
-/* hero portrait card — sits beside the stage on desktop */
-.hero-card{position:absolute;right:24px;top:50%;transform:translateY(-50%);width:min(30vw,320px);border-radius:26px;overflow:hidden;border:1px solid var(--line-soft);box-shadow:var(--shadow-lg);background:var(--bg-2);aspect-ratio:4/5;z-index:3;}
-.hero-card img{width:100%;height:100%;object-fit:cover;transition:transform 6s cubic-bezier(.16,1,.3,1);}
-.reveal.in .hero-card img{transform:scale(1.06);}
-.hero-card .tag{position:absolute;left:16px;bottom:16px;background:#fff;border-radius:12px;padding:10px 14px;box-shadow:var(--shadow);font-size:.72rem;font-weight:700;}
-.hero-card .tag b{display:block;color:var(--ac);font-size:.9rem;}
-.scroll-hint{position:absolute;bottom:24px;left:50%;transform:translateX(-50%);z-index:4;font-size:.72rem;color:var(--ink-3);display:flex;flex-direction:column;align-items:center;gap:8px;letter-spacing:.06em;}
+.scroll-hint{position:absolute;bottom:24px;left:50%;transform:translateX(-50%);z-index:2;font-size:.72rem;color:var(--ink-3);display:flex;flex-direction:column;align-items:center;gap:8px;letter-spacing:.06em;}
 .scroll-hint .mouse{width:22px;height:34px;border:2px solid var(--ink-3);border-radius:12px;position:relative;}
 .scroll-hint .mouse::after{content:'';position:absolute;top:6px;left:50%;transform:translateX(-50%);width:3px;height:6px;border-radius:2px;background:var(--ink-3);animation:wheel 1.6s infinite;}
 @keyframes wheel{0%{opacity:0;transform:translate(-50%,0);}40%{opacity:1;}100%{opacity:0;transform:translate(-50%,12px);}}
@@ -315,7 +308,6 @@ footer .fr a:hover{color:var(--ac);}
   .gallery{grid-template-columns:repeat(2,1fr);}
   .pdf-grid{grid-template-columns:1fr;}
   .dotnav{display:none;}
-  .hero-card{position:relative;right:auto;top:auto;transform:none;width:min(70vw,280px);margin:38px auto 0;}
 }
 @media(max-width:680px){
   section.block{padding:84px 0;}
@@ -326,10 +318,8 @@ footer .fr a:hover{color:var(--ac);}
   .grid-2,.grid-3{grid-template-columns:1fr;}
   .gallery{grid-template-columns:1fr;}
   .stats{grid-template-columns:repeat(2,1fr);}
-  .hero-pin{height:280vh;}
-  .hero-stage{padding:110px 22px 80px;}
+  .hero-stage{padding:120px 22px 80px;}
   .hero-panels{min-height:clamp(6rem,30vw,9rem);}
-  .hero-card{width:min(60vw,240px);}
   .feature .body{padding:30px 22px;}
   .feature .kpis{grid-template-columns:repeat(3,1fr);gap:8px;}
   .feature .kpi{padding:13px 6px;}
@@ -391,28 +381,22 @@ footer .fr a:hover{color:var(--ac);}
   <a href="#contact" data-s="contact"><span>Contact</span></a>
 </div>
 
-<!-- HERO (sticky scroll-narrative, Apple-style) -->
+<!-- HERO (clean centered, Apple-style) -->
 <header class="hero" id="home">
   <div class="hero-blob" id="heroBlob"></div>
-  <div class="hero-pin" id="heroPin">
-    <div class="hero-stage">
-      <div class="pill"><span class="d"></span>Open to New Roles · IIM Calcutta MBA</div>
-      <div class="hero-panels">
-        <h1 class="hpanel" data-step="0">I turn messy <span class="grad">operations</span> into systems that scale.</h1>
-        <h1 class="hpanel" data-step="1">I build <span class="grad">growth</span> engines that actually compound.</h1>
-        <h1 class="hpanel" data-step="2">Strategy, Growth <span class="grad">&amp; Operations.</span></h1>
-      </div>
-      <p class="sub">Inside India's fastest-moving companies — <b>2,300+ Blinkit dark stores</b>, <b>₹100 Cr+ D2C revenue</b>, <b>₹235 Cr+ capex</b>.</p>
-      <div class="hero-cta">
-        <a href="#projects" class="btn btn-p">View my work →</a>
-        <button class="btn btn-g" onclick="openModal()">Get in Touch</button>
-      </div>
-      <div class="hero-progress"><i></i><i></i><i></i></div>
+  <div class="hero-stage">
+    <div class="pill"><span class="d"></span>Open to New Roles · IIM Calcutta MBA</div>
+    <div class="hero-panels">
+      <h1 class="hpanel" data-step="0">I turn messy <span class="grad">operations</span> into systems that scale.</h1>
+      <h1 class="hpanel" data-step="1">I build <span class="grad">growth</span> engines that actually compound.</h1>
+      <h1 class="hpanel" data-step="2">Strategy, Growth <span class="grad">&amp; Operations.</span></h1>
     </div>
-    <div class="hero-card">
-      <img src="WhatsApp_Image_2026-04-14_at_5_21_03_AM.jpeg" alt="Sumit Yadav — frameworks built"/>
-      <div class="tag">Building at scale<b>Operations · Growth</b></div>
+    <p class="sub">Inside India's fastest-moving companies — <b>2,300+ Blinkit dark stores</b>, <b>₹100 Cr+ D2C revenue</b>, <b>₹235 Cr+ capex</b>.</p>
+    <div class="hero-cta">
+      <a href="#projects" class="btn btn-p">View my work →</a>
+      <button class="btn btn-g" onclick="openModal()">Get in Touch</button>
     </div>
+    <div class="hero-progress"><i></i><i></i><i></i></div>
   </div>
   <div class="scroll-hint"><div class="mouse"></div>SCROLL</div>
 </header>
@@ -470,7 +454,7 @@ footer .fr a:hover{color:var(--ac);}
       </div>
     </div>
 
-    <div class="subhead reveal">🧩 Frameworks I've Built</div>
+    <div class="subhead reveal">🧩 Frameworks I Built</div>
     <div class="gallery">
       <div class="gal reveal-s"><img src="WhatsApp_Image_2026-04-14_at_5_21_03_AM.jpeg" alt="Framework 1" loading="lazy"/><div class="cap">Operating model canvas</div></div>
       <div class="gal reveal-s"><img src="WhatsApp_Image_2026-04-14_at_5_21_04_AM.jpeg" alt="Framework 2" loading="lazy"/><div class="cap">Diagnostics taxonomy</div></div>
@@ -577,13 +561,6 @@ footer .fr a:hover{color:var(--ac);}
       <div class="card reveal"><div class="k">🌍 International · X-Culture</div><h3>Global Market Entry Strategy</h3><p>Led distributed global team — GTM, trade regulation, benchmarking. Top 40% of 1,000+ teams. Top 5% peer-rated.</p><div class="chips"><span class="chip">GTM</span><span class="chip">Top 40%</span><span class="chip">Top 5% Peer</span></div></div>
       <div class="card reveal"><div class="k">⚙️ Engineering · Honda</div><h3>Zero-Defect Manufacturing Line</h3><p>Eliminated all line defects via root-cause analysis. Stoppage 42 min → 0; overtime cut 63%.</p><div class="chips"><span class="chip">0% Defects</span><span class="chip">63% OT Cut</span><span class="chip">0 Stoppage</span></div></div>
       <div class="card reveal"><div class="k">🔁 Shopdeck · IP</div><h3>Frameworks I Built</h3><p>RTO diagnostic, marketing triage, 16-variable fluctuation audit, 15-reason scaling taxonomy — used daily across 80+ brands.</p><div class="chips"><span class="chip">RTO</span><span class="chip">Triage</span><span class="chip">Scaling</span></div></div>
-    </div>
-
-    <div class="subhead reveal">🖼️ Visual Proof — Frameworks &amp; Dashboards</div>
-    <div class="gallery">
-      <div class="gal reveal-s"><img src="WhatsApp_Image_2026-04-14_at_5_21_03_AM.jpeg" alt="Proof 1" loading="lazy"/><div class="cap">Dashboard logic</div></div>
-      <div class="gal reveal-s"><img src="WhatsApp_Image_2026-04-14_at_5_21_04_AM.jpeg" alt="Proof 2" loading="lazy"/><div class="cap">Operating model</div></div>
-      <div class="gal reveal-s"><img src="WhatsApp_Image_2026-04-14_at_5_21_04_AM__1_.jpeg" alt="Proof 3" loading="lazy"/><div class="cap">Scaling taxonomy</div></div>
     </div>
   </div>
 </section>
@@ -774,17 +751,16 @@ addEventListener('scroll',onScroll,{passive:true});
 var io=new IntersectionObserver(function(es){es.forEach(function(x){if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target);}});},{threshold:.12,rootMargin:'0px 0px -40px 0px'});
 document.querySelectorAll('.reveal,.reveal-l,.reveal-s').forEach(function(el){io.observe(el);});
 
-/* Sticky hero narrative: cross-fade statement panels by scroll progress (transform/opacity only) */
-var heroPin=document.getElementById('heroPin'),heroPanels=document.querySelectorAll('.hpanel'),heroDots=document.querySelectorAll('.hero-progress i'),blob=document.getElementById('heroBlob'),tick=false;
+/* Hero narrative: cross-fade statement panels by scroll progress (transform/opacity only) */
+var heroEl=document.getElementById('home'),heroPanels=document.querySelectorAll('.hpanel'),heroDots=document.querySelectorAll('.hero-progress i'),blob=document.getElementById('heroBlob'),tick=false;
 function heroNarrative(){
   tick=false;
   var y=window.scrollY||0;
   if(blob)blob.style.transform='translateY('+(y*0.25)+'px)';
-  if(!heroPin)return;
-  var top=heroPin.offsetTop,h=heroPin.offsetHeight-innerHeight;
-  if(y<top||y>top+h+innerHeight){return;}
-  var p=Math.min(Math.max((y-top)/Math.max(h,1),0),1);
-  var step=Math.min(heroPanels.length-1,Math.floor(p*heroPanels.length));
+  if(!heroEl)return;
+  var top=heroEl.offsetTop,h=heroEl.offsetHeight-innerHeight;
+  var step=0;
+  if(y>=top&&y<=top+h){var p=Math.min(Math.max((y-top)/Math.max(h,1),0),1);step=Math.min(heroPanels.length-1,Math.floor(p*heroPanels.length));}
   heroPanels.forEach(function(el,i){el.classList.toggle('active',i===step);});
   heroDots.forEach(function(d,i){d.classList.toggle('on',i===step);});
 }
