@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
+<meta name="theme-color" content="#05060a"/>
 <title>Sumit Yadav — Strategy, Growth &amp; Operations</title>
 <meta name="description" content="Sumit Yadav — IIM Calcutta MBA | Blinkit Strategy | 2,300+ dark stores | ₹100 Cr+ D2C revenue | CAT 99.64%ile"/>
 <meta property="og:title" content="Sumit Yadav — Strategy, Growth & Operations"/>
@@ -941,7 +942,7 @@ footer{background:#030408;border-top:1px solid var(--bdr);padding:22px 5%;displa
 </div>
 
 <footer>
-  <div class="fl">© 2026 Sumit Yadav &nbsp;·&nbsp; IIM Calcutta MBA &nbsp;·&nbsp; sumityadav07.github.io/portfolio</div>
+  <div class="fl">© 2026 Sumit Yadav &nbsp;·&nbsp; IIM Calcutta MBA &nbsp;·&nbsp; github.com/sumity2025-byte/IIM_C_Sumit</div>
   <div class="fr">
     <a href="mailto:sumity2025&#64;email&#46;iimcal&#46;ac&#46;in">Email</a>
     <a href="https://www.linkedin.com/in/sumit-yadav1/" target="_blank">LinkedIn</a>
@@ -1139,7 +1140,7 @@ if(!isTouch&&!reduceMotion)document.querySelectorAll('.tilt,#hcard').forEach(el=
 /* ── Typewriter ── */
 (function(){
   const el=document.getElementById('typeTx');
-  const roles=['Strategy & Ops @ Blinkit','2,300+ dark stores digitized','₹100 Cr+ D2C revenue generated','IIM Calcutta MBA · CAT 99.64%ile','Builder of 0→1 systems'];
+  const roles=['Strategy & Ops @ Blinkit','2,300+ dark stores digitized','₹100 Cr+ D2C revenue generated','IIM Calcutta MBA · CAT 99.64%ile','Builder of 0→1 systems','Open to Strategy, Growth & Ops roles'];
   if(reduceMotion){el.textContent=roles[0];return;}
   let ri=0,ci=0,del=false;
   (function tick(){
@@ -1170,6 +1171,19 @@ function closeModal(id){document.getElementById(id).classList.remove('open');if(
 document.getElementById('contactModal').addEventListener('click',function(e){if(e.target===this)closeModal('contactModal');});
 addEventListener('keydown',e=>{if(e.key==='Escape'){closeModal('contactModal');closeCV();closeMob();}});
 function submitForm(){alert('Thanks! Sumit will get back to you within 24 hours. ✓');closeModal('contactModal');}
+
+/* ── Graceful fallback for not-yet-added document PDFs ── */
+(function(){
+  const docLinks=document.querySelectorAll('a.pstr[href$=".pdf"],.citem[href$=".pdf"],.ach-i[href$=".pdf"],.acd-p a[href$=".pdf"],.tl-link[href$=".pdf"]');
+  docLinks.forEach(a=>{
+    a.addEventListener('click',function(e){
+      const url=a.getAttribute('href');
+      fetch(url,{method:'HEAD'}).then(r=>{
+        if(!r.ok){e.preventDefault();openModal('contactModal');}
+      }).catch(()=>{}); /* offline: let default behaviour proceed */
+    });
+  });
+})();
 
 /* ── CV Modal with PDF.js ── */
 let pdfDoc=null,cvPage=1;
