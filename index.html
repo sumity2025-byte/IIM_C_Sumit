@@ -164,6 +164,11 @@ h2.title{font-size:clamp(2.1rem,5.5vw,3.6rem);font-weight:800;letter-spacing:-.0
 .feature .stats-mini div{background:var(--bg);padding:22px 12px;text-align:center;}
 .feature .stats-mini .n{font-size:1.8rem;font-weight:900;letter-spacing:-.02em;}
 .feature .stats-mini .l{font-size:.62rem;color:var(--ink-3);margin-top:8px;}
+.feature .kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:22px;}
+.feature .kpi{background:var(--bg-2);border:1px solid var(--line-soft);border-radius:14px;padding:16px 10px;text-align:center;transition:transform .3s cubic-bezier(.34,1.4,.64,1),box-shadow .3s,border-color .3s;}
+.feature .kpi:hover{transform:translateY(-4px);box-shadow:var(--shadow);border-color:var(--ac-line);}
+.feature .kpi .kn{font-size:1.5rem;font-weight:900;letter-spacing:-.02em;line-height:1;}
+.feature .kpi .kl{font-size:.64rem;color:var(--ink-3);margin-top:9px;font-weight:600;text-transform:uppercase;letter-spacing:.03em;}
 
 .grid{display:grid;gap:18px;margin-top:18px;}
 .grid-2{grid-template-columns:repeat(2,1fr);}
@@ -279,6 +284,10 @@ footer .fr a:hover{color:var(--ac);}
   .burger{display:flex;}
   .grid-2,.grid-3{grid-template-columns:1fr;}
   .stats{grid-template-columns:repeat(2,1fr);}
+  .feature .body{padding:30px 22px;}
+  .feature .kpis{grid-template-columns:repeat(3,1fr);gap:8px;}
+  .feature .kpi{padding:13px 6px;}
+  .feature .kpi .kn{font-size:1.2rem;}
   .exp{grid-template-columns:1fr;gap:6px;}
   .exp-date{color:var(--ac);}
   .ach{grid-template-columns:1fr;}
@@ -485,15 +494,17 @@ footer .fr a:hover{color:var(--ac);}
         <div class="k">★ Featured · Blinkit · 2025</div>
         <h3>Dark Store Digitization &amp; Ops Strategy — 2,300+ Locations</h3>
         <p>End-to-end overhaul of Blinkit's dark store infrastructure. Built location intelligence, FEFO logic, spatial pick-path optimization, and execution dashboards — turning a fragmented manual system into a digitized, scalable operating model.</p>
-        <div class="chips">
-          <span class="chip">100% Digitized</span><span class="chip">43% Variance ↓</span><span class="chip">18% GMV Uplift</span>
-          <span class="chip">1.5× Space Util.</span><span class="chip">90% Replenishment</span><span class="chip">25% Complaints ↓</span>
+        <div class="kpis">
+          <div class="kpi"><div class="kn grad"><span data-count="100">0</span>%</div><div class="kl">Digitized</div></div>
+          <div class="kpi"><div class="kn grad"><span data-count="43">0</span>%</div><div class="kl">Variance ↓</div></div>
+          <div class="kpi"><div class="kn grad"><span data-count="18">0</span>%</div><div class="kl">GMV Uplift</div></div>
+          <div class="kpi"><div class="kn grad">1.5×</div><div class="kl">Space Util.</div></div>
+          <div class="kpi"><div class="kn grad"><span data-count="90">0</span>%</div><div class="kl">Replenishment</div></div>
+          <div class="kpi"><div class="kn grad"><span data-count="25">0</span>%</div><div class="kl">Complaints ↓</div></div>
+          <div class="kpi"><div class="kn grad"><span data-count="10">0</span>%</div><div class="kl">Faster picks</div></div>
+          <div class="kpi"><div class="kn grad"><span data-count="2300">0</span>+</div><div class="kl">Stores</div></div>
+          <div class="kpi"><div class="kn grad"><span data-count="15">0</span>+</div><div class="kl">Pilots</div></div>
         </div>
-      </div>
-      <div class="stats-mini">
-        <div><div class="n grad">2,300+</div><div class="l">Stores</div></div>
-        <div><div class="n grad">10%</div><div class="l">Faster picks</div></div>
-        <div><div class="n grad">15+</div><div class="l">Pilots</div></div>
       </div>
     </div>
 
