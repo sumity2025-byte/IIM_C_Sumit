@@ -4,10 +4,11 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
 <meta name="theme-color" content="#ffffff"/>
-<title>Sumit Yadav — Strategy, Growth &amp; Operations</title>
+<title>Sumit Yadav — Strategy, Growth & Operations</title>
 <meta name="description" content="Sumit Yadav — IIM Calcutta MBA. 2,300+ Blinkit dark stores, ₹100 Cr+ D2C revenue, ₹235 Cr+ capex. CAT 99.64%ile."/>
 <meta property="og:title" content="Sumit Yadav — Strategy, Growth & Operations"/>
 <meta property="og:description" content="IIM Calcutta MBA. Built at Blinkit, Shopdeck, Adani. 2,300+ stores digitized, ₹100 Cr+ revenue generated."/>
+<meta property="og:image" content="WhatsApp_Image_2026-04-14_at_5_21_03_AM.jpeg"/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"/>
@@ -45,7 +46,7 @@
 *{margin:0;padding:0;box-sizing:border-box;}
 html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;}
 body{font-family:var(--sans);background:var(--bg);color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
-h1,h2,h3,.logo,.nav-links a,.eyebrow,.btn,.nav-cta,.kpi .kn,.stat .n,.feature .stats-mini .n,.card .k{font-family:var(--display);}
+h1,h2,h3,.logo,.nav-links a,.eyebrow,.btn,.nav-cta,.nav-cv,.kpi .kn,.stat .n,.feature .stats-mini .n,.card .k,.badge{font-family:var(--display);}
 a{color:inherit;text-decoration:none;}
 img{max-width:100%;display:block;}
 ::selection{background:var(--ac);color:#fff;}
@@ -69,7 +70,7 @@ img{max-width:100%;display:block;}
 .burger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:8px;}
 .burger span{width:22px;height:2px;background:var(--ink);border-radius:2px;}
 
-/* ── DOT NAV (section indicator) ── */
+/* ── DOT NAV ── */
 .dotnav{position:fixed;right:22px;top:50%;transform:translateY(-50%);z-index:150;display:flex;flex-direction:column;gap:14px;}
 .dotnav a{width:10px;height:10px;border-radius:50%;background:rgba(0,0,0,.18);transition:all .3s;position:relative;}
 .dotnav a:hover{background:var(--ac);}
@@ -86,25 +87,34 @@ img{max-width:100%;display:block;}
 .mmenu a{font-size:1.8rem;font-weight:700;color:var(--ink-2);}
 .mmenu a:hover{color:var(--ac);}
 
-/* ── HERO (sticky pinned, scroll-driven) ── */
-.hero{height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;position:relative;overflow:hidden;background:
+/* ── HERO (image + headline, parallax-lite) ── */
+.hero{position:relative;overflow:hidden;background:
   radial-gradient(110% 80% at 50% 0%,rgba(255,94,31,.10),transparent 55%),
   radial-gradient(90% 60% at 85% 30%,rgba(120,90,255,.07),transparent 55%),
   var(--bg);}
-.hero-blob{position:absolute;width:50vw;height:50vw;border-radius:50%;background:radial-gradient(circle,rgba(255,94,31,.18),transparent 60%);top:-10vw;right:-10vw;z-index:0;will-change:transform;}
-.hero-in{position:relative;z-index:2;padding:0 22px;max-width:880px;}
-.pill{display:inline-flex;align-items:center;gap:8px;padding:7px 16px;border-radius:100px;border:1px solid var(--ac-line);background:var(--ac-soft);font-size:.74rem;color:var(--ac);font-weight:600;margin-bottom:28px;}
-.pill .d{width:7px;height:7px;border-radius:50%;background:var(--grn);}
-.hero h1{font-size:clamp(2.8rem,9vw,6rem);font-weight:900;letter-spacing:-.035em;line-height:.98;margin-bottom:22px;will-change:transform;}
+.hero-blob{position:absolute;width:50vw;height:50vw;border-radius:50%;background:radial-gradient(circle,rgba(255,94,31,.18),transparent 60%);top:-10vw;right:-10vw;z-index:0;will-change:transform;animation:float 9s ease-in-out infinite;}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(26px)}}
+.hero-grid{max-width:var(--maxw);margin:0 auto;padding:140px 24px 110px;display:grid;grid-template-columns:1.25fr .9fr;gap:54px;align-items:center;position:relative;z-index:2;}
+.hero-in{position:relative;z-index:2;}
+.pill{display:inline-flex;align-items:center;gap:8px;padding:7px 16px;border-radius:100px;border:1px solid var(--ac-line);background:var(--ac-soft);font-size:.74rem;color:var(--ac);font-weight:600;margin-bottom:26px;}
+.pill .d{width:7px;height:7px;border-radius:50%;background:var(--grn);animation:pulse 2s infinite;}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+.hero h1{font-size:clamp(2.6rem,6.4vw,4.6rem);font-weight:900;letter-spacing:-.035em;line-height:1.0;margin-bottom:22px;}
 .hero h1 .grad{display:inline-block;}
-.hero p.sub{font-size:clamp(1.05rem,2.5vw,1.4rem);color:var(--ink-2);max-width:56ch;margin:0 auto 36px;}
-.hero-cta{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;}
+.hero p.sub{font-size:clamp(1.02rem,2.2vw,1.28rem);color:var(--ink-2);max-width:54ch;margin-bottom:32px;}
+.hero-cta{display:flex;gap:14px;flex-wrap:wrap;}
 .btn{display:inline-flex;align-items:center;gap:8px;padding:15px 30px;border-radius:100px;font-size:.95rem;font-weight:600;font-family:var(--sans);cursor:pointer;border:none;transition:transform .2s,box-shadow .2s,background .2s;}
 .btn-p{background:var(--grad);color:#fff;box-shadow:0 10px 30px rgba(255,94,31,.3);}
 .btn-p:hover{transform:translateY(-3px);box-shadow:0 16px 44px rgba(255,94,31,.42);}
 .btn-g{background:var(--bg-2);color:var(--ink);border:1px solid var(--line);}
 .btn-g:hover{transform:translateY(-3px);background:var(--bg-3);}
-.scroll-hint{position:absolute;bottom:28px;left:50%;transform:translateX(-50%);z-index:2;font-size:.72rem;color:var(--ink-3);display:flex;flex-direction:column;align-items:center;gap:8px;letter-spacing:.06em;}
+/* hero portrait card */
+.hero-card{position:relative;border-radius:26px;overflow:hidden;border:1px solid var(--line-soft);box-shadow:var(--shadow-lg);background:var(--bg-2);aspect-ratio:4/5;}
+.hero-card img{width:100%;height:100%;object-fit:cover;transition:transform 6s cubic-bezier(.16,1,.3,1);}
+.reveal.in .hero-card img{transform:scale(1.06);}
+.hero-card .tag{position:absolute;left:16px;bottom:16px;background:#fff;border-radius:12px;padding:10px 14px;box-shadow:var(--shadow);font-size:.72rem;font-weight:700;}
+.hero-card .tag b{display:block;color:var(--ac);font-size:.9rem;}
+.scroll-hint{position:absolute;bottom:24px;left:50%;transform:translateX(-50%);z-index:2;font-size:.72rem;color:var(--ink-3);display:flex;flex-direction:column;align-items:center;gap:8px;letter-spacing:.06em;}
 .scroll-hint .mouse{width:22px;height:34px;border:2px solid var(--ink-3);border-radius:12px;position:relative;}
 .scroll-hint .mouse::after{content:'';position:absolute;top:6px;left:50%;transform:translateX(-50%);width:3px;height:6px;border-radius:2px;background:var(--ink-3);animation:wheel 1.6s infinite;}
 @keyframes wheel{0%{opacity:0;transform:translate(-50%,0);}40%{opacity:1;}100%{opacity:0;transform:translate(-50%,12px);}}
@@ -127,7 +137,8 @@ h2.title{font-size:clamp(2.1rem,5.5vw,3.6rem);font-weight:800;letter-spacing:-.0
 
 /* ── STAT STRIP ── */
 .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line-soft);border:1px solid var(--line-soft);border-radius:var(--radius);overflow:hidden;margin-top:60px;}
-.stat{background:var(--bg);padding:36px 20px;text-align:center;}
+.stat{background:var(--bg);padding:36px 20px;text-align:center;transition:background .3s;}
+.stat:hover{background:var(--bg-2);}
 .stat .n{font-size:clamp(1.9rem,4.5vw,2.8rem);font-weight:900;letter-spacing:-.02em;line-height:1;}
 .stat .l{font-size:.74rem;color:var(--ink-3);margin-top:12px;letter-spacing:.02em;}
 
@@ -142,6 +153,13 @@ h2.title{font-size:clamp(2.1rem,5.5vw,3.6rem);font-weight:800;letter-spacing:-.0
 .fact .ic{width:38px;height:38px;flex-shrink:0;border-radius:10px;background:var(--ac-soft);border:1px solid var(--ac-line);display:flex;align-items:center;justify-content:center;font-size:1.1rem;}
 .fact h4{font-size:.95rem;font-weight:700;margin-bottom:4px;}
 .fact p{font-size:.8rem;color:var(--ink-2);}
+
+/* ── IMAGE GALLERY (frameworks / proof) ── */
+.gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:40px;}
+.gal{position:relative;border-radius:var(--radius);overflow:hidden;border:1px solid var(--line-soft);background:var(--bg-2);box-shadow:var(--shadow);transition:transform .4s cubic-bezier(.16,1,.3,1),box-shadow .3s;}
+.gal:hover{transform:translateY(-8px) scale(1.01);box-shadow:var(--shadow-lg);}
+.gal img{width:100%;aspect-ratio:4/3;object-fit:cover;}
+.gal .cap{position:absolute;left:0;right:0;bottom:0;padding:14px 16px;background:linear-gradient(to top,rgba(0,0,0,.62),transparent);color:#fff;font-size:.82rem;font-weight:600;}
 
 /* ── EXPERIENCE TIMELINE ── */
 .sec-div{display:flex;align-items:center;gap:16px;margin:18px 0 34px;}
@@ -173,6 +191,9 @@ h2.title{font-size:clamp(2.1rem,5.5vw,3.6rem);font-weight:800;letter-spacing:-.0
 .feature .kpi:hover{transform:translateY(-4px);box-shadow:var(--shadow);border-color:var(--ac-line);}
 .feature .kpi .kn{font-size:1.5rem;font-weight:900;letter-spacing:-.02em;line-height:1;}
 .feature .kpi .kl{font-size:.64rem;color:var(--ink-3);margin-top:9px;font-weight:600;text-transform:uppercase;letter-spacing:.03em;}
+.feature .vis{position:relative;overflow:hidden;min-height:280px;background:var(--bg);}
+.feature .vis img{width:100%;height:100%;object-fit:cover;transition:transform 5s cubic-bezier(.16,1,.3,1);}
+.reveal.in .feature .vis img{transform:scale(1.05);}
 
 .grid{display:grid;gap:18px;margin-top:18px;}
 .grid-2{grid-template-columns:repeat(2,1fr);}
@@ -215,22 +236,25 @@ h2.title{font-size:clamp(2.1rem,5.5vw,3.6rem);font-weight:800;letter-spacing:-.0
 .ach-i p{font-size:.8rem;color:var(--ink-2);line-height:1.55;}
 .ach-i b{color:var(--ink);font-weight:700;}
 
-/* ── DOCS ── */
-.doc-row{display:flex;gap:16px;overflow-x:auto;padding:8px 2px 20px;scrollbar-width:none;-webkit-overflow-scrolling:touch;}
-.doc-row::-webkit-scrollbar{display:none;}
-.doc{width:210px;flex-shrink:0;background:var(--bg-2);border:1px solid var(--line-soft);border-radius:var(--radius);overflow:hidden;transition:transform .3s,box-shadow .3s,border-color .3s;}
-.doc:hover{transform:translateY(-6px);box-shadow:var(--shadow-lg);border-color:var(--ac-line);}
-.doc .thumb{aspect-ratio:3/4;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;font-size:2.6rem;}
-.doc .thumb span{font-size:.74rem;font-weight:700;color:var(--ink-2);text-align:center;padding:0 14px;}
-.doc .meta{padding:15px 17px;}
-.doc .meta .t{font-size:.82rem;font-weight:700;}
-.doc .meta .s{font-size:.68rem;color:var(--ink-3);margin-top:3px;}
-.doc .meta .av{font-size:.64rem;color:var(--ac);margin-top:8px;font-weight:700;}
+/* ── DOCS / PROOF ── */
 .subhead{font-size:.78rem;font-weight:700;color:var(--ac);text-transform:uppercase;letter-spacing:.1em;margin:38px 0 18px;}
+.pdf-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;}
+.pdf-card{background:#fff;border:1px solid var(--line-soft);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);transition:transform .35s,box-shadow .3s,border-color .3s;display:flex;flex-direction:column;}
+.pdf-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-lg);border-color:var(--ac-line);}
+.pdf-card .viewer{position:relative;height:360px;background:var(--bg-2);border-bottom:1px solid var(--line-soft);}
+.pdf-card iframe{width:100%;height:100%;border:0;pointer-events:none;}
+.pdf-card .overlay{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:10px;text-decoration:none;color:var(--ink-2);background:rgba(255,255,255,.0);transition:background .25s;}
+.pdf-card .overlay:hover{background:rgba(255,255,255,.55);}
+.pdf-card .overlay .open{font-size:.74rem;font-weight:700;color:var(--ac);background:var(--ac-soft);border:1px solid var(--ac-line);padding:7px 14px;border-radius:100px;opacity:0;transition:opacity .25s;transform:translateY(6px);}
+.pdf-card:hover .overlay .open{opacity:1;transform:none;}
+.pdf-card .meta{padding:16px 18px;display:flex;align-items:center;gap:12px;}
+.pdf-card .meta .ic{width:38px;height:38px;flex-shrink:0;border-radius:10px;background:var(--ac-soft);border:1px solid var(--ac-line);display:flex;align-items:center;justify-content:center;font-size:1rem;}
+.pdf-card .meta .t{font-size:.9rem;font-weight:700;}
+.pdf-card .meta .s{font-size:.72rem;color:var(--ink-3);}
 
 /* ── BIG QUOTE / CTA ── */
 .cta{text-align:center;padding:140px 0;background:var(--ink);color:#fff;position:relative;overflow:hidden;}
-.cta .blob{position:absolute;width:60vw;height:60vw;border-radius:50%;background:radial-gradient(circle,rgba(255,94,31,.28),transparent 60%);bottom:-25vw;left:50%;transform:translateX(-50%);z-index:0;}
+.cta .blob{position:absolute;width:60vw;height:60vw;border-radius:50%;background:radial-gradient(circle,rgba(255,94,31,.28),transparent 60%);bottom:-25vw;left:50%;transform:translateX(-50%);z-index:0;animation:float 9s ease-in-out infinite;}
 .cta-in{position:relative;z-index:2;max-width:720px;margin:0 auto;padding:0 24px;}
 .cta h2{font-size:clamp(2.2rem,5.5vw,3.6rem);font-weight:900;letter-spacing:-.03em;line-height:1.05;margin-bottom:18px;}
 .cta p{color:rgba(255,255,255,.7);font-size:1.1rem;max-width:50ch;margin:0 auto 34px;}
@@ -274,12 +298,16 @@ footer .fr a:hover{color:var(--ac);}
 .js .reveal.in{opacity:1;transform:none;}
 .js .reveal-l{opacity:0;transform:translateX(-40px);transition:opacity .8s cubic-bezier(.16,1,.3,1),transform .8s cubic-bezier(.16,1,.3,1);}
 .js .reveal-l.in{opacity:1;transform:none;}
+.js .reveal-s{opacity:0;transform:scale(.95);transition:opacity .8s cubic-bezier(.16,1,.3,1),transform .8s cubic-bezier(.16,1,.3,1);}
+.js .reveal-s.in{opacity:1;transform:none;}
 
 /* ── RESPONSIVE ── */
 @media(max-width:920px){
   .grid-3{grid-template-columns:repeat(2,1fr);}
-  .about,.skills-2,.edu-grid,.feature{grid-template-columns:1fr;}
-  .feature .body{padding:36px 28px;}
+  .about,.skills-2,.edu-grid,.feature,.hero-grid{grid-template-columns:1fr;}
+  .feature .vis{min-height:240px;}
+  .gallery{grid-template-columns:repeat(2,1fr);}
+  .pdf-grid{grid-template-columns:1fr;}
   .dotnav{display:none;}
 }
 @media(max-width:680px){
@@ -289,7 +317,9 @@ footer .fr a:hover{color:var(--ac);}
   .nav-cv,.nav-cta{padding:7px 13px;font-size:.74rem;}
   .nav-in{gap:8px;}
   .grid-2,.grid-3{grid-template-columns:1fr;}
+  .gallery{grid-template-columns:1fr;}
   .stats{grid-template-columns:repeat(2,1fr);}
+  .hero-grid{padding:110px 22px 80px;}
   .feature .body{padding:30px 22px;}
   .feature .kpis{grid-template-columns:repeat(3,1fr);gap:8px;}
   .feature .kpi{padding:13px 6px;}
@@ -302,7 +332,7 @@ footer .fr a:hover{color:var(--ac);}
 }
 @media(prefers-reduced-motion:reduce){
   *{animation:none !important;scroll-behavior:auto;}
-  .js .reveal,.js .reveal-l{opacity:1;transform:none;}
+  .js .reveal,.js .reveal-l,.js .reveal-s{opacity:1;transform:none;}
   .hero-blob,.cta .blob{display:none;}
 }
 </style>
@@ -354,13 +384,19 @@ footer .fr a:hover{color:var(--ac);}
 <!-- HERO -->
 <header class="hero" id="home">
   <div class="hero-blob" id="heroBlob"></div>
-  <div class="hero-in">
-    <div class="pill"><span class="d"></span>Open to New Roles</div>
-    <h1>Strategy, Growth<br/><span class="grad">&amp; Operations.</span></h1>
-    <p class="sub">IIM Calcutta MBA. I build the systems inside India's fastest-moving companies — <b>2,300+ Blinkit dark stores</b>, <b>₹100 Cr+ D2C revenue</b>, <b>₹235 Cr+ capex</b>.</p>
-    <div class="hero-cta">
-      <a href="#experience" class="btn btn-p">View my work →</a>
-      <button class="btn btn-g" onclick="openModal()">Get in Touch</button>
+  <div class="hero-grid">
+    <div class="hero-in">
+      <div class="pill"><span class="d"></span>Open to New Roles</div>
+      <h1>Strategy, Growth<br/><span class="grad">&amp; Operations.</span></h1>
+      <p class="sub">IIM Calcutta MBA. I build the systems inside India's fastest-moving companies — <b>2,300+ Blinkit dark stores</b>, <b>₹100 Cr+ D2C revenue</b>, <b>₹235 Cr+ capex</b>.</p>
+      <div class="hero-cta">
+        <a href="#experience" class="btn btn-p">View my work →</a>
+        <button class="btn btn-g" onclick="openModal()">Get in Touch</button>
+      </div>
+    </div>
+    <div class="hero-card reveal-s">
+      <img src="WhatsApp_Image_2026-04-14_at_5_21_03_AM.jpeg" alt="Sumit Yadav — frameworks built"/>
+      <div class="tag">Building at scale<b>Operations · Growth</b></div>
     </div>
   </div>
   <div class="scroll-hint"><div class="mouse"></div>SCROLL</div>
@@ -382,21 +418,21 @@ footer .fr a:hover{color:var(--ac);}
 <div class="marquee" id="marquee">
   <div class="marquee-track">
     <span>Blinkit · Zomato<span class="sep"></span></span>
-    <span>Accenture S&amp;C<span class="sep"></span></span>
-    <span>Shopdeck · D2C<span class="sep"></span></span>
-    <span>Adani Enterprises<span class="sep"></span></span>
-    <span>IIM Calcutta<span class="sep"></span></span>
-    <span>NIT Kurukshetra<span class="sep"></span></span>
+    <span>Shopdeck<span class="sep"></span></span>
+    <span>Accenture<span class="sep"></span></span>
+    <span>Adani Wilmar<span class="sep"></span></span>
     <span>Honda<span class="sep"></span></span>
-    <span>X-Culture Global<span class="sep"></span></span>
+    <span>IIM Calcutta MBA<span class="sep"></span></span>
+    <span>₹235 Cr+ capex<span class="sep"></span></span>
+    <span>CAT 99.64%ile<span class="sep"></span></span>
     <span>Blinkit · Zomato<span class="sep"></span></span>
-    <span>Accenture S&amp;C<span class="sep"></span></span>
-    <span>Shopdeck · D2C<span class="sep"></span></span>
-    <span>Adani Enterprises<span class="sep"></span></span>
-    <span>IIM Calcutta<span class="sep"></span></span>
-    <span>NIT Kurukshetra<span class="sep"></span></span>
+    <span>Shopdeck<span class="sep"></span></span>
+    <span>Accenture<span class="sep"></span></span>
+    <span>Adani Wilmar<span class="sep"></span></span>
     <span>Honda<span class="sep"></span></span>
-    <span>X-Culture Global<span class="sep"></span></span>
+    <span>IIM Calcutta MBA<span class="sep"></span></span>
+    <span>₹235 Cr+ capex<span class="sep"></span></span>
+    <span>CAT 99.64%ile<span class="sep"></span></span>
   </div>
 </div>
 
@@ -405,19 +441,26 @@ footer .fr a:hover{color:var(--ac);}
   <div class="wrap">
     <div class="eyebrow reveal">About</div>
     <h2 class="title reveal">Engineer. <span class="grad">MBA.</span> Builder.</h2>
+    <p class="lead reveal">I turn messy operating problems into systems that scale — equal parts analyst, operator, and builder.</p>
     <div class="about">
       <div class="reveal">
-        <p>I'm a Mechanical Engineer from NIT Kurukshetra who went to IIM Calcutta and spent the last 32 months <b>building inside</b> some of India's most dynamic businesses — not advising them from the outside.</p>
-        <p>At <b>Blinkit</b>, I own location strategy and operational infrastructure across 2,300+ dark stores — the systems powering India's largest quick-commerce network at scale. Prioritization engines, FEFO inventory logic, spatial pick-path optimization, mobile app flows.</p>
-        <p>At <b>Shopdeck</b>, I managed commercial growth for 80+ D2C brands, generating ₹100 Cr+ in annualised business. At <b>Accenture S&amp;C</b>, I structured strategic procurement decisions under real stakes.</p>
-        <div class="quote">"Strategy without execution is just creative writing. I care deeply about both."</div>
+        <p>I started as a mechanical engineer who liked fixing <b>systems</b> more than parts. Today I work where <b>strategy meets execution</b>: digitizing 2,300+ dark stores, building D2C growth engines, and coordinating ₹235 Cr+ of capex.</p>
+        <p>My edge is <b>translation</b> — turning a fuzzy business question into a framework, a dashboard, and a pilot that actually ships. I've built the operating playbooks companies now run daily across 80+ brands.</p>
+        <div class="quote">"The best strategy is the one that survives contact with the store floor."</div>
       </div>
       <div class="facts reveal">
-        <div class="fact"><div class="ic">🎓</div><div><h4>IIM Calcutta · MBA 2025</h4><p>CAT 99.64%ile (QA 99.83). Converted 12/15 IIM calls incl. IIM-C, IIM-A, IIFT.</p></div></div>
-        <div class="fact"><div class="ic">🏛️</div><div><h4>NIT Kurukshetra · B.Tech</h4><p>CGPA 8.36/10. Academic Excellence Award. Mechanical Society Secretary.</p></div></div>
-        <div class="fact"><div class="ic">⚓</div><div><h4>Indian Navy Selectee</h4><p>Top 1.5%ile NDA twice. GATE AIR 2070/1.2L+. <a href="GATE.pdf" target="_blank" style="color:var(--ac)">View ↗</a></p></div></div>
-        <div class="fact"><div class="ic">🏆</div><div><h4>National Competition Winner</h4><p>1st/20+ teams Junkyard War NIT KKR. 2nd/50+ Roller Coaster design.</p></div></div>
+        <div class="fact"><div class="ic">🎓</div><div><h4>IIM Calcutta</h4><p>MBA · CAT 99.64%ile · Converted 12/15 IIM calls.</p></div></div>
+        <div class="fact"><div class="ic">⚙️</div><div><h4>NIT Kurukshetra</h4><p>B.Tech Mechanical · CGPA 8.36/10 · GATE AIR 2070.</p></div></div>
+        <div class="fact"><div class="ic">🚀</div><div><h4>Builder</h4><p>10+ certifications, 93%+ avg. Frameworks used daily at scale.</p></div></div>
       </div>
+    </div>
+
+    <div class="subhead reveal">🧩 Frameworks I've Built</div>
+    <div class="gallery">
+      <div class="gal reveal-s"><img src="WhatsApp_Image_2026-04-14_at_5_21_03_AM.jpeg" alt="Framework 1" loading="lazy"/><div class="cap">Operating model canvas</div></div>
+      <div class="gal reveal-s"><img src="WhatsApp_Image_2026-04-14_at_5_21_04_AM.jpeg" alt="Framework 2" loading="lazy"/><div class="cap">Diagnostics taxonomy</div></div>
+      <div class="gal reveal-s"><img src="WhatsApp_Image_2026-04-14_at_5_21_04_AM__1_.jpeg" alt="Framework 3" loading="lazy"/><div class="cap">Scaling playbook</div></div>
+      <div class="gal reveal-s"><img src="WhatsApp_Image_2026-04-14_at_5_21_04_AM__2_.jpeg" alt="Framework 4" loading="lazy"/><div class="cap">Cohort &amp; variance logic</div></div>
     </div>
   </div>
 </section>
@@ -425,65 +468,60 @@ footer .fr a:hover{color:var(--ac);}
 <!-- EXPERIENCE -->
 <section class="block" id="experience" style="background:var(--bg-2);">
   <div class="wrap">
-    <div class="eyebrow reveal">Experience</div>
-    <h2 class="title reveal">Work <span class="grad">History</span></h2>
-    <p class="lead reveal">32 months building at scale — strategy, growth, and operations.</p>
-
-    <div class="sec-div reveal"><span>Full-Time</span><i></i></div>
-
+    <div class="eyebrow reveal">Work History</div>
+    <h2 class="title reveal">Where I've <span class="grad">shipped.</span></h2>
+    <div class="sec-div reveal"><span>Strategy &amp; Operations</span><i></i></div>
     <div class="exp reveal">
-      <div class="exp-date">May 2025<br/>Present</div>
+      <div class="exp-date">2025 — Present</div>
       <div>
-        <div class="exp-role">Generalist — Product, Strategy &amp; Operations <span class="badge">Full-Time</span></div>
-        <div class="exp-co">Blinkit · Zomato Group</div>
+        <div class="exp-role">Strategy &amp; Ops <span class="badge in">Full-time</span></div>
+        <div class="exp-co">Blinkit · Zomato</div>
         <ul>
-          <li>Owned location strategy for <b>2,300+ dark stores</b>; achieved <b>100% layout digitization</b> and a network-wide bin-ID framework.</li>
-          <li>Built a prioritization engine &amp; dashboard from 0→1, cutting variance <b>43%</b> across 2,300+ stores.</li>
-          <li>Drove pick-path adherence from <b>43% → 92%</b> pan-India, reducing PPI a further <b>10%</b>.</li>
-          <li>Designed FEFO inventory logic; replenishment accuracy to <b>90%</b> via 100% integration.</li>
-          <li>Led a <b>10+ member</b> cross-functional team to scale <b>15+ pilots</b> pan-India.</li>
-          <li>Redesigned LT layouts — <b>1.5×</b> space utilisation, <b>18% GMV uplift</b>/sq ft.</li>
+          <li>Digitized <b>2,300+ dark stores</b>: location intelligence, FEFO logic, spatial pick-path optimization.</li>
+          <li>Built execution dashboards — <b>43% variance ↓</b>, <b>18% GMV uplift</b>, <b>25% complaints ↓</b>.</li>
+          <li>Scaled <b>15+ pilots</b> pan-India into a repeatable operating model.</li>
         </ul>
       </div>
     </div>
-
     <div class="exp reveal">
-      <div class="exp-date">Sep 2022<br/>May 2023</div>
+      <div class="exp-date">2024 — 2025</div>
       <div>
-        <div class="exp-role">Growth Consultant — D2C Brand Management <span class="badge">Full-Time</span></div>
+        <div class="exp-role">Growth &amp; Ops <span class="badge">D2C</span></div>
         <div class="exp-co">Shopdeck</div>
         <ul>
-          <li>Generated <b>₹100 Cr+/yr</b> for <b>80+ clients</b>; scaled orders 0 → 3M+/year.</li>
-          <li><b>118% profitability uplift</b> across 42 firms via pricing &amp; delivery optimization.</li>
-          <li>Built 20+ Apache Superset dashboards — C2PR funnel, RTO split, cohorts, P&amp;L.</li>
-          <li>Owned onboarding assets: 100-point Pre-Live checklist, Campaign SOP, Pre-Live deck.</li>
+          <li>Scaled orders <b>0 → 3M+/yr</b> across <b>80+ brands</b>; ₹100 Cr+ revenue influenced.</li>
+          <li>Built 20+ dashboards, Campaign SOP, RTO playbook — <b>118% avg profitability uplift</b>.</li>
         </ul>
       </div>
     </div>
-
+    <div class="sec-div reveal"><span>Earlier</span><i></i></div>
     <div class="exp reveal">
-      <div class="exp-date">Jan 2022<br/>Jul 2022</div>
+      <div class="exp-date">2024</div>
       <div>
-        <div class="exp-role">Management Trainee — Ops &amp; Strategy <span class="badge">Full-Time</span></div>
-        <div class="exp-co">Adani Enterprises</div>
+        <div class="exp-role">Consulting <span class="badge">Project</span></div>
+        <div class="exp-co">Accenture</div>
         <ul>
-          <li>SPOC for RMHS (₹180 Cr+) &amp; Steam Dryer (₹55 Cr+); 15+ international suppliers.</li>
-          <li>Coordinated ₹235 Cr+ capex across procurement, engineering &amp; legal.</li>
-          <li>Cut inbound freight <b>25%</b> via vendor consolidation &amp; route optimization.</li>
+          <li>Should-cost model across 15+ cost drivers, 5 vendors / 50+ metrics — <b>10% budget optimization</b>.</li>
         </ul>
       </div>
     </div>
-
-    <div class="sec-div reveal"><span>Other Experience</span><i></i></div>
-
     <div class="exp reveal">
-      <div class="exp-date">Oct 2024<br/>Nov 2024</div>
+      <div class="exp-date">2021 — 2023</div>
       <div>
-        <div class="exp-role">Strategy Consultant (Competition Winner) <span class="badge in">Project</span></div>
-        <div class="exp-co">Accenture Strategy &amp; Consulting</div>
+        <div class="exp-role">Capex Coordination <span class="badge">SPOC</span></div>
+        <div class="exp-co">Adani Wilmar</div>
         <ul>
-          <li>Built a should-cost model across 15+ drivers; evaluated 5 vendors across 50+ metrics → <b>10% budget optimization</b>.</li>
-          <li>Presented to Accenture partner panel; selected as competition winner.</li>
+          <li>₹235 Cr+ capex (RMHS ₹180 Cr+, Steam Dryer ₹55 Cr+); <b>25% logistics cost cut</b>.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="exp reveal">
+      <div class="exp-date">2020 — 2021</div>
+      <div>
+        <div class="exp-role">Manufacturing Engg <span class="badge">Intern</span></div>
+        <div class="exp-co">Honda</div>
+        <ul>
+          <li>Zero-defect line: stoppage 42 min → 0; overtime cut <b>63%</b>.</li>
         </ul>
       </div>
     </div>
@@ -514,6 +552,7 @@ footer .fr a:hover{color:var(--ac);}
           <div class="kpi"><div class="kn grad"><span data-count="15">0</span>+</div><div class="kl">Pilots</div></div>
         </div>
       </div>
+      <div class="vis"><img src="WhatsApp_Image_2026-04-14_at_5_21_04_AM__1_.jpeg" alt="Dark store digitization framework" loading="lazy"/></div>
     </div>
 
     <div class="grid grid-3">
@@ -523,6 +562,13 @@ footer .fr a:hover{color:var(--ac);}
       <div class="card reveal"><div class="k">🌍 International · X-Culture</div><h3>Global Market Entry Strategy</h3><p>Led distributed global team — GTM, trade regulation, benchmarking. Top 40% of 1,000+ teams. Top 5% peer-rated.</p><div class="chips"><span class="chip">GTM</span><span class="chip">Top 40%</span><span class="chip">Top 5% Peer</span></div></div>
       <div class="card reveal"><div class="k">⚙️ Engineering · Honda</div><h3>Zero-Defect Manufacturing Line</h3><p>Eliminated all line defects via root-cause analysis. Stoppage 42 min → 0; overtime cut 63%.</p><div class="chips"><span class="chip">0% Defects</span><span class="chip">63% OT Cut</span><span class="chip">0 Stoppage</span></div></div>
       <div class="card reveal"><div class="k">🔁 Shopdeck · IP</div><h3>Frameworks I Built</h3><p>RTO diagnostic, marketing triage, 16-variable fluctuation audit, 15-reason scaling taxonomy — used daily across 80+ brands.</p><div class="chips"><span class="chip">RTO</span><span class="chip">Triage</span><span class="chip">Scaling</span></div></div>
+    </div>
+
+    <div class="subhead reveal">🖼️ Visual Proof — Frameworks &amp; Dashboards</div>
+    <div class="gallery">
+      <div class="gal reveal-s"><img src="WhatsApp_Image_2026-04-14_at_5_21_03_AM.jpeg" alt="Proof 1" loading="lazy"/><div class="cap">Dashboard logic</div></div>
+      <div class="gal reveal-s"><img src="WhatsApp_Image_2026-04-14_at_5_21_04_AM.jpeg" alt="Proof 2" loading="lazy"/><div class="cap">Operating model</div></div>
+      <div class="gal reveal-s"><img src="WhatsApp_Image_2026-04-14_at_5_21_04_AM__1_.jpeg" alt="Proof 3" loading="lazy"/><div class="cap">Scaling taxonomy</div></div>
     </div>
   </div>
 </section>
@@ -577,34 +623,55 @@ footer .fr a:hover{color:var(--ac);}
   </div>
 </section>
 
-<!-- DOCUMENTS -->
+<!-- DOCUMENTS / PROOF -->
 <section class="block" id="documents" style="background:var(--bg-2);">
   <div class="wrap">
     <div class="eyebrow reveal">Work Artifacts</div>
     <h2 class="title reveal">Documents &amp; <span class="grad">Proof of Work</span></h2>
-    <p class="lead reveal">Swipe horizontally to browse. Files load from this site's folder.</p>
+    <p class="lead reveal">Real files from this site's folder — PDFs open inline; frameworks shown as images.</p>
 
     <div class="subhead reveal">📄 Resumes</div>
-    <div class="doc-row reveal">
-      <a class="doc" href="My_Resume.pdf" target="_blank"><div class="thumb" style="background:linear-gradient(135deg,#fff5ef,#ffe6d6);">📄<span>Strategy &amp; Ops</span></div><div class="meta"><div class="t">Strategy &amp; Operations CV</div><div class="s">Primary resume</div><div class="av">↗ Open PDF</div></div></a>
-      <a class="doc" href="My_Resume-1.pdf" target="_blank"><div class="thumb" style="background:linear-gradient(135deg,#eef3ff,#dfe9ff);">📄<span>Product &amp; Growth</span></div><div class="meta"><div class="t">Product &amp; Growth CV</div><div class="s">PM &amp; Growth roles</div><div class="av">↗ Open PDF</div></div></a>
+    <div class="pdf-grid">
+      <div class="pdf-card reveal-s">
+        <div class="viewer"><iframe src="about:blank" data-src="My_Resume.pdf#view=FitH" title="Strategy & Operations CV"></iframe><a class="overlay" href="My_Resume.pdf" target="_blank"><span class="open">Open full PDF ↗</span></a></div>
+        <div class="meta"><div class="ic">📄</div><div><div class="t">Strategy &amp; Operations CV</div><div class="s">Primary resume</div></div></div>
+      </div>
+      <div class="pdf-card reveal-s">
+        <div class="viewer"><iframe src="about:blank" data-src="My_Resume-1.pdf#view=FitH" title="Product & Growth CV"></iframe><a class="overlay" href="My_Resume-1.pdf" target="_blank"><span class="open">Open full PDF ↗</span></a></div>
+        <div class="meta"><div class="ic">📄</div><div><div class="t">Product &amp; Growth CV</div><div class="s">PM &amp; Growth roles</div></div></div>
+      </div>
     </div>
 
-    <div class="subhead reveal">📋 Shopdeck — SOPs &amp; Materials</div>
-    <div class="doc-row reveal">
-      <a class="doc" href="Campaign_Handbook__2_.pdf" target="_blank"><div class="thumb" style="background:linear-gradient(135deg,#eafaf0,#d6f3e2);">📋<span>Campaign SOP</span></div><div class="meta"><div class="t">Campaign Creation Handbook</div><div class="s">Facebook Ads SOP</div><div class="av">↗ Open PDF</div></div></a>
-      <a class="doc" href="Pre-Live__PPT_Final__1_.pdf" target="_blank"><div class="thumb" style="background:linear-gradient(135deg,#f1ecff,#e4dbff);">📊<span>Pre-Live Deck</span></div><div class="meta"><div class="t">Pre-Live D2C Enabler Deck</div><div class="s">Client onboarding v1</div><div class="av">↗ Open PDF</div></div></a>
-      <a class="doc" href="Pre-Live__PPT_Final__1___1_.pdf" target="_blank"><div class="thumb" style="background:linear-gradient(135deg,#fff5ef,#ffe6d6);">📊<span>Pre-Live v2</span></div><div class="meta"><div class="t">Pre-Live Deck v2</div><div class="s">Updated w/ success stories</div><div class="av">↗ Open PDF</div></div></a>
-      <a class="doc" href="Sumit_Yadav__.pdf" target="_blank"><div class="thumb" style="background:linear-gradient(135deg,#fff3e9,#ffe2cc);">⚡<span>Offer Letter</span></div><div class="meta"><div class="t">Blinkit Offer Letter</div><div class="s">Full-time appointment</div><div class="av">↗ Open PDF</div></div></a>
+    <div class="subhead reveal">📋 Shopdeck — SOPs &amp; Decks</div>
+    <div class="pdf-grid">
+      <div class="pdf-card reveal-s">
+        <div class="viewer"><iframe src="about:blank" data-src="Campaign_Handbook__2_.pdf#view=FitH" title="Campaign Handbook"></iframe><a class="overlay" href="Campaign_Handbook__2_.pdf" target="_blank"><span class="open">Open full PDF ↗</span></a></div>
+        <div class="meta"><div class="ic">📋</div><div><div class="t">Campaign Creation Handbook</div><div class="s">Facebook Ads SOP</div></div></div>
+      </div>
+      <div class="pdf-card reveal-s">
+        <div class="viewer"><iframe src="about:blank" data-src="Pre-Live__PPT_Final__1_.pdf#view=FitH" title="Pre-Live Deck"></iframe><a class="overlay" href="Pre-Live__PPT_Final__1_.pdf" target="_blank"><span class="open">Open full PDF ↗</span></a></div>
+        <div class="meta"><div class="ic">📊</div><div><div class="t">Pre-Live D2C Enabler Deck</div><div class="s">Client onboarding</div></div></div>
+      </div>
     </div>
 
     <div class="subhead reveal">🏅 Certifications &amp; Credentials</div>
-    <div class="doc-row reveal">
-      <a class="doc" href="GATE.pdf" target="_blank"><div class="thumb" style="background:linear-gradient(135deg,#fff9e6,#fff0c2);">📐<span>GATE Score</span></div><div class="meta"><div class="t">GATE AIR 2070</div><div class="s">ME · score 696</div><div class="av">↗ Open PDF</div></div></a>
-      <a class="doc" href="Certifications-Consult.pdf" target="_blank"><div class="thumb" style="background:linear-gradient(135deg,#f1ecff,#e4dbff);">🏛️<span>Strategy Certs</span></div><div class="meta"><div class="t">Strategy &amp; Consulting</div><div class="s">Oxford, Alison · 93%+</div><div class="av">↗ Open PDF</div></div></a>
-      <a class="doc" href="Verification_Prod.pdf" target="_blank"><div class="thumb" style="background:linear-gradient(135deg,#eafaf0,#d6f3e2);">🚀<span>PM Certs</span></div><div class="meta"><div class="t">Product Management</div><div class="s">Product School · 93%+</div><div class="av">↗ Open PDF</div></div></a>
-      <a class="doc" href="Live_project_consult.pdf" target="_blank"><div class="thumb" style="background:linear-gradient(135deg,#eef3ff,#dfe9ff);">📋<span>Live Project</span></div><div class="meta"><div class="t">Business Strategy Project</div><div class="s">Skilled Sapiens</div><div class="av">↗ Open PDF</div></div></a>
-      <a class="doc" href="Live_project_prod.pdf" target="_blank"><div class="thumb" style="background:linear-gradient(135deg,#fff5ef,#ffe6d6);">🎯<span>PM Project</span></div><div class="meta"><div class="t">Product Mgmt Project</div><div class="s">MSME Certified</div><div class="av">↗ Open PDF</div></div></a>
+    <div class="pdf-grid">
+      <div class="pdf-card reveal-s">
+        <div class="viewer"><iframe src="about:blank" data-src="GATE.pdf#view=FitH" title="GATE Score"></iframe><a class="overlay" href="GATE.pdf" target="_blank"><span class="open">Open full PDF ↗</span></a></div>
+        <div class="meta"><div class="ic">📐</div><div><div class="t">GATE AIR 2070</div><div class="s">ME · score 696</div></div></div>
+      </div>
+      <div class="pdf-card reveal-s">
+        <div class="viewer"><iframe src="about:blank" data-src="Certifications-Consult.pdf#view=FitH" title="Strategy Certs"></iframe><a class="overlay" href="Certifications-Consult.pdf" target="_blank"><span class="open">Open full PDF ↗</span></a></div>
+        <div class="meta"><div class="ic">🏛️</div><div><div class="t">Strategy &amp; Consulting</div><div class="s">Oxford, Alison · 93%+</div></div></div>
+      </div>
+      <div class="pdf-card reveal-s">
+        <div class="viewer"><iframe src="about:blank" data-src="Verification_Prod.pdf#view=FitH" title="PM Certs"></iframe><a class="overlay" href="Verification_Prod.pdf" target="_blank"><span class="open">Open full PDF ↗</span></a></div>
+        <div class="meta"><div class="ic">🚀</div><div><div class="t">Product Management</div><div class="s">Product School · 93%+</div></div></div>
+      </div>
+      <div class="pdf-card reveal-s">
+        <div class="viewer"><iframe src="about:blank" data-src="Live_project_consult.pdf#view=FitH" title="Live Project"></iframe><a class="overlay" href="Live_project_consult.pdf" target="_blank"><span class="open">Open full PDF ↗</span></a></div>
+        <div class="meta"><div class="ic">📋</div><div><div class="t">Business Strategy Project</div><div class="s">Skilled Sapiens</div></div></div>
+      </div>
     </div>
   </div>
 </section>
@@ -657,7 +724,7 @@ footer .fr a:hover{color:var(--ac);}
 <script>
 'use strict';
 /* Safety net: never leave the page blank if something throws */
-function recover(){document.querySelectorAll('.reveal,.reveal-l').forEach(function(e){e.classList.add('in');});}
+function recover(){document.querySelectorAll('.reveal,.reveal-l,.reveal-s').forEach(function(e){e.classList.add('in');});}
 window.addEventListener('error',recover);
 setTimeout(recover,3000);
 
@@ -675,33 +742,31 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape'){closeModal(
 var nav=document.getElementById('nav'),prog=document.getElementById('prog');
 var dots=Array.prototype.slice.call(document.querySelectorAll('#dotnav a'));
 var sections=dots.map(function(d){return document.getElementById(d.getAttribute('data-s'));});
+var lastY=0;
 function onScroll(){
   var y=window.scrollY||document.documentElement.scrollTop;
   var h=document.documentElement.scrollHeight-innerHeight;
   prog.style.width=(h>0?(y/h*100):0)+'%';
-  nav.classList.toggle('hide',y>300&&y<(y+innerHeight)&&lastY<y&&y>innerHeight);
+  nav.classList.toggle('hide',y>300&&lastY<y&&y>innerHeight);
   lastY=y;
-  /* active dot */
-  var mid=y+innerHeight/3;
-  var idx=0;
+  var mid=y+innerHeight/3,idx=0;
   for(var i=0;i<sections.length;i++){if(sections[i]&&sections[i].offsetTop<=mid)idx=i;}
   dots.forEach(function(d,i){d.classList.toggle('active',i===idx);});
 }
-var lastY=0;
 addEventListener('scroll',onScroll,{passive:true});
 
 /* Scroll reveal — only when on screen */
 var io=new IntersectionObserver(function(es){es.forEach(function(x){if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target);}});},{threshold:.12,rootMargin:'0px 0px -40px 0px'});
-document.querySelectorAll('.reveal,.reveal-l').forEach(function(el){io.observe(el);});
+document.querySelectorAll('.reveal,.reveal-l,.reveal-s').forEach(function(el){io.observe(el);});
 
-/* Parallax: hero blob + hero title (transform only, throttled via rAF) */
-var blob=document.getElementById('heroBlob'),heroIn=document.querySelector('.hero-in'),tick=false;
+/* Parallax: hero blob only (title moves with whole hero-in via reveal) */
+var blob=document.getElementById('heroBlob'),heroIn=document.querySelector('.hero-grid'),tick=false;
 function parallax(){
   tick=false;
   var y=window.scrollY||0;
   if(y<innerHeight){
     if(blob)blob.style.transform='translateY('+(y*0.25)+'px)';
-    if(heroIn)heroIn.style.transform='translateY('+(y*0.18)+'px)';
+    if(heroIn)heroIn.style.transform='translateY('+(y*0.10)+'px)';
   } else if(heroIn){ heroIn.style.transform=''; }
 }
 addEventListener('scroll',function(){if(!tick){tick=true;requestAnimationFrame(parallax);}},{passive:true});
@@ -713,6 +778,16 @@ if(mq&&'IntersectionObserver' in window){
     var t=mq.querySelector('.marquee-track');
     if(t)t.style.animationPlayState=x.isIntersecting?'running':'paused';
   });},{threshold:0}).observe(mq);
+}
+
+/* Pause PDF iframes rendering off-screen (mobile memory safety) */
+if('IntersectionObserver' in window){
+  document.querySelectorAll('.pdf-card .viewer').forEach(function(v){
+    new IntersectionObserver(function(es){es.forEach(function(x){
+      var f=x.target.querySelector('iframe');
+      if(f){ if(x.isIntersecting){ if(!f.getAttribute('src')||f.getAttribute('src')==='about:blank') f.src=f.dataset.src; } else { f.src='about:blank'; } }
+    });},{threshold:0}).observe(v);
+  });
 }
 
 /* Animated counters (data-count) when in view */
