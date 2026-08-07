@@ -569,31 +569,43 @@ footer .fr a:hover::after{width:100%;}
 .cmd-item .cs{font-size:.72rem;color:var(--ink-3);}
 .cmd-empty{padding:20px;text-align:center;color:var(--ink-3);font-size:.86rem;}
 
-/* ── OPERATING BRAIN (node graph) ── */
-.brain{display:flex;gap:46px;align-items:center;flex-wrap:wrap;justify-content:center;margin-top:44px;background:var(--card);border:1px solid var(--line-soft);border-radius:var(--radius);padding:34px 30px;box-shadow:var(--shadow);}
-.brain-svg{width:min(440px,84vw);height:auto;flex-shrink:0;}
+/* ── OPERATING BRAIN (constellation) ── */
+.brain{position:relative;display:flex;gap:48px;align-items:center;flex-wrap:wrap;justify-content:center;margin-top:44px;background:linear-gradient(160deg,var(--card),var(--bg-2));border:1px solid var(--line-soft);border-radius:var(--radius);padding:40px 34px;box-shadow:var(--shadow);overflow:hidden;}
+.brain::before{content:'';position:absolute;inset:-30%;background:radial-gradient(38% 38% at 24% 22%,rgba(124,58,237,.14),transparent 70%),radial-gradient(30% 30% at 78% 76%,rgba(219,39,119,.12),transparent 70%),radial-gradient(26% 26% at 82% 20%,rgba(245,158,11,.08),transparent 70%);pointer-events:none;}
+.brain-svg{width:min(460px,86vw);height:auto;flex-shrink:0;position:relative;}
 .brain-svg .node{cursor:pointer;}
-.brain-svg .ring{fill:none;stroke:var(--line-soft);stroke-width:1.4;}
-.brain-svg .core{fill:url(#coreGrad);filter:drop-shadow(0 0 10px rgba(124,58,237,.5));animation:corePulse 3s ease-in-out infinite;}
-@keyframes corePulse{0%,100%{transform:scale(1);}50%{transform:scale(1.06);}}
-.brain-svg .hub{font-family:var(--display);font-weight:800;fill:#fff;font-size:15px;letter-spacing:.04em;}
-.brain-svg .br{fill:var(--card);stroke:var(--ac-line);stroke-width:1.6;transition:transform .3s,stroke .3s,fill .3s;transform-box:fill-box;transform-origin:center;}
-.brain-svg .br:hover{transform:scale(1.1);stroke:var(--ac);}
-.brain-svg .node.active .br{fill:url(#coreGrad);stroke:transparent;transform:scale(1.12);}
-.brain-svg .bt{font-family:var(--display);font-weight:700;fill:var(--ink);font-size:12.5px;text-anchor:middle;transition:fill .3s;}
+.brain-svg .ring{fill:none;stroke:var(--line-soft);stroke-width:1.2;}
+.brain-svg .ring.r1{stroke-dasharray:3 9;stroke:var(--ac-line);opacity:.5;animation:orbSpin 46s linear infinite;}
+.brain-svg .ring.r2{stroke-dasharray:1 7;opacity:.6;animation:orbSpinRev 60s linear infinite;}
+@keyframes orbSpin{to{transform:rotate(360deg);}}
+@keyframes orbSpinRev{to{transform:rotate(-360deg);}}
+.brain-svg .core-halo{fill:url(#coreGrad);opacity:.28;animation:haloPulse 3.4s ease-in-out infinite;}
+.brain-svg .core{fill:url(#coreGrad);filter:drop-shadow(0 0 14px rgba(124,58,237,.6));animation:corePulse 3.4s ease-in-out infinite;}
+@keyframes haloPulse{0%,100%{opacity:.18;}50%{opacity:.34;}}
+@keyframes corePulse{0%,100%{transform:scale(1);}50%{transform:scale(1.07);}}
+.brain-svg .hub{font-family:var(--display);font-weight:800;fill:#fff;font-size:15px;letter-spacing:.05em;}
+.brain-svg .br{fill:var(--card);stroke:var(--ac-line);stroke-width:1.6;transition:transform .35s cubic-bezier(.34,1.4,.64,1),stroke .3s,fill .3s;transform-box:fill-box;transform-origin:center;}
+.brain-svg .node:hover .br{transform:scale(1.08);stroke:var(--ac);}
+.brain-svg .node.active .br{fill:url(#coreGrad);stroke:transparent;transform:scale(1.14);}
+.brain-svg .bi{font-size:19px;text-anchor:middle;pointer-events:none;}
+.brain-svg .bt{font-family:var(--display);font-weight:700;fill:var(--ink);font-size:12.5px;text-anchor:middle;pointer-events:none;transition:fill .3s;}
 .brain-svg .node.active .bt{fill:#fff;}
-.brain-svg .ln{stroke:var(--ac);stroke-width:1.6;opacity:.3;transition:opacity .3s,stroke-width .3s;}
-.brain-svg .ln.active{opacity:.95;stroke-width:2.8;}
-.brain-info{flex:1;min-width:260px;max-width:400px;}
-.brain-info .bi-h{font-family:var(--display);font-weight:800;font-size:1.5rem;margin-bottom:6px;background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;}
-.brain-info .bi-sub{color:var(--ink-3);font-size:.86rem;margin-bottom:16px;}
+.brain-svg .ln{stroke:var(--ac);stroke-width:1.6;opacity:.25;transition:opacity .3s;stroke-linecap:round;stroke-dasharray:6 8;}
+.brain-svg .ln.active{opacity:.95;stroke-width:2.4;animation:dash 1.6s linear infinite;}
+.brain-svg .orbit-dot{fill:var(--ac-2);animation:pingg 2.8s ease-out infinite;opacity:.7;}
+.brain-info{flex:1;min-width:270px;max-width:420px;}
+.brain-info .bi-tag{display:inline-flex;align-items:center;gap:6px;font-size:.7rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--ac);background:var(--ac-soft);border:1px solid var(--ac-line);padding:5px 11px;border-radius:100px;margin-bottom:14px;}
+.brain-info .bi-h{font-family:var(--display);font-weight:800;font-size:1.7rem;margin-bottom:8px;background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;}
+.brain-info .bi-sub{color:var(--ink-3);font-size:.9rem;margin-bottom:20px;border-left:3px solid var(--ac-line);padding-left:12px;line-height:1.5;}
 .brain-info .bi-list{display:flex;flex-direction:column;gap:10px;}
-.brain-info .bi-item{display:flex;gap:11px;align-items:flex-start;background:var(--bg-2);border:1px solid var(--line-soft);border-radius:12px;padding:12px 14px;font-size:.87rem;color:var(--ink-2);}
+.brain-info .bi-item{display:flex;gap:12px;align-items:flex-start;background:var(--bg-2);border:1px solid var(--line-soft);border-radius:13px;padding:12px 14px;font-size:.87rem;color:var(--ink-2);opacity:0;transform:translateY(12px);animation:biIn .5s cubic-bezier(.16,1,.3,1) forwards;}
 .brain-info .bi-item b{color:var(--ink);}
-.brain-info .bi-item .ic{font-size:1.05rem;line-height:1.4;}
-.brain-tabs{display:flex;gap:8px;margin-bottom:18px;flex-wrap:wrap;}
-.brain-tabs button{border:1px solid var(--line-soft);background:var(--bg-2);color:var(--ink-2);font-weight:700;font-size:.78rem;padding:8px 15px;border-radius:100px;cursor:pointer;transition:all .2s;font-family:var(--sans);}
-.brain-tabs button:hover{border-color:var(--ac);}
+.brain-info .bi-item .bi-ic{width:34px;height:34px;flex-shrink:0;border-radius:10px;background:var(--p-purple);color:var(--p-purple-l);display:flex;align-items:center;justify-content:center;font-size:1rem;box-shadow:inset 0 0 0 1px rgba(124,58,237,.12);}
+@keyframes biIn{to{opacity:1;transform:none;}}
+.brain-tabs{display:flex;gap:8px;margin-bottom:20px;flex-wrap:wrap;}
+.brain-tabs button{border:1px solid var(--line-soft);background:var(--bg-2);color:var(--ink-2);font-weight:700;font-size:.78rem;padding:8px 15px;border-radius:100px;cursor:pointer;transition:all .2s;font-family:var(--sans);display:inline-flex;align-items:center;gap:6px;}
+.brain-tabs button .ti{font-size:.9rem;}
+.brain-tabs button:hover{border-color:var(--ac);transform:translateY(-1px);}
 .brain-tabs button.active{background:var(--grad);color:#fff;border-color:transparent;box-shadow:0 6px 16px rgba(124,58,237,.3);}
 
 /* ── IMPACT TICKER ── */
@@ -1870,25 +1882,31 @@ footer .fr a:hover::after{width:100%;}
         <defs>
           <linearGradient id="coreGrad" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7c3aed"/><stop offset="1" stop-color="#db2777"/></linearGradient>
         </defs>
+        <circle class="ring r1" cx="200" cy="180" r="150" fill="none"/>
+        <circle class="ring r2" cx="200" cy="180" r="110" fill="none"/>
+        <circle class="ring" cx="200" cy="180" r="92" fill="none"/>
         <line class="ln" data-ln="Strategy" x1="200" y1="180" x2="200" y2="70"/>
         <line class="ln" data-ln="Growth" x1="200" y1="180" x2="330" y2="140"/>
         <line class="ln" data-ln="Operations" x1="200" y1="180" x2="320" y2="280"/>
         <line class="ln" data-ln="Builder" x1="200" y1="180" x2="80" y2="280"/>
-        <circle class="ring" cx="200" cy="180" r="150" fill="none"/>
-        <circle class="ring" cx="200" cy="180" r="92" fill="none"/>
+        <circle class="core-halo" cx="200" cy="180" r="60"/>
         <circle class="core" cx="200" cy="180" r="46"/>
         <text class="hub" x="200" y="185" text-anchor="middle">SUMIt</text>
-        <g class="node" data-node="Strategy"><circle class="br" cx="200" cy="70" r="34"/><text class="bt" x="200" y="74">Strategy</text></g>
-        <g class="node" data-node="Growth"><circle class="br" cx="330" cy="140" r="34"/><text class="bt" x="330" y="144">Growth</text></g>
-        <g class="node" data-node="Operations"><circle class="br" cx="320" cy="280" r="34"/><text class="bt" x="320" y="284">Operations</text></g>
-        <g class="node" data-node="Builder"><circle class="br" cx="80" cy="280" r="34"/><text class="bt" x="80" y="284">Builder</text></g>
+        <circle class="orbit-dot" cx="350" cy="180" r="3" style="animation-delay:.2s"/>
+        <circle class="orbit-dot" cx="200" cy="290" r="3" style="animation-delay:1.2s"/>
+        <circle class="orbit-dot" cx="90" cy="180" r="3" style="animation-delay:2.2s"/>
+        <g class="node" data-node="Strategy"><circle class="br" cx="200" cy="70" r="34"/><text class="bi" x="200" y="68">🎯</text><text class="bt" x="200" y="90">Strategy</text></g>
+        <g class="node" data-node="Growth"><circle class="br" cx="330" cy="140" r="34"/><text class="bi" x="330" y="138">📈</text><text class="bt" x="330" y="160">Growth</text></g>
+        <g class="node" data-node="Operations"><circle class="br" cx="320" cy="280" r="34"/><text class="bi" x="320" y="278">⚙️</text><text class="bt" x="320" y="300">Operations</text></g>
+        <g class="node" data-node="Builder"><circle class="br" cx="80" cy="280" r="34"/><text class="bi" x="80" y="278">🛠️</text><text class="bt" x="80" y="300">Builder</text></g>
       </svg>
       <div class="brain-info reveal">
+        <div class="bi-tag"><span>◈</span> The lens</div>
         <div class="brain-tabs" id="brainTabs">
-          <button class="active" data-t="Strategy">Strategy</button>
-          <button data-t="Growth">Growth</button>
-          <button data-t="Operations">Operations</button>
-          <button data-t="Builder">Builder</button>
+          <button class="active" data-t="Strategy"><span class="ti">🎯</span>Strategy</button>
+          <button data-t="Growth"><span class="ti">📈</span>Growth</button>
+          <button data-t="Operations"><span class="ti">⚙️</span>Operations</button>
+          <button data-t="Builder"><span class="ti">🛠️</span>Builder</button>
         </div>
         <div class="bi-h" id="biH">Strategy</div>
         <div class="bi-sub" id="biSub">Issue trees, should-cost, market sizing, business cases.</div>
@@ -2447,15 +2465,16 @@ function closeFw(){document.getElementById('fwModal').classList.remove('open');d
 
 /* ── OPERATING BRAIN ── */
 (function(){
+  var icons={Strategy:'🎯',Growth:'📈',Operations:'⚙️',Builder:'🛠️'};
   var data={
     Strategy:{sub:'Issue trees, should-cost, market sizing, business cases.',
-      list:['Should-cost model → ₹2.8 Cr/yr saved (Adani)','8 strategy projects, ₹4 Cr+ impact (Accenture)','Top 5 of 230 at IIMC partner panel']},
+      list:[['🏭','Should-cost model → <b>₹2.8 Cr/yr</b> saved <b>(Adani)</b>'],['🏛️','8 strategy projects, <b>₹4 Cr+</b> impact <b>(Accenture)</b>'],['🏆','Top 5 of 230 at <b>IIMC partner panel</b>']]},
     Growth:{sub:'D2C economics, cohort loops, 0→1 demand engines.',
-      list:['₹100 Cr+/yr revenue for 80+ brands (Shopdeck)','0→3M monthly orders in 10 months','118% profitability uplift across 42 firms']},
+      list:[['💰','<b>₹100 Cr+/yr</b> revenue for 80+ brands <b>(Shopdeck)</b>'],['📦','0→3M monthly orders in <b>10 months</b>'],['📊','<b>118%</b> profitability uplift across 42 firms']]},
     Operations:{sub:'Digitization, variance control, workforce design.',
-      list:['2,300+ dark stores digitized (Blinkit)','−43% inventory variance via 0→1 engine','+7.5% throughput, 23% fewer complaints']},
+      list:[['🏪','2,300+ dark stores digitized <b>(Blinkit)</b>'],['📉','<b>−43%</b> inventory variance via 0→1 engine'],['⚡','<b>+7.5%</b> throughput, 23% fewer complaints']]},
     Builder:{sub:'Tools, dashboards & SOPs that actually ship.',
-      list:['Picklist-suppression pilot → 43%→92% adherence','Location intelligence & bin-ID framework','Go-live SOP adopted chain-wide']}
+      list:[['🔧','Picklist-suppression pilot → <b>43%→92%</b> adherence'],['🗺️','Location intelligence & <b>bin-ID framework</b>'],['✅','Go-live SOP <b>adopted chain-wide</b>']]}
   };
   var tabs=document.getElementById('brainTabs'),svg=document.getElementById('brainSvg');
   if(!tabs||!svg)return;
@@ -2463,7 +2482,14 @@ function closeFw(){document.getElementById('fwModal').classList.remove('open');d
   function pick(t){
     var d=data[t];
     h.textContent=t;sub.textContent=d.sub;
-    list.innerHTML=d.list.map(function(x){return '<li>'+x+'</li>';}).join('');
+    list.innerHTML='';
+    d.list.forEach(function(it,i){
+      var el=document.createElement('div');
+      el.className='bi-item';
+      el.style.animationDelay=(i*0.09)+'s';
+      el.innerHTML='<span class="bi-ic">'+it[0]+'</span><span>'+it[1]+'</span>';
+      list.appendChild(el);
+    });
     tabs.querySelectorAll('button').forEach(function(b){b.classList.toggle('active',b.dataset.t===t);});
     svg.querySelectorAll('.node').forEach(function(n){n.classList.toggle('active',n.dataset.node===t);});
     svg.querySelectorAll('.ln').forEach(function(l){l.classList.toggle('active',l.dataset.ln===t);});
