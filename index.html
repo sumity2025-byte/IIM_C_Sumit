@@ -2054,9 +2054,9 @@ footer .fr a:hover::after{width:100%;}
     <p class="lead reveal">Drag the handle to reveal what my pilots did across 2,300+ dark stores. Switch the metric to compare.</p>
     <div class="ba-toggle reveal" id="baToggle">
       <button class="active" data-b="92" data-a="43" data-cap="Pick-path adherence jumped <b>43% → 92%</b> pan-India — cutting PPI by 10% and lifting throughput 7.5%.">Pick adherence</button>
-      <button data-b="23" data-a="0" data-cap="Complaints fell <b>23%</b> after 4 diagnostic heatmaps fixed placement accuracy (+22%)." data-suffix="%">Complaints ↓</button>
-      <button data-b="43" data-a="0" data-cap="Inventory variance cut <b>43%</b> via a 0→1 prioritization engine across 2,300+ stores." data-suffix="%">Variance ↓</button>
-      <button data-b="118" data-a="0" data-cap="Profitability uplift of <b>118%</b> across 42 firms from a portfolio of 80+ D2C clients." data-suffix="%">Profit ↑</button>
+      <button data-b="23" data-a="0" data-sign="−" data-cap="Complaints cut <b>23%</b> after 4 diagnostic heatmaps fixed placement accuracy (+22%)." data-suffix="%">Complaints ↓</button>
+      <button data-b="43" data-a="0" data-sign="−" data-cap="Inventory variance cut <b>43%</b> via a prioritization engine + execution dashboard across 2,300+ stores." data-suffix="%">Variance ↓</button>
+      <button data-b="118" data-a="0" data-sign="+" data-cap="Profitability uplift of <b>118%</b> across 42 firms from a portfolio of 80+ D2C clients." data-suffix="%">Profit ↑</button>
     </div>
     <div class="ba reveal" id="ba" style="margin-top:22px;">
       <div class="ba-pane ba-after">
@@ -2069,7 +2069,7 @@ footer .fr a:hover::after{width:100%;}
       </div>
       <div class="ba-handle" id="baHandle" role="slider" aria-label="Reveal" tabindex="0"><span></span></div>
     </div>
-    <p class="ba-cap" id="baCap">Compliance jumped <b>43% → 92%</b> pan-India — cutting PPI by 10% and lifting throughput 7.5%.</p>
+    <p class="ba-cap" id="baCap">Pick-path adherence jumped <b>43% → 92%</b> pan-India — cutting PPI by 10% and lifting throughput 7.5%.</p>
   </div>
 </section>
 
@@ -2328,16 +2328,29 @@ function toggleTl(el){
 /* ── BEFORE / AFTER SCRUBBER ── */
 (function(){
   var ba=document.getElementById('ba'),before=document.getElementById('baBefore'),handle=document.getElementById('baHandle');
-  if(!ba)return;
+  if(!ba||!before||!handle)return;
   var pct=50;
   function set(p){pct=Math.max(2,Math.min(98,p));before.style.clipPath='inset(0 '+(100-pct)+'% 0 0)';handle.style.left=pct+'%';}
   function fromX(clientX){var r=ba.getBoundingClientRect();set((clientX-r.left)/r.width*100);}
   var drag=false;
-  ba.addEventListener('pointerdown',function(e){drag=true;fromX(e.clientX);ba.setPointerCapture&&ba.setPointerCapture(e.pointerId);});
-  ba.addEventListener('pointermove',function(e){if(drag)fromX(e.clientX);});
-  ba.addEventListener('pointerup',function(){drag=false;});
-  ba.addEventListener('pointercancel',function(){drag=false;});
-  handle.addEventListener('keydown',function(e){if(e.key==='ArrowLeft'){set(pct-4);e.preventDefault();}if(e.key==='ArrowRight'){set(pct+4);e.preventDefault();}});
+  ba.addEventListener('pointerdown',function(e){
+    drag=true;fromX(e.clientX);
+    try{ba.setPointerCapture&&ba.setPointerCapture(e.pointerId);}catch(_){}
+  });
+  window.addEventListener('pointermove',function(e){if(drag)fromX(e.clientX);});
+  window.addEventListener('pointerup',function(){drag=false;});
+  window.addEventListener('pointercancel',function(){drag=false;});
+  handle.addEventListener('keydown',function(e){
+    if(e.key==='ArrowLeft'){set(pct-4);e.preventDefault();}
+    if(e.key==='ArrowRight'){set(pct+4);e.preventDefault();}
+    if(e.key==='Home'){set(2);e.preventDefault();}
+    if(e.key==='End'){set(98);e.preventDefault();}
+  });
+  if(!window.PointerEvent){
+    ba.addEventListener('mousedown',function(e){drag=true;fromX(e.clientX);});
+    document.addEventListener('mousemove',function(e){if(drag)fromX(e.clientX);});
+    document.addEventListener('mouseup',function(){drag=false;});
+  }
   set(50);
 })();
 
@@ -2479,8 +2492,9 @@ function celebrate(){
       b.classList.add('active');
       var aft=parseFloat(b.dataset.b),bfr=parseFloat(b.dataset.a);
       var suf=b.dataset.suffix||'%';
-      afterNum.textContent=aft+suf;beforeNum.textContent=bfr+suf;
-      afterBar.style.width=aft+'%';beforeBar.style.width=bfr+'%';
+      var sign=b.dataset.sign||'';
+      afterNum.textContent=(sign?sign:'')+aft+suf;beforeNum.textContent=bfr+suf;
+      afterBar.style.width=Math.min(100,aft)+'%';beforeBar.style.width=Math.min(100,bfr)+'%';
       cap.innerHTML=b.dataset.cap;
     });
   });
@@ -2618,3 +2632,4 @@ function closeOnePager(){document.getElementById('opModal').classList.remove('op
 </script>
 </body>
 </html>
+
