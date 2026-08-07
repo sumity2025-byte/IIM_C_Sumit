@@ -651,11 +651,26 @@ footer .fr a:hover::after{width:100%;}
 .live-status .clk{font-variant-numeric:tabular-nums;}
 
 /* ── TERMINAL ── */
-.terminal{background:#0e0b1a;color:#b6f0c8;border-radius:14px;padding:18px 20px;font-family:'SFMono-Regular',Consolas,monospace;font-size:.86rem;line-height:1.7;max-width:560px;margin:26px auto 0;box-shadow:0 20px 50px rgba(14,11,26,.45);overflow:hidden;border:1px solid rgba(167,139,250,.25);}
-.terminal .pr{color:#ff9d4d;}
-.terminal .cmd{color:#fff;}
-.terminal .out{color:#9fe6ff;}
-.terminal .cur{display:inline-block;width:8px;height:1.05em;background:#7cfa9c;vertical-align:-2px;animation:blink 1s steps(1) infinite;}
+.terminal{max-width:580px;margin:30px auto 0;border-radius:16px;overflow:hidden;background:#0a0817;border:1px solid rgba(124,58,237,.30);box-shadow:0 30px 70px -22px rgba(14,11,26,.75),0 0 0 1px rgba(124,58,237,.06),inset 0 1px 0 rgba(255,255,255,.05);font-family:'SFMono-Regular',Consolas,monospace;font-size:.84rem;line-height:1.7;}
+.term-bar{display:flex;align-items:center;gap:12px;padding:11px 16px;background:linear-gradient(180deg,#1a1530,#120e24);border-bottom:1px solid rgba(167,139,250,.16);}
+.term-bar .tl{display:flex;gap:7px;}
+.term-bar .tl i{width:11px;height:11px;border-radius:50%;display:block;}
+.term-bar .tl i:nth-child(1){background:#ff5f57;}
+.term-bar .tl i:nth-child(2){background:#febc2e;}
+.term-bar .tl i:nth-child(3){background:#28c840;}
+.term-bar .tt{flex:1;text-align:center;color:#8f87b3;font-size:.72rem;font-weight:600;letter-spacing:.05em;font-family:var(--sans);user-select:none;}
+.term-bar .tb{color:#5a5480;font-size:.68rem;user-select:none;}
+.term-body{padding:18px 20px 20px;}
+.term-body>div{margin:0;}
+.tline{white-space:pre-wrap;min-height:1.7em;}
+.tuser{color:#a78bfa;font-weight:700;}
+.tat{color:#6b6487;}
+.thost{color:#f472b6;font-weight:700;}
+.tpath{color:#8f87b3;}
+.tcmd{color:#e8e3ff;}
+.tout{color:#4ade80;margin:2px 0 13px 0;font-size:.8rem;}
+.tout b{color:#7cfa9c;font-weight:700;}
+.cur{display:inline-block;width:8px;height:1.05em;background:#7cfa9c;vertical-align:-2px;animation:blink 1s steps(1) infinite;border-radius:2px;}
 @keyframes blink{50%{opacity:0;}}
 
 /* ── HIRE-ME + copy ── */
@@ -1551,11 +1566,18 @@ footer .fr a:hover::after{width:100%;}
     </div>
 
     <div class="terminal reveal" id="term" aria-hidden="true">
-      <div><span class="pr">sumit@iimc</span>:<span class="cmd">~$</span> <span class="cmd">build --dark-stores 2300 --scale pan-india</span></div>
-      <div class="out">✔ digitized 100% · variance −43% · adherence 43%→92%</div>
-      <div><span class="pr">sumit@iimc</span>:<span class="cmd">~$</span> <span class="cmd">grow --d2c 80+brands</span></div>
-      <div class="out">✔ ₹100 Cr+/yr · 0→3M orders · 118% profitability</div>
-      <div><span class="pr">sumit@iimc</span>:<span class="cmd">~$</span> <span class="cmd">_</span><span class="cur"></span></div>
+      <div class="term-bar">
+        <span class="tl"><i></i><i></i><i></i></span>
+        <span class="tt">sumit@iimc — zsh</span>
+        <span class="tb">▢</span>
+      </div>
+      <div class="term-body">
+        <div class="tline"><span class="tuser">sumit</span><span class="tat">@</span><span class="thost">iimc</span><span class="tpath">:~$</span> <span class="tcmd">build --dark-stores 2300 --scale pan-india</span></div>
+        <div class="tout">✔ digitized <b>100%</b> · variance <b>−43%</b> · adherence <b>43%→92%</b></div>
+        <div class="tline"><span class="tuser">sumit</span><span class="tat">@</span><span class="thost">iimc</span><span class="tpath">:~$</span> <span class="tcmd">grow --d2c 80+brands</span></div>
+        <div class="tout">✔ <b>₹100 Cr+/yr</b> · 0→3M orders · <b>118%</b> profitability</div>
+        <div class="tline"><span class="tuser">sumit</span><span class="tat">@</span><span class="thost">iimc</span><span class="tpath">:~$</span> <span class="tcmd">_</span><span class="cur"></span></div>
+      </div>
     </div>
 
     <div class="subhead reveal">🎯 Roles I'm targeting</div>
@@ -2207,8 +2229,37 @@ function toggleTl(el){
   }
 })();
 
-/* ── QUOTE MARQUEE pause on hover (reuse pattern) ── */
+/* ── TERMINAL type-on-scroll ── */
 (function(){
+  var term=document.getElementById('term');
+  if(!term||!('IntersectionObserver' in window)||window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+  var outs=[].slice.call(term.querySelectorAll('.tout'));
+  var cmds=[].slice.call(term.querySelectorAll('.tcmd'));
+  var cursor=term.querySelector('.cur');
+  cmds.forEach(function(el){el.setAttribute('data-full',el.textContent);el.textContent='';});
+  outs.forEach(function(el){el.style.opacity='0';});
+  var io=new IntersectionObserver(function(es){
+    es.forEach(function(x){
+      if(!x.isIntersecting)return;
+      io.disconnect();
+      function typeAt(idx){
+        if(idx>=cmds.length){if(cursor)cursor.style.animation='none';return;}
+        var el=cmds[idx],full=el.getAttribute('data-full');
+        (function type(j){
+          if(j<=full.length){el.textContent=full.slice(0,j);setTimeout(function(){type(j+1);},16);}
+          else{
+            if(outs[idx-1])outs[idx-1].style.transition='opacity .5s ease';outs[idx-1]&&(outs[idx-1].style.opacity='1');
+            setTimeout(function(){typeAt(idx+1);},260);
+          }
+        })(0);
+      }
+      typeAt(0);
+    });
+  },{threshold:.4});
+  io.observe(term);
+})();
+
+/* ── QUOTE MARQUEE pause on hover (reuse pattern) ── */(function(){
   var q=document.getElementById('quotesTrack');
   if(q&&'IntersectionObserver' in window){
     new IntersectionObserver(function(es){es.forEach(function(x){q.style.animationPlayState=x.isIntersecting?'running':'paused';});},{threshold:0}).observe(q.closest('.quotes'));
