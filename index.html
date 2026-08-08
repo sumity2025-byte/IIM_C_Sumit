@@ -82,7 +82,7 @@
 [data-theme="dark"] #nav{background:rgba(10,9,20,.72);}
 [data-theme="dark"] .mmenu{background:rgba(10,9,20,.97);}
 [data-theme="dark"] .modal-bg{background:rgba(5,4,12,.68);}
-[data-theme="dark"] .stat,.card,.edu-card,.fact,.cert,.pdf-card,.qcard,.tl-head,.feature,.gal,.cmd{background:var(--bg-2);}
+[data-theme="dark"] .stat,.card,.edu-card,.fact,.cert,.pdf-card,.tl-head,.feature,.gal,.cmd{background:var(--bg-2);}
 [data-theme="dark"] .hero,.story{background:var(--bg);}
 [data-theme="dark"] .feature,.flip .face{background:var(--bg-2);}
 [data-theme="dark"] .flip .back{background:linear-gradient(160deg,var(--bg-2),var(--bg-3));}
@@ -506,14 +506,16 @@ footer .fr a:hover::after{width:100%;}
 [data-theme="dark"] .flip .back{background:linear-gradient(160deg,var(--bg-2),var(--bg-3));}
 
 /* QUOTE MARQUEE */
-.quotes{overflow:hidden;background:var(--bg-2);padding:60px 0;border-top:1px solid var(--line-soft);border-bottom:1px solid var(--line-soft);}
-.quotes-track{display:flex;gap:22px;width:max-content;animation:scrollx 38s linear infinite;will-change:transform;}
-.quotes:hover .quotes-track{animation-play-state:paused;}
-.qcard{width:340px;flex-shrink:0;background:var(--card);border:1px solid var(--line-soft);border-radius:var(--radius);padding:26px 28px;box-shadow:var(--shadow);}
-.qcard .qt{font-size:.98rem;color:var(--ink);line-height:1.55;font-weight:500;}
-.qcard .qt::before{content:'“';color:var(--ac);font-size:1.6rem;line-height:0;vertical-align:-.35em;margin-right:4px;}
-.qcard .qa{margin-top:14px;font-size:.8rem;color:var(--ink-3);font-weight:700;}
-.qcard .qa b{color:var(--ac);}
+.how{background:var(--bg-2);padding:60px 0;border-top:1px solid var(--line-soft);border-bottom:1px solid var(--line-soft);}
+.how-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:8px;}
+.how-card{background:var(--card);border:1px solid var(--line-soft);border-radius:var(--radius);padding:26px 24px;box-shadow:var(--shadow);position:relative;overflow:hidden;transition:transform .3s cubic-bezier(.16,1,.3,1),border-color .3s;}
+.how-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--grad);opacity:.9;}
+.how-card:hover{transform:translateY(-4px);border-color:var(--ac-line);}
+.hw-ic{font-size:1.5rem;line-height:1;}
+.how-card h4{margin:14px 0 8px;font-family:var(--display);font-size:1.08rem;font-weight:800;color:var(--ink);}
+.how-card p{margin:0;font-size:.83rem;color:var(--ink-3);line-height:1.55;}
+@media(max-width:900px){.how-grid{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:520px){.how-grid{grid-template-columns:1fr;}}
 
 /* STORY SECTION */
 .story{background:linear-gradient(160deg,#15103a,#241243);color:#fff;position:relative;overflow:hidden;}
@@ -761,7 +763,6 @@ footer .fr a:hover::after{width:100%;}
   .story-steps{grid-template-columns:1fr;}
   .tl-head .when{display:none;}
   #rail{display:none;}
-  .quotes-track{animation-duration:48s;}
   .hero-cta,.cta .hero-cta{flex-wrap:wrap;}
   .cta .hero-cta .btn{width:100%;justify-content:center;}
   .india-map{max-width:320px;}
@@ -795,7 +796,7 @@ footer .fr a:hover::after{width:100%;}
   @page{margin:12mm;}
   html,body{overflow:visible !important;background:#fff !important;color:#000 !important;}
   /* hide chrome & decorative bits */
-  #nav,.dotnav,#rail,.marquee,.logostrip,.quotes,.story,.cta .blob,.scroll-hint,
+  #nav,.dotnav,#rail,.marquee,.logostrip,.how,.story,.cta .blob,.scroll-hint,
   #cmd,.modal-bg,.mmenu,#prog,.hero-blob,.theme-toggle,.burger,.flip-toggle,
   .tl::before,.tl-item .dot,.pin::after,.pill .d,.hero-cta,footer{display:none !important;}
   section.block{padding:0 !important;margin:0 0 14px !important;}
@@ -1857,15 +1858,17 @@ footer .fr a:hover::after{width:100%;}
   </div>
 </section>
 
-<!-- QUOTE MARQUEE -->
-<section class="quotes" aria-label="What colleagues say">
-  <div class="quotes-track" id="quotesTrack">
-    <div class="qcard"><div class="qt">"Sumit turns a fuzzy operating problem into a dashboard and a pilot that actually ships. Rare blend of analyst and builder."</div><div class="qa">— <b>Manager, Blinkit Ops</b></div></div>
-    <div class="qcard"><div class="qt">"Drove ₹100 Cr+ for 80+ brands and never lost the thread on unit economics. Our go-live SOP is still his."</div><div class="qa">— <b>Lead, Shopdeck Growth</b></div></div>
-    <div class="qcard"><div class="qt">"His should-cost model changed how we evaluate vendors. Sharp, structured, and calm under a partner-panel grilling."</div><div class="qa">— <b>Accenture Strategy</b></div></div>
-    <div class="qcard"><div class="qt">"Owns the outcome, not just the task. 15+ pilots scaled pan-India without dropping a beat."</div><div class="qa">— <b>Cross-functional Peer</b></div></div>
-    <div class="qcard"><div class="qt">"Sumit turns a fuzzy operating problem into a dashboard and a pilot that actually ships. Rare blend of analyst and builder."</div><div class="qa">— <b>Manager, Blinkit Ops</b></div></div>
-    <div class="qcard"><div class="qt">"Drove ₹100 Cr+ for 80+ brands and never lost the thread on unit economics."</div><div class="qa">— <b>Lead, Shopdeck Growth</b></div></div>
+<!-- HOW I WORK -->
+<section class="how" aria-label="How Sumit works">
+  <div class="wrap">
+    <div class="eyebrow reveal">How I work</div>
+    <h2 class="title reveal">Same approach, <span class="grad">every problem.</span></h2>
+    <div class="how-grid">
+      <div class="how-card reveal" style="transition-delay:.05s"><div class="hw-ic">🎯</div><h4>Own the outcome</h4><p>From a fuzzy problem to a shipped result — I design it, execute it, and stay accountable for the number at the end. 15+ pilots scaled pan-India.</p></div>
+      <div class="how-card reveal" style="transition-delay:.15s"><div class="hw-ic">🔍</div><h4>Diagnose before prescribing</h4><p>Field discovery first. Heatmaps, variance models, funnel teardowns — data before opinion, so the fix targets the real bottleneck.</p></div>
+      <div class="how-card reveal" style="transition-delay:.25s"><div class="hw-ic">⚙️</div><h4>Build what ships</h4><p>Every insight becomes a dashboard, pilot, or SOP the team actually uses — from FEFO logic to a go-live playbook adopted chain-wide.</p></div>
+      <div class="how-card reveal" style="transition-delay:.35s"><div class="hw-ic">🤝</div><h4>Steady under pressure</h4><p>Partner panels, 10+ member cross-functional squads, ₹180 Cr+ bid reviews — calm process beats heroics.</p></div>
+    </div>
   </div>
 </section>
 
@@ -2355,13 +2358,6 @@ function toggleTl(el){
     });
   },{threshold:.4});
   io.observe(term);
-})();
-
-/* ── QUOTE MARQUEE pause on hover (reuse pattern) ── */(function(){
-  var q=document.getElementById('quotesTrack');
-  if(q&&'IntersectionObserver' in window){
-    new IntersectionObserver(function(es){es.forEach(function(x){q.style.animationPlayState=x.isIntersecting?'running':'paused';});},{threshold:0}).observe(q.closest('.quotes'));
-  }
 })();
 
 /* ── STORY scroll steps ── */
