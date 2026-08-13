@@ -984,9 +984,53 @@ h2.title{font-size:clamp(2rem,4.8vw,3.35rem);line-height:1.08;margin-bottom:18px
   a{color:#000 !important;text-decoration:none !important;}
   .eyebrow{font-size:10px !important;margin-bottom:2px !important;}
 }
+/* ── LAYER 2: AMBIENT DEPTH PLANE ── */
+/* Behind all content (above the static body::before glow). Drifting mesh +
+   faint masked grid for premium depth. Purely decorative; no content change.
+   Animations auto-disabled by the global prefers-reduced-motion rule below. */
+.depth-layer{position:fixed;inset:0;z-index:-1;pointer-events:none;overflow:hidden;will-change:transform;}
+.depth-layer::before{
+  content:'';position:absolute;inset:-25%;
+  background:
+    radial-gradient(40% 38% at 20% 25%,rgba(124,58,237,.16),transparent 60%),
+    radial-gradient(38% 36% at 82% 18%,rgba(219,39,119,.12),transparent 60%),
+    radial-gradient(46% 44% at 60% 88%,rgba(245,158,11,.10),transparent 62%),
+    radial-gradient(50% 50% at 35% 70%,rgba(59,130,246,.10),transparent 60%);
+  filter:saturate(120%);
+  animation:depthDrift 42s ease-in-out infinite alternate;
+}
+.depth-layer::after{
+  content:'';position:absolute;inset:0;
+  background-image:
+    linear-gradient(rgba(124,58,237,.05) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(124,58,237,.05) 1px,transparent 1px);
+  background-size:46px 46px;
+  -webkit-mask-image:radial-gradient(120% 100% at 50% 0%,#000 35%,transparent 80%);
+  mask-image:radial-gradient(120% 100% at 50% 0%,#000 35%,transparent 80%);
+  opacity:.6;
+}
+[data-theme="dark"] .depth-layer::before{
+  background:
+    radial-gradient(40% 38% at 20% 25%,rgba(167,139,250,.22),transparent 60%),
+    radial-gradient(38% 36% at 82% 18%,rgba(244,114,182,.16),transparent 60%),
+    radial-gradient(46% 44% at 60% 88%,rgba(251,191,36,.12),transparent 62%),
+    radial-gradient(50% 50% at 35% 70%,rgba(122,162,255,.14),transparent 60%);
+}
+[data-theme="dark"] .depth-layer::after{
+  background-image:
+    linear-gradient(rgba(167,139,250,.07) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(167,139,250,.07) 1px,transparent 1px);
+}
+@keyframes depthDrift{
+  0%{transform:translate3d(-2%,-1%,0) scale(1.05) rotate(0deg);}
+  50%{transform:translate3d(2%,1.5%,0) scale(1.12) rotate(1.5deg);}
+  100%{transform:translate3d(-1%,2%,0) scale(1.06) rotate(-1deg);}
+}
+
 </style>
 </head>
 <body>
+<div class="depth-layer" aria-hidden="true"></div>
 <script>document.documentElement.className+=' js';</script>
 <a class="skip-link" href="#main-content">Skip to content</a>
 
@@ -2696,6 +2740,16 @@ function closeOnePager(){var modal=document.getElementById('opModal');if(!modal|
     var kids=Array.prototype.slice.call(g.children);
     kids.forEach(function(k,i){k.style.transitionDelay=((i%3)*90)+'ms';});
   });
+})();
+
+/* ── LAYER 2: scroll parallax for ambient depth plane ── */
+(function(){
+  var dl=document.querySelector('.depth-layer'); if(!dl)return;
+  var reduced=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(reduced)return;
+  var ticking=false;
+  function upd(){var y=window.pageYOffset||0; dl.style.transform='translate3d(0,'+(y*0.03).toFixed(2)+'px,0)'; ticking=false;}
+  window.addEventListener('scroll',function(){if(!ticking){ticking=true;requestAnimationFrame(upd);}},{passive:true});
 })();
 </script>
 </body>
