@@ -1027,6 +1027,47 @@ h2.title{font-size:clamp(2rem,4.8vw,3.35rem);line-height:1.08;margin-bottom:18px
   100%{transform:translate3d(-1%,2%,0) scale(1.06) rotate(-1deg);}
 }
 
+/* ── LIVELINESS: motion layer (reduced-motion still disabled by global rule) ── */
+/* Desktop: moving credibility banner + scrolling logo marquee + hero motion */
+@media(min-width:1025px){
+  .marquee{padding:18px 0;background:linear-gradient(90deg,#7c3aed,#db2777,#f59e0b);color:#fff;box-shadow:0 10px 40px rgba(124,58,237,.25);border-block:none;}
+  .marquee::before{content:'';position:absolute;top:0;bottom:0;left:0;width:90px;z-index:2;pointer-events:none;background:linear-gradient(90deg,#7c3aed,transparent);}
+  .marquee::after{content:'';position:absolute;top:0;bottom:0;right:0;width:90px;z-index:2;pointer-events:none;background:linear-gradient(-90deg,#f59e0b,transparent);}
+  .marquee-track{width:max-content;max-width:none;margin:0;display:flex;flex-wrap:nowrap;justify-content:flex-start;gap:48px;animation:scrollx 34s linear infinite;transform:none;}
+  .marquee-track>span:nth-child(n+9){display:inline-flex;}
+  .marquee span{padding:0;border:none;border-radius:0;background:none;color:#fff;font-size:.85rem;box-shadow:none;}
+  .marquee .sep{display:inline-block;}
+  .marquee:hover .marquee-track{animation-play-state:paused;}
+  .logostrip-track{width:max-content;max-width:none;margin:0;padding:0;display:flex;gap:30px;grid-template-columns:none;animation:scrollx 30s linear infinite;transform:none;}
+  .logostrip-track>a:nth-child(n+8){display:flex;}
+  .logostrip a{width:120px;}
+  .logostrip:hover .logostrip-track{animation-play-state:paused;}
+  .hero h1 .shimmer{animation:shimmer 3.5s linear infinite;background:linear-gradient(100deg,#7c3aed 30%,#f59e0b 50%,#7c3aed 70%);background-size:200% auto;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent;}
+  .hero h1 .swap .word{animation:wordIn .5s cubic-bezier(.16,1,.3,1);}
+}
+/* Tablet & mobile: keep credibility ribbon as static grids (no horizontal scroll) */
+@media(max-width:1024px){
+  .marquee{background:var(--bg-2);color:var(--ink);padding:18px 24px;box-shadow:none;border-block:1px solid var(--line-soft);}
+  .marquee::before,.marquee::after{display:none;}
+  .marquee-track{width:auto;max-width:var(--maxw);margin:0 auto;display:flex;flex-wrap:wrap;justify-content:center;gap:8px;animation:none;transform:none !important;}
+  .marquee-track>span:nth-child(n+9){display:none;}
+  .marquee span{padding:7px 11px;border:1px solid var(--line-soft);border-radius:999px;background:var(--card);color:var(--ink-2);font-size:.76rem;box-shadow:0 1px 2px rgba(40,20,80,.03);}
+  .marquee .sep{display:none;}
+  .logostrip-track{width:auto;max-width:var(--maxw);margin:0 auto;padding:0 26px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;animation:none;transform:none !important;}
+  .logostrip-track>a:nth-child(n+8){display:none;}
+  .logostrip a{width:auto;height:62px;}
+}
+/* Living impact band + hero entrance */
+.impact-ticker{background-size:200% 200%;animation:gradShift 12s ease infinite;}
+@keyframes gradShift{0%{background-position:0% 50%;}50%{background-position:100% 50%;}100%{background-position:0% 50%;}}
+.hero-stage>*{animation:heroIn .7s cubic-bezier(.16,1,.3,1) both;}
+.hero-stage>*:nth-child(1){animation-delay:.05s;}
+.hero-stage>*:nth-child(2){animation-delay:.16s;}
+.hero-stage>*:nth-child(3){animation-delay:.27s;}
+.hero-stage>*:nth-child(4){animation-delay:.38s;}
+.hero-stage>*:nth-child(5){animation-delay:.49s;}
+@keyframes heroIn{from{opacity:0;transform:translateY(26px);}to{opacity:1;transform:none;}}
+
 </style>
 </head>
 <body>
